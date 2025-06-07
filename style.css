@@ -1,0 +1,132 @@
+header {
+  background: transparent;
+  color: #222;
+  padding: 60px 20px 20px;
+  text-align: center;
+}
+header h1 {
+  font-size: 3em;
+  margin-bottom: 10px;
+  margin-top: 300px;
+}
+header p {
+  margin-top: 50px;
+  font-size: 1.2em;
+  font-style: italic;
+}
+.navigation {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: #fff;
+  padding: 10px 20px;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+.navigation img {
+  height: 50px;
+}
+nav {
+  flex: 1;
+  display: flex;
+  justify-content: flex-start;
+  margin-left: 50px;
+}
+nav a {
+  color: #222;
+  margin: 0 15px;
+  text-decoration: none;
+  font-weight: bold;
+}
+.search-bar {
+  display: flex;
+  align-items: center;
+}
+.search-bar input[type="text"] {
+  padding: 6px 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  margin: 0;
+  padding: 0;
+  background: #fdf8f2; /* cream whitish */
+  color: #333;
+}
+.about h2{
+  font-size: 70px;
+  text-align: center;
+}
+.about p{
+  margin-left: 100px;
+  margin-right: 100px;
+  text-align: left;
+}
+.about-me h2{
+  font-size: 70px;
+  text-align: center;
+}
+.about-me h3{
+  font-size: 60px;
+  text-align: center;
+}
+.about-me p{
+  margin-left: 100px;
+  margin-right: 100px;
+}
+.me-header{
+  text-align: center;
+  font: italic;
+}
+.causes h2{
+  font-size: 70px;
+  text-align: center;
+}
+.causes h3{
+  margin-left: 120px;
+  margin-right: 120px;
+}
+.causes p{
+  margin-left: 100px;
+  margin-right: 100px;
+}
+.empowerment h2{
+  font-size: 70px;
+  text-align: center;
+}
+.empowerment p{
+  margin-left: 100px;
+  margin-right: 100px;
+}
+.ef {
+  color: white;
+  padding: 10px 20px;
+  text-align: center;
+  margin-top: 20px;
+  display: inline-block;
+  border-radius: 5px;
+  text-decoration: none;
+}
+.involved h2{
+  font-size: 70px;
+  text-align: center;
+}
+.involved p{
+  margin-left: 100px;
+  margin-right: 100px;
+}
+.contact h2{
+  font-size: 70px;
+  text-align: center;
+}
+.contact{
+  margin-left: 100px;
+  margin-right: 100px;
+}
+footer {
+  margin-top: 40px;
+  background: #222;
+  color: #fff;
+  text-align: center;
+  padding: 20px;
+}
