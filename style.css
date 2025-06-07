@@ -1,3 +1,4 @@
+/* Base styles */
 header {
   background: transparent;
   color: #222;
@@ -16,6 +17,7 @@ header p {
 }
 .navigation {
   display: flex;
+  flex-wrap: wrap;
   align-items: center;
   justify-content: space-between;
   background: #fff;
@@ -28,6 +30,7 @@ header p {
 nav {
   flex: 1;
   display: flex;
+  flex-wrap: wrap;
   justify-content: flex-start;
   margin-left: 50px;
 }
@@ -40,6 +43,7 @@ nav a {
 .search-bar {
   display: flex;
   align-items: center;
+  margin-top: 10px;
 }
 .search-bar input[type="text"] {
   padding: 6px 10px;
@@ -50,53 +54,38 @@ body {
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   margin: 0;
   padding: 0;
-  background: #fdf8f2; /* cream whitish */
+  background: #fdf8f2;
   color: #333;
 }
-.about h2{
+.about h2,
+.about-me h2,
+.causes h2,
+.empowerment h2,
+.involved h2,
+.contact h2 {
   font-size: 70px;
   text-align: center;
 }
-.about p{
+.about p,
+.about-me p,
+.causes p,
+.empowerment p,
+.involved p,
+.contact {
   margin-left: 100px;
   margin-right: 100px;
-  text-align: left;
 }
-.about-me h2{
-  font-size: 70px;
-  text-align: center;
-}
-.about-me h3{
+.about-me h3 {
   font-size: 60px;
   text-align: center;
 }
-.about-me p{
-  margin-left: 100px;
-  margin-right: 100px;
-}
-.me-header{
+.me-header {
   text-align: center;
-  font: italic;
+  font-style: italic;
 }
-.causes h2{
-  font-size: 70px;
-  text-align: center;
-}
-.causes h3{
+.causes h3 {
   margin-left: 120px;
   margin-right: 120px;
-}
-.causes p{
-  margin-left: 100px;
-  margin-right: 100px;
-}
-.empowerment h2{
-  font-size: 70px;
-  text-align: center;
-}
-.empowerment p{
-  margin-left: 100px;
-  margin-right: 100px;
 }
 .ef {
   color: white;
@@ -107,26 +96,75 @@ body {
   border-radius: 5px;
   text-decoration: none;
 }
-.involved h2{
-  font-size: 70px;
-  text-align: center;
-}
-.involved p{
-  margin-left: 100px;
-  margin-right: 100px;
-}
-.contact h2{
-  font-size: 70px;
-  text-align: center;
-}
-.contact{
-  margin-left: 100px;
-  margin-right: 100px;
-}
 footer {
   margin-top: 40px;
   background: #222;
   color: #fff;
   text-align: center;
   padding: 20px;
+}
+
+/* ✅ MOBILE-FRIENDLY STYLES */
+@media (max-width: 768px) {
+  header h1 {
+    font-size: 2em;
+    margin-top: 150px;
+  }
+
+  header p {
+    font-size: 1em;
+  }
+
+  .navigation {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  nav {
+    margin-left: 0;
+    margin-top: 10px;
+    flex-direction: column;
+    width: 100%;
+  }
+
+  nav a {
+    margin: 10px 0;
+  }
+
+  .search-bar {
+    width: 100%;
+    margin-top: 10px;
+  }
+
+  .search-bar input[type="text"] {
+    width: 100%;
+  }
+
+  .about h2,
+  .about-me h2,
+  .about-me h3,
+  .causes h2,
+  .empowerment h2,
+  .involved h2,
+  .contact h2 {
+    font-size: 36px;
+  }
+
+  .about p,
+  .about-me p,
+  .causes p,
+  .empowerment p,
+  .involved p,
+  .contact {
+    margin: 0 20px;
+    text-align: left;
+  }
+
+  .causes h3 {
+    margin: 0 20px;
+  }
+
+  .ef {
+    width: 100%;
+  }
 }
