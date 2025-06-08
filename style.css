@@ -167,4 +167,84 @@ footer {
   .ef {
     width: 100%;
   }
+
+/* Hide the checkbox */
+.nav-toggle {
+  display: none;
+}
+
+/* Hamburger icon style */
+.nav-toggle-label {
+  display: none; /* hidden on desktop */
+  cursor: pointer;
+  width: 30px;
+  height: 25px;
+  position: relative;
+}
+
+.nav-toggle-label span,
+.nav-toggle-label span::before,
+.nav-toggle-label span::after {
+  display: block;
+  background: #222;
+  position: absolute;
+  height: 4px;
+  width: 100%;
+  border-radius: 2px;
+  transition: all 0.3s ease;
+}
+
+.nav-toggle-label span {
+  top: 50%;
+  margin-top: -2px;
+}
+
+.nav-toggle-label span::before {
+  content: '';
+  top: -10px;
+}
+
+.nav-toggle-label span::after {
+  content: '';
+  top: 10px;
+}
+
+/* Show hamburger and hide nav on small screens */
+@media (max-width: 768px) {
+  nav {
+    display: none;
+    flex-direction: column;
+    background: #fff;
+    position: absolute;
+    top: 60px;
+    left: 0;
+    width: 100%;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    padding: 20px 0;
+  }
+
+  .nav-toggle-label {
+    display: block;
+  }
+
+  /* When checkbox is checked, show nav */
+  .nav-toggle:checked + .nav-toggle-label + nav {
+    display: flex;
+  }
+  
+  .navigation {
+    position: relative;
+  }
+
+  nav a {
+    margin: 10px 20px;
+    font-size: 1.2em;
+  }
+  
+  .search-bar {
+    display: none; /* hide search bar on mobile or style separately */
+  }
+}
+
+  
 }
