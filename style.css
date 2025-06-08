@@ -115,6 +115,18 @@ footer {
     font-size: 1em;
   }
 
+table {
+    width: 100%;
+    border-collapse: collapse;
+    table-layout: fixed;
+  }
+
+  td img {
+    width: 100%;
+    height: auto;
+    display: block;
+  }
+  
   .navigation {
     flex-direction: column;
     align-items: flex-start;
