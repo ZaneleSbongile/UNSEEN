@@ -130,7 +130,6 @@ table, tr, td {
   td {
     display: flex;
     justify-content: space-between;
-    padding: 8px 10px;
     border-bottom: 1px solid #eee;
   }
 
@@ -138,7 +137,6 @@ table, tr, td {
     content: attr(data-label);
     font-weight: bold;
     color: #333;
-    margin-right: 10px;
   }
   
   .navigation {
