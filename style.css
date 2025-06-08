@@ -175,13 +175,18 @@ footer {
     display: none;
   }
 
-  .hamburger {
-    display: block;
-    cursor: pointer;
-    font-size: 28px;
-    padding: 15px 20px;
-  }
 
+.hamburger {
+  font-size: 28px;
+  color: orange;
+  cursor: pointer;
+  display: block;
+  position: absolute;
+  top: 20px;
+  right: 20px;
+}
+
+  
   .hamburger span {
   display: block;
   width: 25px;
