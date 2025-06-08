@@ -10,6 +10,22 @@
   <div class="navigation">
     <a href="index.html"><img src="images/logo.png" alt="Unseen Generation Logo" height="60px" width="50px" /></a>
 
+<script>
+  function toggleMenu() {
+    const menu = document.getElementById("sideMenu");
+    const overlay = document.querySelector(".overlay");
+    menu.classList.toggle("open");
+    overlay.classList.toggle("active");
+  }
+
+  // Optional: auto-close when link is clicked
+  document.querySelectorAll('.side-menu a').forEach(link => {
+    link.addEventListener('click', () => {
+      toggleMenu();
+    });
+  });
+</script>
+    
     <input type="checkbox" id="nav-toggle" class="nav-toggle" />
   <label for="nav-toggle" class="nav-toggle-label">
     <span></span>
@@ -53,21 +69,7 @@
   <a href="contact.html">Contact</a>
 </div>
 
-  <script>
-  function toggleMenu() {
-    const menu = document.getElementById("sideMenu");
-    const overlay = document.querySelector(".overlay");
-    menu.classList.toggle("open");
-    overlay.classList.toggle("active");
-  }
-
-  // Optional: auto-close when link is clicked
-  document.querySelectorAll('.side-menu a').forEach(link => {
-    link.addEventListener('click', () => {
-      toggleMenu();
-    });
-  });
-</script>
+  
 
   
 </body>
