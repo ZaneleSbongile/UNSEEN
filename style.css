@@ -182,8 +182,8 @@ footer {
   cursor: pointer;
   display: block;
   position: absolute;
-  top: 50px;
-  right: 200px;
+  top: 90px;
+  right: 50px;
 }  
   .hamburger span {
   display: block;
