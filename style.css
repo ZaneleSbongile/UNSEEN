@@ -115,6 +115,10 @@ footer {
     font-size: 1em;
   }
 
+table td {
+    display: none;
+  }
+  
 table {
     width: 100%;
     border-collapse: collapse;
