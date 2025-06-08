@@ -73,5 +73,36 @@
      Through Empowerment Fridays and open dialogue, we’re building a generation that knows:
      It’s okay to feel, it’s okay to struggle, and it’s more than okay to ask for help.</p>
   </div>
+
+<div class="hamburger" onclick="toggleMenu()">☰</div>
+
+<div class="overlay" onclick="toggleMenu()"></div>
+
+<div class="side-menu" id="sideMenu">
+  <a href="index.html">🏠 Home</a>
+  <a href="about.html">About</a>
+  <a href="causes.html">Causes</a>
+  <a href="empowerment.html">Empowerment Friday</a>
+  <a href="seen.html">Seen and Heard</a>
+  <a href="gallery.html">Gallery</a>
+  <a href="contact.html">Contact</a>
+</div>
+
+  <script>
+  function toggleMenu() {
+    const menu = document.getElementById("sideMenu");
+    const overlay = document.querySelector(".overlay");
+    menu.classList.toggle("open");
+    overlay.classList.toggle("active");
+  }
+
+  // Optional: auto-close when link is clicked
+  document.querySelectorAll('.side-menu a').forEach(link => {
+    link.addEventListener('click', () => {
+      toggleMenu();
+    });
+  });
+</script>
+  
 </body>
 </html>
