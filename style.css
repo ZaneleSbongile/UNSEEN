@@ -206,8 +206,8 @@ table, tr, td {
   cursor: pointer;
   display: block;
   position: absolute;
-  top: 90px;
-  right: 50px;
+  top: 20px;
+  right: 10px;
 }  
   .hamburger span {
   display: block;
