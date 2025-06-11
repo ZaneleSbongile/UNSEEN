@@ -103,6 +103,14 @@ footer {
   padding: 20px:
 }
 
+.about-grid {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 20px;
+  padding: 20px;
+}
+
 .empowerment-grid {
   display: flex;
   flex-wrap: wrap;
@@ -110,6 +118,7 @@ footer {
   gap: 20px;
   padding: 20px;
 }
+
 
 .video-card img {
   width: 300px;
