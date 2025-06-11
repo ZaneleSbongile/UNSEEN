@@ -101,13 +101,14 @@ footer {
   background: #222;
   color: #fff;
   text-align: center;
+  padding: 20px:
 }
 
 .empowerment-grid {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-  gap: 20px;
+  padding: 20px;
 }
 
 .video-card img {
