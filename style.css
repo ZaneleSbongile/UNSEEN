@@ -122,8 +122,8 @@ body {
   object-fit: cover;
 }
 footer {
-  margin-top: 40px;
   background: #222;
+  background-height: 90px;
   color: #fff;
   text-align: center;
   padding: 20px:
