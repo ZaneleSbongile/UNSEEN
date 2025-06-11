@@ -94,14 +94,14 @@ body {
   text-decoration: none;
 }
 
-.about-grid {
+.the-about {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   gap: 20px;
   padding: 20px;
 }
 
-.about-grid img {
+.the-about img {
   width: 100%;
   height: auto;
   border-radius: 10px;
