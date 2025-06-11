@@ -150,14 +150,11 @@ footer {
   header p {
     font-size: 1em;
   } 
-  
-/*  Mobile-friendly view: stack vertically */
-@media (max-width: 768px) {
+
   .video-card {
     flex: 1 1 100%;
     max-width: 100%;
   }
-}
 
   
   .navigation {
@@ -212,10 +209,7 @@ footer {
   .ef {
     width: 100%;
   }
-}
 
-/* HIDE NORMAL NAV ON SMALL SCREENS */
-@media (max-width: 768px) {
   nav {
     display: none;
   }
