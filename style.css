@@ -1,4 +1,12 @@
 /* Base styles */
+.side-menu {
+  display: none; /* hidden on desktop by default */
+}
+
+.hamburger {
+  display: none; /* hidden on desktop */
+}
+
 header {
   background: transparent;
   color: #222;
