@@ -40,16 +40,6 @@ nav a {
   text-decoration: none;
   font-weight: bold;
 }
-.search-bar {
-  display: flex;
-  align-items: center;
-  margin-top: 10px;
-}
-.search-bar input[type="text"] {
-  padding: 6px 10px;
-  border: 1px solid #ccc;
-  border-radius: 5px;
-}
 body {
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   margin: 0;
@@ -101,6 +91,7 @@ footer {
   color: #fff;
   text-align: center;
   padding: 20px:
+  height: 80px;
 }
 
 
