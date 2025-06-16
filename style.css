@@ -111,8 +111,8 @@ body {
 .empowerment-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 20px;
-  padding: 20px;
+  gap: 40px;
+  padding: 40px;
 }
 
 .video-card img {
