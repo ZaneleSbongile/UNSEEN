@@ -1,28 +1,14 @@
-/* Base styles */
-.side-menu {
-  display: none; /* hidden on desktop by default */
+/* ===========================
+   DESKTOP STYLES (Default)
+   =========================== */
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  margin: 0;
+  padding: 0;
+  background: #fdf8f2;
+  color: #333;
 }
 
-.hamburger {
-  display: none; /* hidden on desktop */
-}
-
-header {
-  background: transparent;
-  color: #222;
-  padding: 60px 20px 20px;
-  text-align: center;
-}
-header h1 {
-  font-size: 3em;
-  margin-bottom: 10px;
-  margin-top: 300px;
-}
-header p {
-  margin-top: 50px;
-  font-size: 1.2em;
-  font-style: italic;
-}
 .navigation {
   display: flex;
   flex-wrap: wrap;
@@ -32,29 +18,59 @@ header p {
   padding: 10px 20px;
   box-shadow: 0 2px 5px rgba(0,0,0,0.1);
 }
+
 .navigation img {
   height: 50px;
 }
-nav {
+
+nav.desktop-nav {
   flex: 1;
   display: flex;
-  flex-wrap: wrap;
   justify-content: flex-start;
   margin-left: 50px;
 }
-nav a {
+
+nav.desktop-nav a {
   color: #222;
   margin: 0 15px;
   text-decoration: none;
   font-weight: bold;
 }
-body {
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  margin: 0;
-  padding: 0;
-  background: #fdf8f2;
-  color: #333;
+
+.hamburger {
+  display: none;
 }
+
+.side-menu {
+  display: none;
+}
+
+header {
+  background: transparent;
+  color: #222;
+  padding: 60px 20px 20px;
+  text-align: center;
+}
+
+header h1 {
+  font-size: 3em;
+  margin-bottom: 10px;
+  margin-top: 300px;
+}
+
+header p {
+  margin-top: 50px;
+  font-size: 1.2em;
+  font-style: italic;
+}
+
+footer {
+  background: #222;
+  color: #fff;
+  text-align: center;
+  padding: 20px;
+}
+
 .about h2,
 .about-me h2,
 .causes h2,
@@ -64,6 +80,7 @@ body {
   font-size: 70px;
   text-align: center;
 }
+
 .about p,
 .about-me p,
 .causes p,
@@ -73,18 +90,22 @@ body {
   margin-left: 100px;
   margin-right: 100px;
 }
+
 .about-me h3 {
   font-size: 60px;
   text-align: center;
 }
+
 .me-header {
   text-align: center;
   font-style: italic;
 }
+
 .causes h3 {
   margin-left: 120px;
   margin-right: 120px;
 }
+
 .ef {
   color: white;
   text-align: center;
@@ -121,92 +142,106 @@ body {
   border-radius: 10px;
   object-fit: cover;
 }
-footer {
-  background: #222;
-  background-height: 90px;
-  color: #fff;
-  text-align: center;
-  padding: 20px:
-  height: 80px;
-}
 
-
-
-/* MOBILE-FRIENDLY STYLES */
+/* ===========================
+   MOBILE STYLES
+   =========================== */
 @media (max-width: 768px) {
+  .hamburger {
+    display: block;
+    font-size: 30px;
+    padding: 15px;
+    position: fixed;
+    top: 15px;
+    left: 15px;
+    cursor: pointer;
+    z-index: 1100;
+    background: #fff;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+  }
+
+  nav.desktop-nav {
+    display: none;
+  }
+
+  .side-menu {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 220px;
+    height: 100%;
+    background: #fff;
+    padding: 30px 20px;
+    transform: translateX(-100%);
+    transition: transform 0.3s ease;
+    z-index: 1000;
+    box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+  }
+
+  .side-menu.active {
+    transform: translateX(0);
+  }
+
+  .side-menu a {
+    display: block;
+    margin-bottom: 20px;
+    text-decoration: none;
+    color: #333;
+    font-weight: bold;
+  }
+
+  .overlay {
+    display: none;
+    position: fixed;
+    height: 100%;
+    width: 100%;
+    top: 0;
+    left: 0;
+    background-color: rgba(0,0,0,0.4);
+    z-index: 999;
+  }
+
+  .overlay.active {
+    display: block;
+  }
+
   header h1 {
     font-size: 2em;
     margin-top: 150px;
   }
-  .about-grid {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 20px;
-  padding: 20px;
-}
-
-.empowerment-grid {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 20px;
-  padding: 20px;
-}
-
-.the-about img {
-  width: 300px;
-  height: 300px;
-  border-radius: 10px;
-  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-  transition: transform 0.3s ease;
-}
-
-.video-card img {
-  width: 300px;
-  height: 500px;
-  border-radius: 10px;
-  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-  transition: transform 0.3s ease;
-}
-
-.video-card img:hover {
-  transform: scale(1.03);
-}
 
   header p {
     font-size: 1em;
-  } 
-
-  .video-card {
-    flex: 1 1 100%;
-    max-width: 100%;
   }
 
-  
-  .navigation {
-    flex-direction: column;
-    align-items: flex-start;
+  .about-grid {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+    padding: 20px;
   }
 
-  nav {
-    margin-left: 0;
-    margin-top: 10px;
-    flex-direction: column;
-    width: 100%;
+  .empowerment-grid {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+    padding: 20px;
   }
 
-  nav a {
-    margin: 10px 0;
+  .the-about img,
+  .video-card img {
+    width: 300px;
+    height: 300px;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    transition: transform 0.3s ease;
   }
 
-  .search-bar {
-    width: 100%;
-    margin-top: 10px;
-  }
-
-  .search-bar input[type="text"] {
-    width: 100%;
+  .video-card img:hover {
+    transform: scale(1.03);
   }
 
   .about h2,
@@ -237,86 +272,13 @@ footer {
     width: 100%;
   }
 
-  nav {
-    display: none;
-  }
-
-footer {
-  width: 100%;
-  background-color: #333;
-  color: white;
-  text-align: center;
-  padding: 20px 10px;
-  position: relative;
-  bottom: 0;
-}
-
-/* Side menu - hidden by default */
-.side-menu {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 220px;
-  height: 100%;
-  background: #fff;
-  padding: 30px 20px;
-  transform: translateX(-100%);
-  transition: transform 0.3s ease;
-  z-index: 1000;
-  box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
-}
-
-.side-menu a {
-  display: block;
-  margin-bottom: 20px;
-  text-decoration: none;
-  color: #333;
-  font-weight: bold;
-}
-
-/* Show side menu when active */
-.side-menu.active {
-  transform: translateX(0);
-}
-
-/* Hamburger button */
-.hamburger {
-  display: none;
-  font-size: 30px;
-  padding: 15px;
-  position: fixed;
-  top: 15px;
-  left: 15px;
-  cursor: pointer;
-  z-index: 1100;
-  background: #fff;
-  border-radius: 5px;
-  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-}
-
-  .hamburger {
-    display: block;
-  }
-
-  nav {
-    display: none;
-  }
-}
-
-  .overlay {
-    display: none;
-    position: fixed;
-    height: 100%;
+  footer {
     width: 100%;
-    top: 0;
-    left: 0;
-    background-color: rgba(0,0,0,0.4);
-    z-index: 999;
-  }
-
-  .overlay.active {
-    display: block;
+    background-color: #333;
+    color: white;
+    text-align: center;
+    padding: 20px 10px;
+    position: relative;
+    bottom: 0;
   }
 }
-
-
