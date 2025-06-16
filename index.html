@@ -32,10 +32,14 @@
    </footer>
   </div>
 
-  <div class="hamburger" onclick="toggleMenu()">☰</div>
-
-<div class="overlay" onclick="toggleMenu()"></div>
-
+ 
+<div class="hamburger" onclick="toggleMenu()">☰</div>
+<script>
+  function toggleMenu() {
+    const menu = document.getElementById("sideMenu");
+    menu.classList.toggle("active");
+  }
+</script>
 
   <div class="side-menu" id="sideMenu">
   <a href="index.html">🏠 Home</a>
@@ -46,22 +50,6 @@
   <a href="gallery.html">Gallery</a>
   <a href="contact.html">Contact</a>
 </div>
-
-   <script>
-  function toggleMenu() {
-    const menu = document.getElementById("sideMenu");
-    const overlay = document.querySelector(".overlay");
-    menu.classList.toggle("open");
-    overlay.classList.toggle("active");
-  }
-
-  // Optional: auto-close when link is clicked
-  document.querySelectorAll('.side-menu a').forEach(link => {
-    link.addEventListener('click', () => {
-      toggleMenu();
-    });
-  });
-</script>
   
 </body>
 </html>
