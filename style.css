@@ -2,6 +2,7 @@
    DESKTOP STYLES (Default)
    =========================== */
 .side-menu {
+   display: block;
   position: fixed;
   top: 0;
   left: 0;
@@ -63,10 +64,6 @@ nav.desktop-nav a {
 }
 
 .hamburger {
-  display: none;
-}
-
-.side-menu {
   display: none;
 }
 
