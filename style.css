@@ -18,19 +18,17 @@ body {
   padding: 10px 20px;
   box-shadow: 0 2px 5px rgba(0,0,0,0.1);
 }
-
 .navigation img {
   height: 50px;
 }
-
-nav.desktop-nav {
+nav {
   flex: 1;
   display: flex;
+  flex-wrap: wrap;
   justify-content: flex-start;
   margin-left: 50px;
 }
-
-nav.desktop-nav a {
+nav a {
   color: #222;
   margin: 0 15px;
   text-decoration: none;
