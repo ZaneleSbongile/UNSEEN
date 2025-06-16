@@ -145,6 +145,19 @@ footer {
    MOBILE STYLES
    =========================== */
 @media (max-width: 768px) {
+   .hamburger {
+    display: block;
+    font-size: 30px;
+    padding: 15px;
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    z-index: 1100;
+    background: #fff;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+    cursor: pointer;
+  }
   nav.desktop-nav {
     display: none;
   }
