@@ -21,14 +21,14 @@ body {
 .navigation img {
   height: 50px;
 }
-nav {
+nav.desktop-nav {
   flex: 1;
   display: flex;
   flex-wrap: wrap;
   justify-content: flex-start;
   margin-left: 50px;
 }
-nav a {
+nav.desktop-nav a {
   color: #222;
   margin: 0 15px;
   text-decoration: none;
