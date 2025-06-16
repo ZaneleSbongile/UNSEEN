@@ -9,8 +9,7 @@
 <body>
   <div class="navigation">
     <a href="index.html"><img src="images/logo.png" alt="Unseen Generation Logo" height="60px" width="50px" /></a>
-    <div class="hamburger" onclick="toggleMenu()"></div>
-
+   
     <nav>
       <a href="about.html">About</a>
       <a href="causes.html">Causes</a>
@@ -32,24 +31,27 @@
    </footer>
   </div>
 
- 
+  <!-- Hamburger Icon (Only shows on mobile) -->
 <div class="hamburger" onclick="toggleMenu()">☰</div>
-<script>
+
+<!-- Side Navigation Menu -->
+<div class="side-menu" id="sideMenu">
+  <a href="index.html">🏠 Home</a>
+  <a href="about.html">About</a>
+  <a href="causes.html">Causes</a>
+  <a href="ef.html">Empowerment</a>
+  <a href="seen&heard.html">Seen & Heard</a>
+  <a href="gallery.html">Gallery</a>
+  <a href="contact.html">Contact</a>
+</div>
+
+  <script>
   function toggleMenu() {
     const menu = document.getElementById("sideMenu");
     menu.classList.toggle("active");
   }
 </script>
 
-  <div class="side-menu" id="sideMenu">
-  <a href="index.html">🏠 Home</a>
-  <a href="about.html">About</a>
-  <a href="causes.html">Causes</a>
-  <a href="ef.html">Empowerment Friday</a>
-  <a href="seen&heard.html">Seen and Heard</a>
-  <a href="gallery.html">Gallery</a>
-  <a href="contact.html">Contact</a>
-</div>
   
 </body>
 </html>
