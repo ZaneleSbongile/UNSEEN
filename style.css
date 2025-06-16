@@ -295,6 +295,12 @@ footer {
     background-color: #f0f0f0;
   }
 
+  /* When active (clicked), slide in */
+.side-menu.active {
+  transform: translateX(0);
+}
+
+
   .side-menu.open {
     left: 0;
   }
