@@ -158,8 +158,8 @@ footer {
 }
 
 .video-card img {
-  width: 500px; 
-  height: 700px;
+  width: 250px; 
+  height: 450px;
   border-radius: 10px;
   object-fit: cover;
 }
