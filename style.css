@@ -174,8 +174,6 @@ footer {
     font-size: 30px;
     padding: 15px;
     position: fixed;
-    top: 50px;
-    right: 20px;
     z-index: 1100;
     background: none;
     border-radius: 5px;
