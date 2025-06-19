@@ -10,7 +10,7 @@
   <!-- Desktop Navigation -->
   <div class="navigation">
     <!-- Hamburger Icon -->
-<div class="hamburger" id="hamburger" onclick="toggleMenu()">☰</div>
+<div class="hamburger" onclick="toggleMenu()">☰</div>
     <a href="index.html"><img src="images/logo.png" alt="Unseen Generation Logo" height="60px" width="50px" /></a>
     <nav class="desktop-nav">
       <a href="about.html">About</a>
@@ -47,13 +47,6 @@
   function toggleMenu() {
     const menu = document.getElementById("sideMenu");
     menu.classList.toggle("active");
-
-     // Change the icon
-    if (hamburger.classList.contains("active")) {
-      hamburger.textContent = "✖";
-    } else {
-      hamburger.textContent = "☰";
-    }
   }
 </script>
 </body>
