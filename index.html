@@ -47,6 +47,13 @@
   function toggleMenu() {
     const menu = document.getElementById("sideMenu");
     menu.classList.toggle("active");
+
+     // Change the icon
+    if (hamburger.classList.contains("active")) {
+      hamburger.textContent = "✖";
+    } else {
+      hamburger.textContent = "☰";
+    }
   }
 </script>
 </body>
