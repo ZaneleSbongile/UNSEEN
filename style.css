@@ -182,12 +182,6 @@ footer {
     box-shadow: 0 2px 5px rgba(0,0,0,0.2);
     cursor: pointer;
   }
-
-   /* Hamburger when active */
-.hamburger.active {
-  content: "✖";
-}
-
    .side-menu {
     display: block;
   }
@@ -286,6 +280,6 @@ footer {
     text-align: center;
     padding: 20px 10px;
     position: relative;
-    bottom: 0;
+    bottom: 200px;
   }
 }
