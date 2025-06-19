@@ -234,9 +234,10 @@ footer {
     transition: transform 0.3s ease;
   }
   .video-card img {
-    width: 350px;
-    height: 500px;
-    border-radius: 10px;
+     align: center;
+    width: 300px;
+    height: 400px;
+    border-radius: 5px;
     box-shadow: 0 4px 10px rgba(0,0,0,0.1);
     transition: transform 0.3s ease;
   }
@@ -270,8 +271,8 @@ footer {
   }
 
   .ef {
-    width: 350px;
-     height: 700px;
+    width: 300px;
+     height: 600px;
   }
 
   footer {
