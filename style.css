@@ -128,8 +128,6 @@ footer {
 }
 
 .ef {
-   height: 500px;
-   width: 400px;
   color: white;
   text-align: left;
   margin-top: 20px;
@@ -160,8 +158,8 @@ footer {
 }
 
 .video-card img {
-  width: 400px; 
-  height: 500px;
+  width: 500px; 
+  height: 700px;
   border-radius: 10px;
   object-fit: cover;
 }
@@ -272,7 +270,7 @@ footer {
 
   .ef {
     width: 350px;
-     height: 700px;
+     height: 500px;
   }
 
   footer {
