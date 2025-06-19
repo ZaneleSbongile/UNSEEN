@@ -279,6 +279,6 @@ footer {
     text-align: center;
     padding: 20px 10px;
     position: relative;
-    bottom: 10px;
+    top: 10px;
   }
 }
