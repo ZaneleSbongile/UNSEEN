@@ -164,6 +164,56 @@ footer {
   object-fit: cover;
 }
 
+/* Slideshow Styling */
+.slideshow-container {
+  position: relative;
+  height: 50vh;
+  overflow: hidden;
+}
+
+.slide {
+  display: none;
+  height: 100%;
+  width: 100%;
+  position: absolute;
+}
+
+.slide img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* Branding Section */
+.branding {
+  height: 50vh;
+  background-color: #fdf8f2;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.branding h1 {
+  font-size: 3em;
+  margin-bottom: 10px;
+}
+
+.branding p {
+  font-size: 1.2em;
+  font-style: italic;
+}
+
+/* Fade Animation */
+.fade {
+  animation: fadeEffect 1s ease-in-out;
+}
+
+@keyframes fadeEffect {
+  from { opacity: 0.4; }
+  to { opacity: 1; }
+}
+
 /* ===========================
    MOBILE STYLES
    =========================== */
@@ -181,6 +231,14 @@ footer {
     box-shadow: 0 2px 5px rgba(0,0,0,0.2);
     cursor: pointer;
   }
+   
+ .branding h1 {
+    font-size: 2em;
+  }
+  .branding p {
+    font-size: 1em;
+  }
+   
    .side-menu {
     display: block;
   }
