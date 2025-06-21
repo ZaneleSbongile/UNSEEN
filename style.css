@@ -90,6 +90,7 @@ footer {
   color: #fff;
   text-align: center;
   padding: 20px;
+   bottom: 80px;
 }
 
 .about h2,
@@ -390,6 +391,6 @@ footer {
     text-align: center;
     padding: 20px 10px;
     position: relative;
-    bottom: 200px;
+    bottom: 10px;
   }
 }
