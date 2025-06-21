@@ -222,34 +222,6 @@ footer {
 .fade {
   animation: fadeEffect 1s ease-in-out;
 }
-/* Zig-Zag Layout */
-.cause-section {
-  padding: 40px 20px;
-}
-
-.cause-grid {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  align-items: center;
-  gap: 40px;
-  margin-bottom: 80px;
-}
-
-.cause-image img {
-  border-radius: 10px;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-}
-
-.cause-text h3 {
-  font-size: 2em;
-  margin-bottom: 10px;
-}
-
-.cause-text p {
-  font-size: 1.1em;
-  color: #444;
-  line-height: 1.6;
-}
 
 .causes-section {
   padding: 60px 20px;
@@ -330,6 +302,25 @@ footer {
     box-shadow: 0 2px 5px rgba(0,0,0,0.2);
     cursor: pointer;
   }
+
+.causes-grid {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+
+  .cause-item img {
+    height: 180px;
+  }
+
+  .cause-text {
+    padding: 15px;
+  }
+
+  .causes-section h2 {
+    font-size: 2em;
+  }
+
+
    
  .branding h1 {
     font-size: 2em;
