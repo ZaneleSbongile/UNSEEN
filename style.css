@@ -222,6 +222,44 @@ footer {
 .fade {
   animation: fadeEffect 1s ease-in-out;
 }
+/* Zig-Zag Layout */
+.cause-section {
+  padding: 40px 20px;
+}
+
+.cause-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  align-items: center;
+  gap: 40px;
+  margin-bottom: 80px;
+}
+
+.cause-grid.reverse {
+  direction: rtl;
+}
+
+.cause-grid.reverse .cause-text,
+.cause-grid.reverse .cause-image {
+  direction: ltr;
+}
+
+.cause-image img {
+  width: 100%;
+  border-radius: 10px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+}
+
+.cause-text h3 {
+  font-size: 2em;
+  margin-bottom: 10px;
+}
+
+.cause-text p {
+  font-size: 1.1em;
+  color: #444;
+  line-height: 1.6;
+}
 
 @keyframes fadeEffect {
   from { opacity: 0.4; }
@@ -344,6 +382,24 @@ footer {
      height: 500px;
   }
 
+.cause-grid {
+    grid-template-columns: 1fr;
+    text-align: center;
+  }
+
+  .cause-grid.reverse {
+    direction: ltr;
+  }
+
+  .cause-grid .cause-image,
+  .cause-grid .cause-text {
+    direction: ltr;
+  }
+
+  .cause-text h3 {
+    margin-top: 20px;
+  }
+   
   footer {
     width: 100%;
     background-color: #333;
