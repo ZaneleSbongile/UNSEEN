@@ -212,9 +212,11 @@ footer {
 .td image{
    width: 300px;
    height: 500px;
+   padding: 20px;
 }
 .ts text{
-   height: 500px:
+   padding: 20px;
+   height: 500px;
 }
 
 
