@@ -235,15 +235,6 @@ footer {
   margin-bottom: 80px;
 }
 
-.cause-grid.reverse {
-  direction: rtl;
-}
-
-.cause-grid.reverse .cause-text,
-.cause-grid.reverse .cause-image {
-  direction: ltr;
-}
-
 .cause-image img {
   border-radius: 10px;
   box-shadow: 0 4px 12px rgba(0,0,0,0.1);
