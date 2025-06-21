@@ -215,6 +215,7 @@ footer {
    gap: 40px;
   padding: 40px;
    boarder-radius: 10px;
+   margin-left: 60px;
 }
 .ts text{
     gap: 40px;
