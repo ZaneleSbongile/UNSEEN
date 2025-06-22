@@ -242,10 +242,37 @@ footer {
       display: none;
    }
 
-.mobilet tr{
-   display: flex;
-   width: 100%;
-}
+ .mobilet {
+    display: block;
+    padding: 20px;
+  }
+
+  .mobilet table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+
+  .mobilet img {
+    width: 100%;
+    height: auto;
+    border-radius: 10px;
+    margin-bottom: 10px;
+  }
+
+  .mobilet h3 {
+    font-size: 20px;
+    margin: 10px 0 5px;
+    color: #333;
+  }
+
+  .mobilet p {
+    font-size: 16px;
+    color: #555;
+  }
+
+  .mobilet td {
+    padding-bottom: 20px;
+  }
    
    .hamburger {
       color: orange;
