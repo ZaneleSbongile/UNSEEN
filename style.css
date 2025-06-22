@@ -243,6 +243,7 @@ footer {
    }
 
 .mobilet tr{
+   display: flex;
    width: 100%;
 }
    
