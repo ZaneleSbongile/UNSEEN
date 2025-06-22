@@ -427,14 +427,6 @@ footer {
     margin-top: 20px;
   }
 
-#site-footer {
-    transition: transform 0.3s ease-in-out;
-    position: fixed;
-    bottom: 0;
-    left: 0;
-    width: 100%;
-    z-index: 999;
-  }
    
  footer {
   background-color: #333;
