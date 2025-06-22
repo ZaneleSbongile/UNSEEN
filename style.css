@@ -224,7 +224,7 @@ footer {
    boarder-radius: 10px;
    height: 500px;
 }
-.table mobile {
+.mobile {
    display: none;
 }
 
@@ -238,7 +238,7 @@ footer {
    MOBILE STYLES
    =========================== */
 @media (max-width: 768px) {
-   .table desktop{
+   .desktop{
       display: none;
    }
 
