@@ -73,24 +73,6 @@ function showSlides() {
   slides[slideIndex - 1].style.display = "block";
   setTimeout(showSlides, 3000); // Change image every 3 sec
 }
-
-  
- let lastScrollTop = 0;
-  const footer = document.getElementById("site-footer");
-
-  window.addEventListener("scroll", function () {
-    let scrollTop = window.pageYOffset || document.documentElement.scrollTop;
-
-    if (scrollTop > lastScrollTop) {
-      // Scrolling down – hide footer
-      footer.style.transform = "translateY(100%)";
-    } else {
-      // Scrolling up – show footer
-      footer.style.transform = "translateY(0)";
-    }
-
-    lastScrollTop = scrollTop <= 0 ? 0 : scrollTop; // prevent negative
-  });
   
 </script>
 </body>
