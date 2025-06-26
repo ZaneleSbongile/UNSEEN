@@ -235,6 +235,9 @@ footer {
 .mobilet {
    display: none;
 }
+.gallery img{
+   gap: 20px;
+}
 
 
 @keyframes fadeEffect {
