@@ -169,6 +169,10 @@ footer {
   object-fit: cover;
 }
 
+.video-card p{
+   width: 200px;
+}
+
 /* Slideshow Styling */
 .slideshow-container {
   position: relative;
