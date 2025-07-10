@@ -54,6 +54,7 @@ body {
 }
 nav.desktop-nav {
   flex: 1;
+   color: FAB972;
   display: flex;
   flex-wrap: wrap;
   justify-content: flex-start;
