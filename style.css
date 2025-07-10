@@ -45,7 +45,7 @@ body {
   flex-wrap: wrap;
   align-items: center;
   justify-content: space-between;
-  background: #fff;
+  background: #FDAE44;
   padding: 10px 20px;
   box-shadow: 0 2px 5px rgba(0,0,0,0.1);
 }
@@ -94,7 +94,7 @@ footer {
   color: #fff;
   text-align: center;
   padding: 20px;
-   bottom: 80px;
+   bottom: 10px;
 }
 
 .about h2,
