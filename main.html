@@ -45,6 +45,36 @@
           </div>
     <div class="the-about">
              <img src="images/logo.png" alt="logo" height="400px" width="400px"></p>
+      <div class="side-menu" id="sideMenu">
+  <a href="index.html">🏠 Home</a>
+  <a href="about.html">About</a>
+  <a href="causes.html">Causes</a>
+  <a href="ef.html">Empowerment Fridays</a>
+  <a href="seen&heard.html">Seen & Heard</a>
+  <a href="gallery.html">Gallery</a>
+  <a href="contact.html">Contact</a>
+</div>
+<script>
+  function toggleMenu() {
+    const menu = document.getElementById("sideMenu");
+    menu.classList.toggle("active");
+  }
+
+let slideIndex = 0;
+showSlides();
+
+function showSlides() {
+  const slides = document.querySelectorAll(".slide");
+  slides.forEach(slide => slide.style.display = "none");
+
+  slideIndex++;
+  if (slideIndex > slides.length) { slideIndex = 1; }
+
+  slides[slideIndex - 1].style.display = "block";
+  setTimeout(showSlides, 3000); // Change image every 3 sec
+}
+  
+</script>
     </div>
   </div>
 </body>
