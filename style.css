@@ -43,6 +43,16 @@ body {
   background: #fdf8f2;
   color: #333;
 }
+.nav-disabled {
+  color: #aaa; /* or your normal nav link color */
+  cursor: default;
+  text-decoration: none;
+  padding: 8px 12px;
+  display: inline-block;
+}
+.nav-disabled:hover {
+  color: #FAB972;
+}
 .navigation {
   display: flex;
   flex-wrap: wrap;
