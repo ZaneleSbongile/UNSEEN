@@ -44,11 +44,13 @@ body {
   color: #333;
 }
 .nav-disabled {
-  color: #aaa; /* or your normal nav link color */
   cursor: default;
-  text-decoration: none;
   padding: 8px 12px;
   display: inline-block;
+  color: #222;
+  margin: 0 15px;
+  text-decoration: none;
+  font-weight: bold;
 }
 .nav-disabled:hover {
   color: #FAB972;
