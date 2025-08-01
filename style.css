@@ -31,7 +31,6 @@ html, body {
 .side-menu.active {
   transform: translateX(0);
 }
-
 body {
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   margin: 0;
@@ -39,7 +38,6 @@ body {
   background: #fdf8f2;
   color: #333;
 }
-
 .navigation {
   display: flex;
   flex-wrap: wrap;
@@ -54,7 +52,7 @@ body {
 }
 nav.desktop-nav {
   flex: 1;
-   color: FAB972;
+   color: #FAB972;
   display: flex;
   flex-wrap: wrap;
   justify-content: flex-start;
@@ -65,31 +63,25 @@ nav.desktop-nav a {
   margin: 0 15px;
   text-decoration: none;
   font-weight: bold;
-}
-
-.hamburger {
+}.hamburger {
   display: none;
 }
-
 header {
   background: transparent;
   color: #222;
   padding: 60px 20px 20px;
   text-align: center;
 }
-
 header h1 {
   font-size: 3em;
   margin-bottom: 10px;
   margin-top: 300px;
 }
-
 header p {
   margin-top: 50px;
   font-size: 1.2em;
   font-style: italic;
 }
-
 footer {
   background: #222;
   color: #fff;
@@ -97,7 +89,6 @@ footer {
   padding: 20px;
    bottom: 10px;
 }
-
 .about h2,
 .about-me h2,
 .causes h2,
@@ -107,7 +98,6 @@ footer {
   font-size: 70px;
   text-align: center;
 }
-
 .about p,
 .about-me p,
 .causes p,
@@ -117,22 +107,18 @@ footer {
   margin-left: 100px;
   margin-right: 100px;
 }
-
 .about-me h3 {
   font-size: 60px;
   text-align: center;
 }
-
 .me-header {
   text-align: center;
   font-style: italic;
 }
-
 .causes h3 {
   margin-left: 120px;
   margin-right: 120px;
 }
-
 .ef {
   color: white;
   text-align: left;
@@ -141,60 +127,50 @@ footer {
   border-radius: 5px;
   text-decoration: none;
 }
-
 .about-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 20px;
   padding: 20px;
 }
-
 .the-about img {
   width: 100%;
   height: auto;
   border-radius: 10px;
   object-fit: cover;
 }
-
 .empowerment-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 40px;
   padding: 40px;
 }
-
 .video-card img {
   width: 300px; 
   height: 400px;
   border-radius: 10px;
   object-fit: cover;
 }
-
 .video-card p{
    width: 200px;
 }
 
-/* Slideshow Styling */
 .slideshow-container {
   position: relative;
   height: 50vh;
   overflow: hidden;
 }
-
 .slide {
   display: none;
   height: 100%;
   width: 100%;
   position: absolute;
 }
-
 .slide img {
   width: 100%;
   height: 100%;
   object-fit: cover;
 }
-
-/* Branding Section */
 .branding {
   height: 50vh;
   background-color: #fdf8f2;
@@ -203,50 +179,39 @@ footer {
   flex-direction: column;
   justify-content: center;
 }
-
 .branding h1 {
   font-size: 3em;
   margin-bottom: 10px;
 }
-
 .branding p {
   font-size: 1.2em;
   font-style: italic;
 }
-
-/* Fade Animation */
 .fade {
   animation: fadeEffect 1s ease-in-out;
 }
-
-.desktopt td image{
-   width: 300px;
-   height: 500px;
-   gap: 40px;
+.desktopt td img {
+  width: 300px;
+  height: 500px;
+  margin: 40px;
   padding: 40px;
-   boarder-radius: 10px;
-   margin-left: 60px;
+  border-radius: 10px;
 }
-.desktopt td text{
-    gap: 40px;
+.desktopt td {
   padding: 40px;
-   boarder-radius: 10px;
-   height: 500px;
+  border-radius: 10px; 
+  height: 500px;
 }
 .mobilet {
    display: none;
 }
 .gallery img{
-   gap: 80px;
+   margin: 80px;
 }
-
-/* Dropdown container */
 .dropdown {
   position: relative;
   display: inline-block;
 }
-
-/* Dropdown content (hidden by default) */
 .dropdown-content {
   display: none;
   position: absolute;
@@ -255,25 +220,18 @@ footer {
   box-shadow: 0px 8px 16px rgba(0,0,0,0.2);
   z-index: 999;
 }
-
-/* Links inside dropdown */
 .dropdown-content a {
   color: white;
   padding: 10px 16px;
   text-decoration: none;
   display: block;
 }
-
-/* Show dropdown on hover */
 .dropdown:hover .dropdown-content {
   display: block;
 }
-
-/* Optional hover effect */
 .dropdown-content a:hover {
   background-color: #444;
 }
-
 
 @keyframes fadeEffect {
   from { opacity: 0.4; }
@@ -350,9 +308,6 @@ footer {
   .causes-section h2 {
     font-size: 2em;
   }
-
-
-   
  .branding h1 {
     font-size: 2em;
   }
