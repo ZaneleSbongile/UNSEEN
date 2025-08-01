@@ -63,7 +63,15 @@ nav.desktop-nav a {
   margin: 0 15px;
   text-decoration: none;
   font-weight: bold;
-}.hamburger {
+}
+nav.desktop-nav a:hover {
+  color: #fff;
+  background-color: #FAB972;
+  padding: 8px 12px;
+  border-radius: 5px;
+  transition: all 0.3s ease;
+}
+.hamburger {
   display: none;
 }
 header {
