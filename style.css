@@ -5,6 +5,11 @@ html, body {
   overflow-x: hidden;
   width: 100%;
 }
+.about-me {
+  min-height: 80vh; /* Or adjust as needed */
+  padding-bottom: 40px; /* To make space above footer */
+}
+
 .side-menu {
   position: fixed;
   top: 0;
