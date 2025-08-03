@@ -514,3 +514,34 @@ header p {
     margin-top: 20px;
   }
 }
+
+/* ===========================
+   BORN PAGE STYLING
+   =========================== */
+.about-grid {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 60px 20px;
+  background-color: #fff;
+  min-height: 80vh;
+  box-sizing: border-box;
+}
+
+.the-about {
+  max-width: 800px;
+  font-size: 1.1rem;
+  line-height: 1.8;
+  color: #444;
+  background-color: #fefefe;
+  padding: 40px;
+  border-radius: 16px;
+  box-shadow: 0 0 20px rgba(0,0,0,0.05);
+}
+
+.the-about p b {
+  font-size: 1.6rem;
+  color: #8e44ad;
+  display: block;
+  margin-bottom: 20px;
+}
