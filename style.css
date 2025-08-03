@@ -48,8 +48,11 @@ nav.desktop-nav a {
   margin: 0 15px;
   text-decoration: none;
   font-weight: bold;
+  position: relative;
+  transition: color 0.3s ease;
 }
 
+/* Hover effect for nav links */
 nav.desktop-nav a:hover {
   color: #fff;
   background-color: #FAB972;
@@ -58,10 +61,15 @@ nav.desktop-nav a:hover {
   transition: all 0.3s ease;
 }
 
-/* Disable clicking and keep hover effect on About */
+/* Make "About" main link unclickable */
 nav.desktop-nav .dropdown > a {
   cursor: default;
   pointer-events: none;
+  color: #222;
+}
+
+nav.desktop-nav .dropdown > a:hover {
+  color: #fff; /* Keep hover color consistent */
 }
 
 /* Dropdown */
@@ -84,14 +92,15 @@ nav.desktop-nav .dropdown > a {
   padding: 10px 16px;
   text-decoration: none;
   display: block;
-}
-
-.dropdown:hover .dropdown-content {
-  display: block;
+  transition: background-color 0.3s ease;
 }
 
 .dropdown-content a:hover {
   background-color: #444;
+}
+
+.dropdown:hover .dropdown-content {
+  display: block;
 }
 
 /* Hamburger (mobile) */
@@ -245,6 +254,46 @@ header p {
   box-sizing: border-box;
   /* Make footer stick to bottom */
   flex-shrink: 0;
+}
+
+/* ===========================
+   ABOUT PAGE SPECIFIC UPDATES
+   =========================== */
+
+/* Heading on about page */
+.about-grid h1 {
+  font-size: 3rem;
+  margin-bottom: 40px;
+  color: #8e44ad;
+  text-align: center;
+  font-weight: 700;
+}
+
+/* New flex container for about text and image */
+.the-about-flex {
+  display: flex;
+  gap: 40px;
+  align-items: center;
+  justify-content: center;
+  padding: 0 80px 80px 80px;
+}
+
+/* Text container */
+.about-text {
+  flex: 1;
+  font-size: 1.2rem;
+  line-height: 1.7;
+  color: #444;
+  max-width: 600px;
+}
+
+/* Image container */
+.about-image img {
+  max-width: 400px;
+  width: 100%;
+  height: auto;
+  border-radius: 10px;
+  box-shadow: 0 0 20px rgba(0,0,0,0.1);
 }
 
 /* ===========================
