@@ -10,18 +10,18 @@
   <!-- Desktop Navigation -->
   <div class="navigation">
     <!-- Hamburger Icon -->
-<div class="hamburger" onclick="toggleMenu()">☰</div>
+    <div class="hamburger" onclick="toggleMenu()">☰</div>
     <a href="index.html"><img src="images/logo.png" alt="Unseen Generation Logo" height="60px" width="50px" /></a>
     <nav class="desktop-nav">
       <div class="dropdown">
-      <a href="about.html">About</a>
-         <div class="dropdown-content">
-    <a href="main.html">The Actual About</a>
-    <a href="born.html">How It Was Born</a>
-    <a href="mission.html">Mission</a>
-    <a href="vision.html">Vision</a>
-  </div>
-</div>
+        <a href="#">About</a> <!-- Non-clickable -->
+        <div class="dropdown-content">
+          <a href="main.html">The Actual About</a>
+          <a href="born.html">How It Was Born</a>
+          <a href="mission.html">Mission</a>
+          <a href="vision.html">Vision</a>
+        </div>
+      </div>
       <a href="causes.html">Causes</a>
       <a href="ef.html">Empowerment Fridays</a>
       <a href="seen&heard.html">Seen & Heard</a>
@@ -29,59 +29,65 @@
       <a href="contact.html">Contact</a>
     </nav>
   </div>
-  
-<!-- Slideshow Section -->
-<div class="slideshow-container">
-  <div class="slide fade">
-    <img src="images/1st.jpg" alt="Slide 1" />
-  </div>
-  <div class="slide fade">
-    <img src="images/2nd.jpg" alt="Slide 2" />
-  </div>
-  <div class="slide fade">
-    <img src="images/3rd.jpg" alt="Slide 3" />
-  </div>
-</div>
 
-<!-- Branding Section -->
-<div class="branding">
-  <h1>The UNSEEN Generation</h1>
-  <p>We are no longer invisible. We are rising.</p>
+  <!-- ✅ Main content wrapper -->
+  <main class="content">
+    <!-- Slideshow Section -->
+    <div class="slideshow-container">
+      <div class="slide fade">
+        <img src="images/1st.jpg" alt="Slide 1" />
+      </div>
+      <div class="slide fade">
+        <img src="images/2nd.jpg" alt="Slide 2" />
+      </div>
+      <div class="slide fade">
+        <img src="images/3rd.jpg" alt="Slide 3" />
+      </div>
+    </div>
 
-    <footer id="site-footer">
-      <p>&copy; 2025 The Unseen Generation. All rights reserved.</p>
-    </footer>
-  </div>
+    <!-- Branding Section -->
+    <div class="branding">
+      <h1>The UNSEEN Generation</h1>
+      <p>We are no longer invisible. We are rising.</p>
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer id="site-footer">
+    <p>&copy; 2025 The Unseen Generation. All rights reserved.</p>
+  </footer>
+
   <!-- Side Menu -->
-<div class="side-menu" id="sideMenu">
-  <a href="index.html">🏠 Home</a>
-  <a href="about.html">About</a>
-  <a href="causes.html">Causes</a>
-  <a href="ef.html">Empowerment Fridays</a>
-  <a href="seen&heard.html">Seen & Heard</a>
-  <a href="gallery.html">Gallery</a>
-  <a href="contact.html">Contact</a>
-</div>
-<script>
-  function toggleMenu() {
-    const menu = document.getElementById("sideMenu");
-    menu.classList.toggle("active");
-  }
+  <div class="side-menu" id="sideMenu">
+    <a href="index.html">🏠 Home</a>
+    <a href="about.html">About</a>
+    <a href="causes.html">Causes</a>
+    <a href="ef.html">Empowerment Fridays</a>
+    <a href="seen&heard.html">Seen & Heard</a>
+    <a href="gallery.html">Gallery</a>
+    <a href="contact.html">Contact</a>
+  </div>
 
-let slideIndex = 0;
-showSlides();
+  <!-- Scripts -->
+  <script>
+    function toggleMenu() {
+      const menu = document.getElementById("sideMenu");
+      menu.classList.toggle("active");
+    }
 
-function showSlides() {
-  const slides = document.querySelectorAll(".slide");
-  slides.forEach(slide => slide.style.display = "none");
+    let slideIndex = 0;
+    showSlides();
 
-  slideIndex++;
-  if (slideIndex > slides.length) { slideIndex = 1; }
+    function showSlides() {
+      const slides = document.querySelectorAll(".slide");
+      slides.forEach(slide => slide.style.display = "none");
 
-  slides[slideIndex - 1].style.display = "block";
-  setTimeout(showSlides, 3000); // Change image every 3 sec
-}
-  
-</script>
+      slideIndex++;
+      if (slideIndex > slides.length) { slideIndex = 1; }
+
+      slides[slideIndex - 1].style.display = "block";
+      setTimeout(showSlides, 3000); // Change image every 3 sec
+    }
+  </script>
 </body>
 </html>
