@@ -202,8 +202,8 @@ footer {
 .desktopt td img {
   width: 300px;
   height: 500px;
-  margin: 40px;
-  padding: 40px;
+  margin: 10px;
+  padding: 10px;
   border-radius: 10px;
 }
 .desktopt td {
@@ -215,7 +215,7 @@ footer {
    display: none;
 }
 .gallery img{
-   margin: 80px;
+   margin: 20px;
 }
 .dropdown {
   position: relative;
@@ -443,3 +443,4 @@ footer {
   box-sizing: border-box;
  }
 }
+
