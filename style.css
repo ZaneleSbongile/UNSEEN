@@ -151,6 +151,30 @@ nav.desktop-nav .dropdown > a:hover {
 }
 
 /* ===========================
+   BUTTON STYLE
+   =========================== */
+.btn {
+  display: inline-block;
+  background-color: #FDAE44;
+  color: #222;
+  padding: 12px 28px;
+  margin: 15px 10px;
+  text-decoration: none;
+  font-weight: bold;
+  border-radius: 8px;
+  box-shadow: 0 3px 6px rgba(0,0,0,0.15);
+  transition: background-color 0.3s ease, color 0.3s ease;
+  font-size: 1.1rem;
+  cursor: pointer;
+}
+
+.btn:hover {
+  background-color: #FAB972;
+  color: #fff;
+  box-shadow: 0 5px 10px rgba(0,0,0,0.3);
+}
+
+/* ===========================
    HEADER
    =========================== */
 header {
@@ -339,7 +363,6 @@ header p {
   color: #222;
   font-weight: 600;
 }
-
 /* ===========================
    MOBILE RESPONSIVENESS
    =========================== */
@@ -514,3 +537,4 @@ header p {
     margin-top: 20px;
   }
 }
+
