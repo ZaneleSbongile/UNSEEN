@@ -3,24 +3,28 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="style.css" />
   <title>The Unseen Generation</title>
 </head>
 <body>
+
+  <!-- Navigation -->
   <div class="navigation">
-     <!-- Hamburger Icon -->
-<div class="hamburger" onclick="toggleMenu()">☰</div>
-    <a href="index.html"><img src="images/logo.png" alt="Unseen Generation Logo" height="60px" width="50px" /></a> 
-   <nav class="desktop-nav">
+    <!-- Hamburger Icon -->
+    <div class="hamburger" onclick="toggleMenu()">☰</div>
+    <a href="index.html">
+      <img src="images/logo.png" alt="Unseen Generation Logo" height="60px" width="50px" />
+    </a>
+    <nav class="desktop-nav">
       <div class="dropdown">
-        <a href="#">About</a> <!-- Non-clickable -->
+        <a href="#">About</a>
         <div class="dropdown-content">
-    <a href="main.html">the UNSEEN generation</a>
-    <a href="born.html">How It Was Born</a>
-    <a href="mission.html">Mission</a>
-    <a href="vision.html">Vision</a>
-  </div>
-</div>
+          <a href="main.html">the UNSEEN generation</a>
+          <a href="born.html" class="active">How It Was Born</a>
+          <a href="mission.html">Mission</a>
+          <a href="vision.html">Vision</a>
+        </div>
+      </div>
       <a href="causes.html">Causes</a>
       <a href="ef.html">Empowerment Fridays</a>
       <a href="seen&heard.html">Seen & Heard</a>
@@ -29,24 +33,43 @@
     </nav>
   </div>
 
+  <!-- About Section -->
   <div class="about-grid">
-     <div class="the-about">
-        <p><b>How The Unseen Generation Was Born</b>
-      <br>
-      The Unseen Generation was born from a personal shift — a move that opened my eyes and stirred my purpose. 
+    <div class="about-me">
+      <h2>How The Unseen Generation Was Born</h2>
+      <p>
+        The Unseen Generation was born from a personal shift — a move that opened my eyes and stirred my purpose. 
         In 2024, I moved from Gauteng to QwaQwa. I didn’t expect that such a change in location would reveal such a 
         deep truth. I quickly noticed the difference in resources, opportunities, and exposure available to the 
         youth here. Where I came from, we had more access — to guidance, platforms, support systems. But here? Many 
         young people were full of potential, yet living in silence, unnoticed. They were showing up every day, 
-        pushing through circumstances, dreaming quietly — and yet, no one saw them. That’s when I realized: this 
-        isn’t just a QwaQwa issue — it’s a national one. Maybe even global. There are unseen youth everywhere. Not 
-        because they have less to offer, but because their environment gives them less visibility, less support, 
-        less belief. And that’s when the mission became clear: To find them. Hear them. Empower them. To build a 
-        movement that reminds every overlooked teen that they are still enough, still capable, and still worthy of 
-        being seen. This is how The Unseen Generation was born — from one move, one moment, and one promise: I may 
-        not see all of you yet. But I will do everything I can to make sure the world does. 
+        pushing through circumstances, dreaming quietly — and yet, no one saw them.
       </p>
+      <p>
+        That’s when I realized: this isn’t just a QwaQwa issue — it’s a national one. Maybe even global. There are 
+        unseen youth everywhere. Not because they have less to offer, but because their environment gives them less 
+        visibility, less support, less belief. And that’s when the mission became clear: To find them. Hear them. 
+        Empower them.
+      </p>
+      <p>
+        To build a movement that reminds every overlooked teen that they are still enough, still capable, and still 
+        worthy of being seen. This is how The Unseen Generation was born — from one move, one moment, and one promise: 
+        I may not see all of you yet. But I will do everything I can to make sure the world does.
+      </p>
+    </div>
   </div>
-  </div>
+
+  <!-- Optional Footer -->
+  <footer id="site-footer">
+    &copy; 2025 The Unseen Generation. All rights reserved.
+  </footer>
+
+  <!-- JavaScript -->
+  <script>
+    function toggleMenu() {
+      const nav = document.querySelector('.desktop-nav');
+      nav.classList.toggle('show');
+    }
+  </script>
 </body>
 </html>
