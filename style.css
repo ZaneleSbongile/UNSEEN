@@ -327,7 +327,8 @@ header p {
 .about-grid {
   display: flex;
   justify-content: center;
-  align-items: flex-start;
+  align-items: center;
+  text-align: center;
   padding: 80px 40px;
   background-color: #fdf8f2;
   min-height: 100vh;
@@ -358,3 +359,4 @@ header p {
   text-align: justify;
   color: #444;
 }
+
