@@ -1,95 +1,794 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <link rel="stylesheet" href="style.css">
-  <title>The Unseen Generation</title>
-</head>
-<body>
-  <div class="navigation">
-     <!-- Hamburger Icon -->
-<div class="hamburger" onclick="toggleMenu()">☰</div>
-    <a href="index.html"><img src="images/logo.png" alt="Unseen Generation Logo" height="60px" width="50px" /></a>
-    <nav class="desktop-nav">
-      <div class="dropdown">
-        <a href="#">About</a> <!-- Non-clickable -->
-        <div class="dropdown-content">
-    <a href="main.html">the UNSEEN generation</a>
-    <a href="born.html">How It Was Born</a>
-    <a href="mission.html">Mission</a>
-    <a href="vision.html">Vision</a>
-  </div>
-</div>
-      <a href="causes.html">Causes</a>
-      <a href="ef.html">Empowerment Fridays</a>
-      <a href="seen&heard.html">Seen & Heard</a>
-      <a href="gallery.html">Gallery</a>
-      <a href="contact.html">Contact</a>
-    </nav>
-  </div>
-  <div class="contact">
-   <h2> 
-     Contact Me
-   </h2>
-   <br>
-   <br>
-   <p>Hey there! Thank you so much for visiting my website. I am a passionate youth advocate behind The Unseen 
-     Generation. Whether you have a question, an opportunity, or a message of support, I’d love to hear from you. 
-     Your words matter — just like your voice and story do.
-   </p>
-   <br>
-   <br>
-   <h3>
-     💡 Reach out if:
-   </h3>
-   <ul>
-      <li>
-        You’d like to collaborate on a youth empowerment project
-      </li>
-      <li>
-        You’re part of an organization working in education, tech, or advocacy
-      </li>
-      <li>
-        You want to book me for a school visit, interview, or community talk
-      </li>
-      <li>
-        You simply want to connect and share encouragement
-      </li>
-   </ul>
-   <br>
-   <h3>📩 Get in touch:</h3>
-   <ol>
-     <li>Email: <a href="https://mail.google.com/mail/u/0/?tab=rm&ogbl#inbox?compose=GTvVlcSKkVRjSjNphHXQMWQRLpkCKdkdRfVQJpDCkLBcNwZkMbVWxHFVbWKWKFTwpkCfkqfBJWMhQ" rel="email">zanelesbongileradebe04@gmail.com</a></li>
-     <li>Instagram: <a href="https://www.instagram.com/_zaneleradebe_?igsh=Yjk4cXdsMDhnYmh2" rel="insta handle">@_zaneleradebe_</a></li>
-     <li>WhatsApp: 069 589 2711<br>(Guaranteed to respond within 24 hours)</li>
-   </ol>
-   <br>
-   <p>
-     Every message I receive reminds me that I’m not walking this journey alone. Let’s rise together, build boldly, 
-     and turn passion into purpose.
-    </p>
-    <br>
-    <h4>🔒 Privacy Note:</h4>
-    <p>I value your trust. Your information will never be shared — it stays between us.</p>
-  </div>
-  <!-- Side Menu -->
-<div class="side-menu" id="sideMenu">
-  <a href="index.html">🏠 Home</a>
-  <a href="about.html">About</a>
-  <a href="causes.html">Causes</a>
-  <a href="ef.html">Empowerment Fridays</a>
-  <a href="seen&heard.html">Seen & Heard</a>
-  <a href="gallery.html">Gallery</a>
-  <a href="contact.html">Contact</a>
-</div>
-<script>
-  function toggleMenu() {
-    const menu = document.getElementById("sideMenu");
-    menu.classList.toggle("active");
-  }
-</script>
-</body>
-</html>
+/* ===========================
+   GLOBAL & RESET
+   =========================== */
+html, body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  color: #333;
+  background: #fdf8f2;
+  display: flex;
+  flex-direction: column;
+}
 
+.content {
+  flex: 1;
+}
+
+/* ===========================
+   NAVIGATION
+   =========================== */
+.navigation {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  background: #FDAE44;
+  padding: 10px 20px;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+.navigation img {
+  height: 50px;
+}
+
+nav.desktop-nav {
+  flex: 1;
+  color: #FAB972;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  margin-left: 50px;
+}
+
+nav.desktop-nav a {
+  color: #222;
+  margin: 0 15px;
+  text-decoration: none;
+  font-weight: bold;
+  position: relative;
+  transition: color 0.3s ease;
+}
+
+nav.desktop-nav a:hover {
+  color: #fff;
+  background-color: #FAB972;
+  padding: 8px 12px;
+  border-radius: 5px;
+  transition: all 0.3s ease;
+}
+
+nav.desktop-nav .dropdown > a {
+  cursor: default;
+  pointer-events: none;
+  color: #222;
+}
+
+nav.desktop-nav .dropdown > a:hover {
+  color: #fff;
+}
+
+.dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #FAB972;
+  min-width: 280px;
+  box-shadow: 0px 8px 16px rgba(0,0,0,0.2);
+  z-index: 999;
+}
+
+.dropdown-content a {
+  color: white;
+  padding: 10px 16px;
+  text-decoration: none;
+  display: block;
+  transition: background-color 0.3s ease;
+}
+
+.dropdown-content a:hover {
+  background-color: #444;
+}
+
+.dropdown:hover .dropdown-content {
+  display: block;
+}
+
+.dropdown-content a.active {
+  background-color: #222;
+  color: #fff;
+  font-weight: bold;
+}
+
+/* ===========================
+   HAMBURGER MENU (Mobile)
+   =========================== */
+.hamburger {
+  display: none;
+  cursor: pointer;
+  font-size: 30px;
+  padding: 15px;
+  position: fixed;
+  right: 20px;
+  z-index: 1100;
+  background: none;
+  border-radius: 5px;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+  color: orange;
+}
+
+.side-menu {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 220px;
+  height: 100%;
+  background: #fff;
+  padding: 30px 20px;
+  transform: translateX(-100%);
+  transition: transform 0.3s ease;
+  z-index: 1000;
+  box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+}
+
+.side-menu a {
+  display: block;
+  margin-bottom: 20px;
+  margin-top: 50px;
+  text-decoration: none;
+  color: #333;
+  font-weight: bold;
+}
+
+.side-menu.active {
+  transform: translateX(0);
+}
+
+/* ===========================
+   BUTTON STYLE
+   =========================== */
+.btn {
+  display: inline-block;
+  background-color: #FDAE44;
+  color: #222;
+  padding: 12px 28px;
+  margin: 15px 10px;
+  text-decoration: none;
+  font-weight: bold;
+  border-radius: 8px;
+  box-shadow: 0 3px 6px rgba(0,0,0,0.15);
+  transition: background-color 0.3s ease, color 0.3s ease;
+  font-size: 1.1rem;
+  cursor: pointer;
+}
+
+.btn:hover {
+  background-color: #FAB972;
+  color: #fff;
+  box-shadow: 0 5px 10px rgba(0,0,0,0.3);
+}
+
+/* ===========================
+   HEADER
+   =========================== */
+header {
+  background: transparent;
+  color: #222;
+  padding: 60px 20px 20px;
+  text-align: center;
+}
+
+header h1 {
+  font-size: 3em;
+  margin-bottom: 10px;
+  margin-top: 300px;
+}
+
+header p {
+  margin-top: 50px;
+  font-size: 1.2em;
+  font-style: italic;
+}
+
+/* ===========================
+   SLIDESHOW
+   =========================== */
+.slideshow-container {
+  position: relative;
+  height: 50vh;
+  overflow: hidden;
+}
+
+.slide {
+  display: none;
+  height: 100%;
+  width: 100%;
+  position: absolute;
+}
+
+.slide img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.fade {
+  animation: fadeEffect 1s ease-in-out;
+}
+
+/* ===========================
+   MISSION PAGE DESIGN (DESKTOP)
+   =========================== */
+.the-about {
+  max-width: 900px;
+  margin: 120px auto;
+  background-color: #fff;
+  padding: 60px 70px;
+  border-radius: 20px;
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.08);
+  font-size: 1.15rem;
+  line-height: 1.9;
+  letter-spacing: 0.4px;
+  animation: fadeInMission 1.5s ease-in-out;
+}
+
+.the-about b {
+  display: block;
+  font-size: 2.5rem;
+  color: #4e2a84;
+  margin-bottom: 30px;
+  text-align: center;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+}
+
+@keyframes fadeEffect {
+  from { opacity: 0.4; }
+  to { opacity: 1; }
+}
+
+/* ===========================
+   BRANDING
+   =========================== */
+.branding {
+  height: 50vh;
+  background-color: #fdf8f2;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.branding h1 {
+  font-size: 3em;
+  margin-bottom: 10px;
+}
+
+.branding p {
+  font-size: 1.2em;
+  font-style: italic;
+}
+
+/* ===========================
+   IMAGE GRID
+   =========================== */
+.desktopt td img {
+  width: 300px;
+  height: 500px;
+  margin: 10px;
+  padding: 10px;
+  border-radius: 10px;
+}
+
+.desktopt td {
+  padding: 10px;
+  border-radius: 10px;
+  height: 500px;
+}
+
+.gallery img {
+  margin: 20px;
+}
+
+/* ===========================
+   FOOTER
+   =========================== */
+#site-footer {
+  background-color: #222;
+  color: #fff;
+  text-align: center;
+  padding: 20px 10px;
+  width: 100%;
+  box-sizing: border-box;
+  flex-shrink: 0;
+}
+
+/* ===========================
+   ABOUT PAGE SPECIFIC UPDATES
+   =========================== */
+.about-grid h1 {
+  font-size: 3rem;
+  margin-bottom: 40px;
+  color: #8e44ad;
+  text-align: center;
+  font-weight: 700;
+}
+
+.the-about-flex {
+  display: flex;
+  gap: 40px;
+  align-items: center;
+  justify-content: center;
+  padding: 0 80px 80px 80px;
+}
+
+.about-text {
+  flex: 1;
+  font-size: 1.2rem;
+  line-height: 1.7;
+  color: #444;
+  max-width: 600px;
+}
+
+.about-image img {
+  max-width: 400px;
+  width: 100%;
+  height: auto;
+  border-radius: 10px;
+  box-shadow: 0 0 20px rgba(0,0,0,0.1);
+}
+
+/* ===========================
+   ZANELE RADEBE ABOUT-ME PAGE
+   =========================== */
+.about-me {
+  max-width: 800px;
+  margin: 60px auto;
+  background-color: #fff;
+  padding: 40px;
+  border-radius: 16px;
+  box-shadow: 0 0 15px rgba(0,0,0,0.1);
+}
+
+.about-me h2 {
+  font-size: 2.2rem;
+  color: #111;
+  margin-bottom: 10px;
+  text-align: center;
+}
+
+.about-me .me-header {
+  font-style: italic;
+  font-size: 1.2rem;
+  margin-bottom: 25px;
+  text-align: center;
+  color: #666;
+}
+
+.about-me h3 {
+  font-size: 1.6rem;
+  color: #222;
+  margin-bottom: 15px;
+  text-align: center;
+}
+
+.about-me p {
+  font-size: 1rem;
+  line-height: 1.8;
+  color: #444;
+  margin-bottom: 16px;
+}
+
+.about-me strong {
+  color: #222;
+  font-weight: 600;
+}
+/* ===========================
+   MOBILE RESPONSIVENESS
+   =========================== */
+@media (max-width: 768px) {
+  .desktopt {
+    display: none;
+  }
+
+  .mobilet {
+    display: block;
+    padding: 20px;
+  }
+
+  .mobilet table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+
+  .mobilet img {
+    width: 100%;
+    height: auto;
+    border-radius: 10px;
+    margin-bottom: 10px;
+  }
+
+  .mobilet h3 {
+    font-size: 20px;
+    margin: 10px 0 5px;
+    color: #333;
+  }
+
+  .mobilet p {
+    font-size: 16px;
+    color: #555;
+  }
+
+  .mobilet td {
+    padding-bottom: 20px;
+  }
+
+  .hamburger {
+    display: block;
+  }
+
+  .causes-grid {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+
+  .cause-item img {
+    height: 180px;
+  }
+
+  .cause-text {
+    padding: 15px;
+  }
+
+  .causes-section h2 {
+    font-size: 2em;
+  }
+
+  .branding h1 {
+    font-size: 2em;
+  }
+
+  .branding p {
+    font-size: 1em;
+  }
+
+  .side-menu {
+    display: block;
+  }
+
+  nav.desktop-nav {
+    display: none;
+  }
+
+  .navigation {
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    padding-right: 60px;
+  }
+
+  .navigation img {
+    margin-left: 10px;
+  }
+
+  header h1 {
+    font-size: 2em;
+    margin-top: 150px;
+  }
+
+  header p {
+    font-size: 1em;
+  }
+
+  .about-grid,
+  .empowerment-grid {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+    padding: 20px;
+  }
+
+  .the-about img {
+    width: 300px;
+    height: 300px;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    transition: transform 0.3s ease;
+  }
+
+  .video-card img {
+    width: 350px;
+    height: 500px;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    transition: transform 0.3s ease;
+    margin: 0 auto;
+  }
+
+  .video-card img:hover {
+    transform: scale(1.03);
+  }
+
+  .about h2,
+  .about-me h2,
+  .about-me h3,
+  .causes h2,
+  .empowerment h2,
+  .involved h2,
+  .contact h2 {
+    font-size: 36px;
+  }
+
+  .about p,
+  .about-me p,
+  .causes p,
+  .empowerment p,
+  .involved p,
+  .contact {
+    margin: 0 20px;
+    text-align: left;
+  }
+
+  .causes h3 {
+    margin: 0 20px;
+  }
+
+  .ef {
+    width: 350px;
+    height: 500px;
+  }
+
+  .cause-grid {
+    grid-template-columns: 1fr;
+    text-align: center;
+  }
+
+  .cause-grid.reverse {
+    direction: ltr;
+  }
+
+  .cause-grid .cause-image,
+  .cause-grid .cause-text {
+    direction: ltr;
+  }
+
+  .cause-text h3 {
+    margin-top: 20px;
+  }
+}
+
+/* ===========================
+   EMPOWERMENT FRIDAYS PAGE STYLES
+   =========================== */
+.empowerment {
+  max-width: 1100px;
+  margin: 60px auto 80px;
+  padding: 0 20px;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.empowerment h2 {
+  font-size: 3rem;
+  color: #FDAE44;
+  text-align: center;
+  margin-bottom: 15px;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  font-weight: 900;
+}
+
+.empowerment p {
+  max-width: 800px;
+  margin: 0 auto 50px;
+  font-size: 1.2rem;
+  line-height: 1.7;
+  color: #555;
+  font-weight: 500;
+  text-align: center;
+  letter-spacing: 0.02em;
+}
+
+.empowerment-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 40px;
+}
+
+.video-card {
+  background-color: #fff;
+  border-radius: 16px;
+  box-shadow: 0 12px 25px rgba(253, 174, 68, 0.3);
+  padding: 20px;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  cursor: pointer;
+}
+
+.video-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 22px 35px rgba(253, 174, 68, 0.6);
+}
+
+.video-card img {
+  max-width: 100%;
+  height: 200px;
+  object-fit: cover;
+  border-radius: 12px;
+  box-shadow: 0 6px 12px rgba(0,0,0,0.1);
+  margin-bottom: 20px;
+  transition: transform 0.3s ease;
+}
+
+.video-card img:hover {
+  transform: scale(1.05);
+}
+
+.video-card p {
+  margin: 0 10px;
+  font-size: 1rem;
+  color: #444;
+  line-height: 1.4;
+}
+
+.video-card p b {
+  color: #FDAE44;
+  font-size: 1.2rem;
+  letter-spacing: 1.2px;
+  text-transform: uppercase;
+  display: block;
+  margin-bottom: 10px;
+  font-weight: 800;
+}
+
+/* Responsive tweaks */
+@media (max-width: 768px) {
+  .empowerment {
+    margin: 40px 15px 60px;
+  }
+
+  .empowerment h2 {
+    font-size: 2.2rem;
+  }
+
+  .empowerment p {
+    font-size: 1.1rem;
+    max-width: 100%;
+  }
+
+  .video-card img {
+    height: 180px;
+  }
+}
+/* ======= Hero Banner ======= */
+.hero-banner {
+  background: linear-gradient(rgba(253, 174, 68, 0.85), rgba(253, 174, 68, 0.85)),
+              url('images/hero-bg.jpg') center center/cover no-repeat;
+  color: #fff;
+  padding: 100px 20px 80px;
+  text-align: center;
+  font-weight: 700;
+  letter-spacing: 1.1px;
+  box-shadow: inset 0 0 100px rgba(0,0,0,0.3);
+}
+
+.hero-banner h1 {
+  font-size: 3.5rem;
+  margin-bottom: 20px;
+  text-shadow: 1px 1px 8px rgba(0,0,0,0.6);
+}
+
+.hero-banner p {
+  font-size: 1.4rem;
+  max-width: 600px;
+  margin: 0 auto;
+  font-style: italic;
+  text-shadow: 1px 1px 6px rgba(0,0,0,0.5);
+}
+
+/* ======= Causes Container ======= */
+.causes-container {
+  max-width: 1200px;
+  margin: 40px auto 80px;
+  padding: 0 20px;
+}
+
+/* Intro Text */
+.intro-text {
+  font-size: 1.15rem;
+  line-height: 1.7;
+  color: #555;
+  margin-bottom: 40px;
+  max-width: 900px;
+  margin-left: auto;
+  margin-right: auto;
+  font-weight: 500;
+  letter-spacing: 0.02em;
+}
+
+/* ======= Cause Cards ======= */
+.cause-cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 40px;
+}
+
+.cause-card {
+  background: #fff;
+  border-radius: 15px;
+  box-shadow: 0 12px 20px rgba(253, 174, 68, 0.3);
+  padding: 20px;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.cause-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 20px 30px rgba(253, 174, 68, 0.6);
+}
+
+.cause-card img {
+  max-width: 100%;
+  height: 200px;
+  border-radius: 12px;
+  object-fit: cover;
+  margin-bottom: 20px;
+  box-shadow: 0 6px 10px rgba(0,0,0,0.1);
+}
+
+.cause-card h3 {
+  font-size: 1.8rem;
+  margin-bottom: 15px;
+  color: #FDAE44;
+  text-transform: uppercase;
+  letter-spacing: 1.3px;
+}
+
+.cause-card p {
+  font-size: 1rem;
+  color: #444;
+  line-height: 1.5;
+  font-weight: 400;
+}
+
+/* Responsive tweaks */
+@media (max-width: 768px) {
+  .hero-banner {
+    padding: 70px 15px 60px;
+  }
+
+  .hero-banner h1 {
+    font-size: 2.5rem;
+  }
+
+  .hero-banner p {
+    font-size: 1.1rem;
+    max-width: 100%;
+  }
+
+  .causes-container {
+    margin: 30px 15px 60px;
+  }
+
+  .cause-cards {
+    grid-template-columns: 1fr;
+    gap: 30px;
+  }
+
+  .cause-card img {
+    height: 180px;
+  }
+}
 
