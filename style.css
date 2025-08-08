@@ -389,7 +389,6 @@ header p {
   color: #222;
   font-weight: 600;
 }
-
 /* ===========================
    MOBILE RESPONSIVENESS
    =========================== */
@@ -566,122 +565,107 @@ header p {
 }
 
 /* ===========================
-   NEW: HERO BANNER & CAUSE CARDS
+   EMPOWERMENT FRIDAYS PAGE STYLES
    =========================== */
-.hero-banner {
-  background: linear-gradient(rgba(253, 174, 68, 0.85), rgba(253, 174, 68, 0.85)),
-              url('images/hero-bg.jpg') center center/cover no-repeat;
-  color: #fff;
-  padding: 100px 20px 80px;
-  text-align: center;
-  font-weight: 700;
-  letter-spacing: 1.1px;
-  box-shadow: inset 0 0 100px rgba(0,0,0,0.3);
-}
-
-.hero-banner h1 {
-  font-size: 3.5rem;
-  margin-bottom: 20px;
-  text-shadow: 1px 1px 8px rgba(0,0,0,0.6);
-}
-
-.hero-banner p {
-  font-size: 1.4rem;
-  max-width: 600px;
-  margin: 0 auto;
-  font-style: italic;
-  text-shadow: 1px 1px 6px rgba(0,0,0,0.5);
-}
-
-.causes-container {
-  max-width: 1200px;
-  margin: 40px auto 80px;
+.empowerment {
+  max-width: 1100px;
+  margin: 60px auto 80px;
   padding: 0 20px;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
-.intro-text {
-  font-size: 1.15rem;
+.empowerment h2 {
+  font-size: 3rem;
+  color: #FDAE44;
+  text-align: center;
+  margin-bottom: 15px;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  font-weight: 900;
+}
+
+.empowerment p {
+  max-width: 800px;
+  margin: 0 auto 50px;
+  font-size: 1.2rem;
   line-height: 1.7;
   color: #555;
-  margin-bottom: 40px;
-  max-width: 900px;
-  margin-left: auto;
-  margin-right: auto;
   font-weight: 500;
+  text-align: center;
   letter-spacing: 0.02em;
 }
 
-.cause-cards {
+.empowerment-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
   gap: 40px;
 }
 
-.cause-card {
-  background: #fff;
-  border-radius: 15px;
-  box-shadow: 0 12px 20px rgba(253, 174, 68, 0.3);
+.video-card {
+  background-color: #fff;
+  border-radius: 16px;
+  box-shadow: 0 12px 25px rgba(253, 174, 68, 0.3);
   padding: 20px;
   transition: transform 0.3s ease, box-shadow 0.3s ease;
   display: flex;
   flex-direction: column;
   align-items: center;
   text-align: center;
+  cursor: pointer;
 }
 
-.cause-card:hover {
+.video-card:hover {
   transform: translateY(-8px);
-  box-shadow: 0 20px 30px rgba(253, 174, 68, 0.6);
+  box-shadow: 0 22px 35px rgba(253, 174, 68, 0.6);
 }
 
-.cause-card img {
+.video-card img {
   max-width: 100%;
   height: 200px;
-  border-radius: 12px;
   object-fit: cover;
+  border-radius: 12px;
+  box-shadow: 0 6px 12px rgba(0,0,0,0.1);
   margin-bottom: 20px;
-  box-shadow: 0 6px 10px rgba(0,0,0,0.1);
+  transition: transform 0.3s ease;
 }
 
-.cause-card h3 {
-  font-size: 1.8rem;
-  margin-bottom: 15px;
-  color: #FDAE44;
-  text-transform: uppercase;
-  letter-spacing: 1.3px;
+.video-card img:hover {
+  transform: scale(1.05);
 }
 
-.cause-card p {
+.video-card p {
+  margin: 0 10px;
   font-size: 1rem;
   color: #444;
-  line-height: 1.5;
-  font-weight: 400;
+  line-height: 1.4;
 }
 
+.video-card p b {
+  color: #FDAE44;
+  font-size: 1.2rem;
+  letter-spacing: 1.2px;
+  text-transform: uppercase;
+  display: block;
+  margin-bottom: 10px;
+  font-weight: 800;
+}
+
+/* Responsive tweaks */
 @media (max-width: 768px) {
-  .hero-banner {
-    padding: 70px 15px 60px;
+  .empowerment {
+    margin: 40px 15px 60px;
   }
 
-  .hero-banner h1 {
-    font-size: 2.5rem;
+  .empowerment h2 {
+    font-size: 2.2rem;
   }
 
-  .hero-banner p {
+  .empowerment p {
     font-size: 1.1rem;
     max-width: 100%;
   }
 
-  .causes-container {
-    margin: 30px 15px 60px;
-  }
-
-  .cause-cards {
-    grid-template-columns: 1fr;
-    gap: 30px;
-  }
-
-  .cause-card img {
+  .video-card img {
     height: 180px;
   }
 }
