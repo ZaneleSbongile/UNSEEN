@@ -563,6 +563,71 @@ header p {
     margin-top: 20px;
   }
 }
+/* ===========================
+   SEEN & HEARD PAGE STYLES
+   =========================== */
+.involved {
+  max-width: 900px;
+  margin: 80px auto 100px;
+  padding: 30px 20px;
+  background-color: #fff;
+  border-radius: 18px;
+  box-shadow: 0 12px 35px rgba(253, 174, 68, 0.25);
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  color: #333;
+  text-align: center;
+  line-height: 1.7;
+  font-size: 1.15rem;
+  letter-spacing: 0.02em;
+  animation: fadeInSeenHeard 1.6s ease forwards;
+}
+
+.involved h2 {
+  font-size: 3rem;
+  color: #FDAE44;
+  margin-bottom: 25px;
+  text-transform: uppercase;
+  letter-spacing: 2.4px;
+  font-weight: 900;
+  text-shadow: 1px 1px 3px rgba(253, 174, 68, 0.6);
+}
+
+.involved p {
+  margin-bottom: 20px;
+  font-weight: 500;
+  color: #555;
+}
+
+.involved p:last-child {
+  font-style: italic;
+  font-weight: 600;
+  color: #777;
+}
+
+@keyframes fadeInSeenHeard {
+  from {
+    opacity: 0;
+    transform: translateY(40px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Responsive tweaks for Seen & Heard */
+@media (max-width: 768px) {
+  .involved {
+    margin: 50px 15px 70px;
+    padding: 20px 15px;
+    font-size: 1rem;
+  }
+  
+  .involved h2 {
+    font-size: 2.2rem;
+    letter-spacing: 1.5px;
+  }
+}
 
 /* ===========================
    EMPOWERMENT FRIDAYS PAGE STYLES
@@ -877,6 +942,7 @@ header p {
     height: 180px;
   }
 }
+
 
 
 
