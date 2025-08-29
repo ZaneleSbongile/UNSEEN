@@ -961,13 +961,16 @@ header p {
 }
 
 /* Gallery grid */
+
 .gallery {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    gap: 20px;
-    padding: 40px;
-    background: linear-gradient(to bottom, #fdf8f2, #f8e8dd);
+  display: flex;
+  flex-wrap: wrap;        /* allows wrapping to next row */
+  justify-content: center; /* center horizontally */
+  gap: 20px;
+  padding: 40px;
+  background: linear-gradient(to bottom, #fdf8f2, #f8e8dd);
 }
+
 
 
 /* Flip card container */
@@ -1056,6 +1059,7 @@ header p {
     height: 350px;
   }
 }
+
 
 
 
