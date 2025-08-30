@@ -1058,7 +1058,29 @@ header p {
     width: 100%;
     height: 350px;
   }
+   /* ABOUT PAGE MOBILE FIX */
+.the-about-flex {
+  flex-direction: column;   /* stack vertically */
+  text-align: center;       /* center align */
+  padding: 20px;            /* less padding for mobile */
 }
+
+.about-text {
+  order: 1;   /* paragraph goes first */
+  width: 100%;
+}
+
+.about-image {
+  order: 2;   /* image comes after */
+  margin-top: 20px;
+}
+
+.about-image img {
+  max-width: 90%;  /* keeps it big but not too big */
+  height: auto;
+}
+}
+
 
 
 
