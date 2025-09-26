@@ -201,7 +201,7 @@ header p {
    =========================== */
 .slideshow-container {
   position: relative;
-  height: 70vh;
+  height: 500px;
   overflow: hidden;
 }
 
@@ -964,8 +964,8 @@ header p {
 
 .gallery {
   display: flex;
-  flex-wrap: wrap;        /* allows wrapping to next row */
-  justify-content: center; /* center horizontally */
+  flex-wrap: wrap;
+  justify-content: center;
   gap: 20px;
   padding: 40px;
   background: linear-gradient(to bottom, #fdf8f2, #f8e8dd);
@@ -980,7 +980,7 @@ header p {
   height: 400px;
   perspective: 1000px;
   cursor: pointer;
-  outline: none; /* remove focus outline, but you can customize focus styles */
+  outline: none;
   border-radius: 15px;
   box-shadow: 0 8px 20px rgba(253, 174, 68, 0.2);
   transition: box-shadow 0.3s ease;
@@ -1128,6 +1128,7 @@ header p {
   align-self: flex-start;
   margin-top: 10px;
 }
+
 
 
 
