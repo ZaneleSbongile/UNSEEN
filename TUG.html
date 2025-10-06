@@ -45,7 +45,7 @@
     </div>
 
 <script type="module">
-  import { initializeApp } from "https://www.gstatic.com/firebasejs/12.3.0/firebase-app.js";
+import { initializeApp } from "https://www.gstatic.com/firebasejs/12.3.0/firebase-app.js";
 import { getDatabase, ref, push, set, onValue, update, remove } from "https://www.gstatic.com/firebasejs/12.3.0/firebase-database.js";
 
 // Firebase config
@@ -63,7 +63,7 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 const database = getDatabase(app);
 
-// Admin
+// Admin password
 const ADMIN_PASSWORD = "admin123";
 let isAdmin = false;
 
@@ -127,7 +127,7 @@ function renderPosts(posts){
     if(post.email === localStorage.getItem('userEmail')){
       menuHTML = `
         <span class="menu" onclick="toggleMenu('${post.id}')">⋮</span>
-        <div id="menu-${post.id}" class="post-menu">
+        <div id="menu-${post.id}" class="post-menu" style="display:none;">
           <div onclick="editPost('${post.id}')">Edit</div>
           <div onclick="deletePost('${post.id}')">Delete</div>
         </div>`;
@@ -153,16 +153,14 @@ function renderPosts(posts){
         <span onclick="react('${post.id}','I See You 👀')">I See You 👀</span>
       </div>
     `;
-
     feed.appendChild(postDiv);
   });
 }
 
-// Menu toggle
+// Toggle menu
 window.toggleMenu = function(id){
   const menu = document.getElementById(`menu-${id}`);
-  if(menu.style.display === 'block') menu.style.display = 'none';
-  else menu.style.display = 'block';
+  menu.style.display = menu.style.display === 'block' ? 'none' : 'block';
 };
 
 // Edit post
@@ -214,6 +212,7 @@ document.addEventListener('click', function(event){
   });
 });
 </script>
+
 
 </body>
 </html>
