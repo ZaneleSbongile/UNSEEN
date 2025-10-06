@@ -288,6 +288,34 @@ body {
     background-color: #FFC040;
 }
 
+/* Ensure dropdown menu positions correctly */
+.post .post-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: relative; /* important for dropdown */
+}
+
+/* Dropdown menu for Edit/Delete */
+.post-menu {
+    position: absolute;
+    right: 0;
+    top: 25px;
+    background: #FFD580; /* light gold */
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+    z-index: 10;
+}
+
+.post-menu div {
+    padding: 8px 12px;
+    cursor: pointer;
+}
+
+.post-menu div:hover {
+    background-color: #FFC040; /* highlight on hover */
+}
+
 
 /* ===========================
    SLIDESHOW
@@ -1221,6 +1249,7 @@ body {
   align-self: flex-start;
   margin-top: 10px;
 }
+
 
 
 
