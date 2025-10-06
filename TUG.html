@@ -45,31 +45,10 @@
     </div>
 
 <script type="module">
-  // Import the functions you need from the SDKs you need
   import { initializeApp } from "https://www.gstatic.com/firebasejs/12.3.0/firebase-app.js";
-  // TODO: Add SDKs for Firebase products that you want to use
-  // https://firebase.google.com/docs/web/setup#available-libraries
-
-  // Your web app's Firebase configuration
-  const firebaseConfig = {
-    apiKey: "AIzaSyD8P_Cpg8oiGKWuefw8MDAGIGxuNwazlIY",
-    authDomain: "theunseengeneration-ef3a7.firebaseapp.com",
-    databaseURL: "https://theunseengeneration-ef3a7-default-rtdb.firebaseio.com",
-    projectId: "theunseengeneration-ef3a7",
-    storageBucket: "theunseengeneration-ef3a7.firebasestorage.app",
-    messagingSenderId: "19836098555",
-    appId: "1:19836098555:web:98632364991cfe7678dd5e"
-  };
-
-  // Initialize Firebase
-  const app = initializeApp(firebaseConfig);
-</script>
-    
-<script type="module">
-import { initializeApp } from "https://www.gstatic.com/firebasejs/12.3.0/firebase-app.js";
 import { getDatabase, ref, push, set, onValue, update, remove } from "https://www.gstatic.com/firebasejs/12.3.0/firebase-database.js";
 
-// Firebase config (replace with yours if different)
+// Firebase config
 const firebaseConfig = {
   apiKey: "AIzaSyD8P_Cpg8oiGKWuefw8MDAGIGxuNwazlIY",
   authDomain: "theunseengeneration-ef3a7.firebaseapp.com",
@@ -84,7 +63,7 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 const database = getDatabase(app);
 
-// Admin password
+// Admin
 const ADMIN_PASSWORD = "admin123";
 let isAdmin = false;
 
@@ -128,14 +107,14 @@ postBtn.addEventListener('click', () => {
   messageInput.value = '';
 });
 
-// Listen for posts in real-time
+// Real-time listener
 onValue(postsRef, (snapshot) => {
   const posts = snapshot.val();
   renderPosts(posts);
 });
 
 // Render posts
-function renderPosts(posts) {
+function renderPosts(posts){
   feed.innerHTML = '';
   if(!posts) return;
 
@@ -144,12 +123,11 @@ function renderPosts(posts) {
     postDiv.className = 'post';
     postDiv.dataset.id = post.id;
 
-    // Menu options
     let menuHTML = '';
     if(post.email === localStorage.getItem('userEmail')){
       menuHTML = `
         <span class="menu" onclick="toggleMenu('${post.id}')">⋮</span>
-        <div id="menu-${post.id}" class="post-menu" style="display:none;">
+        <div id="menu-${post.id}" class="post-menu">
           <div onclick="editPost('${post.id}')">Edit</div>
           <div onclick="deletePost('${post.id}')">Delete</div>
         </div>`;
@@ -175,22 +153,22 @@ function renderPosts(posts) {
         <span onclick="react('${post.id}','I See You 👀')">I See You 👀</span>
       </div>
     `;
+
     feed.appendChild(postDiv);
   });
 }
 
-// Toggle menu
+// Menu toggle
 window.toggleMenu = function(id){
   const menu = document.getElementById(`menu-${id}`);
-  if(menu.style.display === 'none') menu.style.display = 'block';
-  else menu.style.display = 'none';
+  if(menu.style.display === 'block') menu.style.display = 'none';
+  else menu.style.display = 'block';
 };
 
 // Edit post
 window.editPost = function(id){
   const newMessage = prompt("Edit your post:");
   if(!newMessage) return;
-
   const postRef = ref(database, `posts/${id}`);
   update(postRef, { message: newMessage });
 };
