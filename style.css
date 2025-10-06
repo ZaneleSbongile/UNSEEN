@@ -197,6 +197,99 @@ header p {
 }
 
 /* ===========================
+   TUG
+   =========================== */
+/* General Page Styles */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #FFF8E7; /* light cream */
+    color: #333;
+    margin: 0;
+    padding: 0;
+}
+
+/* Container */
+.container {
+    width: 90%;
+    max-width: 800px;
+    margin: 40px auto;
+}
+
+/* Post Form */
+.post-form {
+    background-color: #FFEAC2; /* soft peach */
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+    margin-bottom: 30px;
+}
+
+.post-form input, .post-form textarea {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #FFD580;
+    border-radius: 5px;
+    font-size: 1em;
+}
+
+.post-form button {
+    background-color: #FFA64D; /* gentle orange */
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.post-form button:hover {
+    background-color: #FF8C1A;
+}
+
+/* Post Cards */
+.post {
+    background-color: #FFF5E0; /* light yellow */
+    padding: 15px;
+    border-radius: 10px;
+    margin-bottom: 20px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    position: relative;
+}
+
+/* Post Header */
+.post .post-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+/* Three-dot menu */
+.post .menu {
+    cursor: pointer;
+    font-weight: bold;
+}
+
+/* Reactions */
+.reactions {
+    margin-top: 10px;
+}
+
+.reactions span {
+    cursor: pointer;
+    margin-right: 10px;
+    font-size: 0.9em;
+    padding: 5px 8px;
+    border-radius: 5px;
+    background-color: #FFD580; /* light gold */
+    color: #333;
+}
+
+.reactions span:hover {
+    background-color: #FFC040;
+}
+
+
+/* ===========================
    SLIDESHOW
    =========================== */
 .slideshow-container {
@@ -1128,6 +1221,7 @@ header p {
   align-self: flex-start;
   margin-top: 10px;
 }
+
 
 
 
