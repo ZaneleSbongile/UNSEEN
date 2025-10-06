@@ -65,206 +65,177 @@
   const app = initializeApp(firebaseConfig);
 </script>
     
-<script>
-/* Admin password */
-const ADMIN_PASSWORD = "admin123"; // Change this later
+<script type="module">
+import { initializeApp } from "https://www.gstatic.com/firebasejs/12.3.0/firebase-app.js";
+import { getDatabase, ref, push, set, onValue, update, remove } from "https://www.gstatic.com/firebasejs/12.3.0/firebase-database.js";
+
+// Firebase config (replace with yours if different)
+const firebaseConfig = {
+  apiKey: "AIzaSyD8P_Cpg8oiGKWuefw8MDAGIGxuNwazlIY",
+  authDomain: "theunseengeneration-ef3a7.firebaseapp.com",
+  databaseURL: "https://theunseengeneration-ef3a7-default-rtdb.firebaseio.com",
+  projectId: "theunseengeneration-ef3a7",
+  storageBucket: "theunseengeneration-ef3a7.firebasestorage.app",
+  messagingSenderId: "19836098555",
+  appId: "1:19836098555:web:98632364991cfe7678dd5e"
+};
+
+// Initialize Firebase
+const app = initializeApp(firebaseConfig);
+const database = getDatabase(app);
+
+// Admin password
+const ADMIN_PASSWORD = "admin123";
 let isAdmin = false;
 
-/* Load posts from localStorage */
-let posts = JSON.parse(localStorage.getItem('tugPosts')) || [];
-renderPosts();
+// References
+const postsRef = ref(database, 'posts');
 
-/* Post Button */
-document.getElementById('postBtn').addEventListener('click', () => {
-    const name = document.getElementById('name').value.trim();
-    const email = document.getElementById('email').value.trim();
-    const message = document.getElementById('message').value.trim();
+// Elements
+const postBtn = document.getElementById('postBtn');
+const nameInput = document.getElementById('name');
+const emailInput = document.getElementById('email');
+const messageInput = document.getElementById('message');
+const feed = document.getElementById('postsFeed');
 
-    if(!name || !email || !message){
-        alert("Please fill in all fields.");
-        return;
-    }
-
-    const post = {
-        id: Date.now(),
-        name,
-        email,
-        message,
-        time: new Date().toLocaleString()
-    };
-
-    posts.unshift(post);
-    localStorage.setItem('tugPosts', JSON.stringify(posts));
-    renderPosts();
-
-    document.getElementById('name').value = '';
-    document.getElementById('email').value = '';
-    document.getElementById('message').value = '';
+// Store user email locally
+emailInput.addEventListener('blur', () => {
+  localStorage.setItem('userEmail', emailInput.value.trim());
 });
 
-/* Store user email for editing */
-document.getElementById('email').addEventListener('blur', ()=>{
-    localStorage.setItem('userEmail', document.getElementById('email').value.trim());
+// Post button
+postBtn.addEventListener('click', () => {
+  const name = nameInput.value.trim();
+  const email = emailInput.value.trim();
+  const message = messageInput.value.trim();
+
+  if(!name || !email || !message){
+    alert("Please fill in all fields.");
+    return;
+  }
+
+  const newPostRef = push(postsRef);
+  set(newPostRef, {
+    id: newPostRef.key,
+    name,
+    email,
+    message,
+    time: new Date().toLocaleString()
+  });
+
+  nameInput.value = '';
+  emailInput.value = '';
+  messageInput.value = '';
 });
 
-/* Render Posts */
-function renderPosts() {
-    const feed = document.getElementById('postsFeed');
-    feed.innerHTML = '';
+// Listen for posts in real-time
+onValue(postsRef, (snapshot) => {
+  const posts = snapshot.val();
+  renderPosts(posts);
+});
 
-    posts.forEach(post => {
-        const postDiv = document.createElement('div');
-        postDiv.className = 'post';
-        postDiv.dataset.id = post.id;
+// Render posts
+function renderPosts(posts) {
+  feed.innerHTML = '';
+  if(!posts) return;
 
-        // Post header and menu
-        const headerDiv = document.createElement('div');
-        headerDiv.className = 'post-header';
+  Object.values(posts).reverse().forEach(post => {
+    const postDiv = document.createElement('div');
+    postDiv.className = 'post';
+    postDiv.dataset.id = post.id;
 
-        const nameStrong = document.createElement('strong');
-        nameStrong.textContent = post.name;
-
-        headerDiv.appendChild(nameStrong);
-
-        // Menu
-        const menuContainer = document.createElement('div');
-        menuContainer.style.position = 'relative';
-
-        if(post.email === localStorage.getItem('userEmail')){
-            const menuBtn = document.createElement('span');
-            menuBtn.className = 'menu';
-            menuBtn.textContent = '⋮';
-            menuBtn.addEventListener('click', (e)=>{
-                e.stopPropagation();
-                toggleMenu(post.id);
-            });
-            menuContainer.appendChild(menuBtn);
-
-            const menuDiv = document.createElement('div');
-            menuDiv.id = `menu-${post.id}`;
-            menuDiv.className = 'post-menu';
-            menuDiv.style.display = 'none';
-
-            const editOption = document.createElement('div');
-            editOption.textContent = 'Edit';
-            editOption.addEventListener('click', ()=>editPost(post.id));
-            menuDiv.appendChild(editOption);
-
-            const deleteOption = document.createElement('div');
-            deleteOption.textContent = 'Delete';
-            deleteOption.addEventListener('click', ()=>deletePost(post.id));
-            menuDiv.appendChild(deleteOption);
-
-            menuContainer.appendChild(menuDiv);
-        } else {
-            const reportBtn = document.createElement('span');
-            reportBtn.className = 'menu';
-            reportBtn.textContent = '⋮ Report';
-            reportBtn.addEventListener('click', ()=>reportPost(post.id));
-            menuContainer.appendChild(reportBtn);
-        }
-
-        if(isAdmin){
-            const adminDeleteBtn = document.createElement('span');
-            adminDeleteBtn.style.cursor = 'pointer';
-            adminDeleteBtn.style.color = 'red';
-            adminDeleteBtn.textContent = ' [Delete as Admin]';
-            adminDeleteBtn.addEventListener('click', ()=>adminDelete(post.id));
-            menuContainer.appendChild(adminDeleteBtn);
-        }
-
-        headerDiv.appendChild(menuContainer);
-
-        // Message and time
-        const messageP = document.createElement('p');
-        messageP.textContent = post.message;
-
-        const timeSmall = document.createElement('small');
-        timeSmall.textContent = post.time;
-
-        // Reactions
-        const reactionsDiv = document.createElement('div');
-        reactionsDiv.className = 'reactions';
-
-        ['Motivating 💪','Inspiring ✨','Relatable 💭','I See You 👀'].forEach(reaction=>{
-            const span = document.createElement('span');
-            span.textContent = reaction;
-            span.addEventListener('click', ()=>react(post.id, reaction));
-            reactionsDiv.appendChild(span);
-        });
-
-        // Append everything
-        postDiv.appendChild(headerDiv);
-        postDiv.appendChild(messageP);
-        postDiv.appendChild(timeSmall);
-        postDiv.appendChild(reactionsDiv);
-
-        feed.appendChild(postDiv);
-    });
-}
-
-/* Toggle menu visibility */
-function toggleMenu(id){
-    const menu = document.getElementById(`menu-${id}`);
-    if(menu.style.display === 'none') menu.style.display = 'block';
-    else menu.style.display = 'none';
-}
-
-/* Edit Post */
-function editPost(id){
-    const post = posts.find(p => p.id == id);
-    const newMessage = prompt("Edit your post:", post.message);
-    if(newMessage !== null && newMessage.trim() !== ''){
-        post.message = newMessage.trim();
-        localStorage.setItem('tugPosts', JSON.stringify(posts));
-        renderPosts();
+    // Menu options
+    let menuHTML = '';
+    if(post.email === localStorage.getItem('userEmail')){
+      menuHTML = `
+        <span class="menu" onclick="toggleMenu('${post.id}')">⋮</span>
+        <div id="menu-${post.id}" class="post-menu" style="display:none;">
+          <div onclick="editPost('${post.id}')">Edit</div>
+          <div onclick="deletePost('${post.id}')">Delete</div>
+        </div>`;
+    } else {
+      menuHTML = `<span class="menu" onclick="reportPost('${post.id}')">⋮ Report</span>`;
     }
-}
 
-/* Delete your own post */
-function deletePost(id){
-    if(confirm("Are you sure you want to delete this post?")){
-        posts = posts.filter(p => p.id != id);
-        localStorage.setItem('tugPosts', JSON.stringify(posts));
-        renderPosts();
+    if(isAdmin){
+      menuHTML += ` <span style="cursor:pointer;color:red;" onclick="adminDelete('${post.id}')">[Delete as Admin]</span>`;
     }
+
+    postDiv.innerHTML = `
+      <div class="post-header" style="position:relative;">
+        <strong>${post.name}</strong>
+        ${menuHTML}
+      </div>
+      <p>${post.message}</p>
+      <small>${post.time}</small>
+      <div class="reactions">
+        <span onclick="react('${post.id}','Motivating 💪')">Motivating 💪</span>
+        <span onclick="react('${post.id}','Inspiring ✨')">Inspiring ✨</span>
+        <span onclick="react('${post.id}','Relatable 💭')">Relatable 💭</span>
+        <span onclick="react('${post.id}','I See You 👀')">I See You 👀</span>
+      </div>
+    `;
+    feed.appendChild(postDiv);
+  });
 }
 
-/* Report Post */
-function reportPost(id){
-    alert("This post has been reported. Thank you.");
-}
+// Toggle menu
+window.toggleMenu = function(id){
+  const menu = document.getElementById(`menu-${id}`);
+  if(menu.style.display === 'none') menu.style.display = 'block';
+  else menu.style.display = 'none';
+};
 
-/* Admin Delete */
-function adminDelete(id){
-    if(!isAdmin){
-        const pw = prompt("Enter admin password:");
-        if(pw !== ADMIN_PASSWORD){
-            alert("Wrong password.");
-            return;
-        }
-        isAdmin = true;
+// Edit post
+window.editPost = function(id){
+  const newMessage = prompt("Edit your post:");
+  if(!newMessage) return;
+
+  const postRef = ref(database, `posts/${id}`);
+  update(postRef, { message: newMessage });
+};
+
+// Delete your post
+window.deletePost = function(id){
+  if(!confirm("Are you sure you want to delete this post?")) return;
+  const postRef = ref(database, `posts/${id}`);
+  remove(postRef);
+};
+
+// Report post
+window.reportPost = function(id){
+  alert("This post has been reported. Thank you.");
+};
+
+// Admin delete
+window.adminDelete = function(id){
+  if(!isAdmin){
+    const pw = prompt("Enter admin password:");
+    if(pw !== ADMIN_PASSWORD){
+      alert("Wrong password.");
+      return;
     }
-    posts = posts.filter(p => p.id != id);
-    localStorage.setItem('tugPosts', JSON.stringify(posts));
-    renderPosts();
-}
+    isAdmin = true;
+  }
+  const postRef = ref(database, `posts/${id}`);
+  remove(postRef);
+};
 
-/* Reactions */
-function react(id, reaction){
-    alert(`You reacted: ${reaction}`);
-}
+// Reactions
+window.react = function(id, reaction){
+  alert(`You reacted: ${reaction}`);
+};
 
-/* Close menus when clicking outside */
+// Close menus when clicking outside
 document.addEventListener('click', function(event){
-    posts.forEach(post=>{
-        const menu = document.getElementById(`menu-${post.id}`);
-        if(menu && !menu.contains(event.target) && !event.target.classList.contains('menu')){
-            menu.style.display = 'none';
-        }
-    });
+  const postsMenus = document.querySelectorAll('.post-menu');
+  postsMenus.forEach(menu=>{
+    if(!menu.contains(event.target) && event.target.className !== 'menu'){
+      menu.style.display = 'none';
+    }
+  });
 });
-
 </script>
+
 </body>
 </html>
