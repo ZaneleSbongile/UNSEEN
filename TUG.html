@@ -95,37 +95,88 @@ function renderPosts() {
         postDiv.className = 'post';
         postDiv.dataset.id = post.id;
 
-        // Create menu HTML
-        let menuHTML = '';
+        // Post header and menu
+        const headerDiv = document.createElement('div');
+        headerDiv.className = 'post-header';
+
+        const nameStrong = document.createElement('strong');
+        nameStrong.textContent = post.name;
+
+        headerDiv.appendChild(nameStrong);
+
+        // Menu
+        const menuContainer = document.createElement('div');
+        menuContainer.style.position = 'relative';
+
         if(post.email === localStorage.getItem('userEmail')){
-            menuHTML = `
-            <span class="menu" onclick="toggleMenu(${post.id})">⋮</span>
-            <div id="menu-${post.id}" class="post-menu" style="display:none;">
-                <div onclick="editPost(${post.id})">Edit</div>
-                <div onclick="deletePost(${post.id})">Delete</div>
-            </div>`;
+            const menuBtn = document.createElement('span');
+            menuBtn.className = 'menu';
+            menuBtn.textContent = '⋮';
+            menuBtn.addEventListener('click', (e)=>{
+                e.stopPropagation();
+                toggleMenu(post.id);
+            });
+            menuContainer.appendChild(menuBtn);
+
+            const menuDiv = document.createElement('div');
+            menuDiv.id = `menu-${post.id}`;
+            menuDiv.className = 'post-menu';
+            menuDiv.style.display = 'none';
+
+            const editOption = document.createElement('div');
+            editOption.textContent = 'Edit';
+            editOption.addEventListener('click', ()=>editPost(post.id));
+            menuDiv.appendChild(editOption);
+
+            const deleteOption = document.createElement('div');
+            deleteOption.textContent = 'Delete';
+            deleteOption.addEventListener('click', ()=>deletePost(post.id));
+            menuDiv.appendChild(deleteOption);
+
+            menuContainer.appendChild(menuDiv);
         } else {
-            menuHTML = `<span class="menu" onclick="reportPost(${post.id})">⋮ Report</span>`;
+            const reportBtn = document.createElement('span');
+            reportBtn.className = 'menu';
+            reportBtn.textContent = '⋮ Report';
+            reportBtn.addEventListener('click', ()=>reportPost(post.id));
+            menuContainer.appendChild(reportBtn);
         }
 
         if(isAdmin){
-            menuHTML += ` <span style="cursor:pointer;color:red;" onclick="adminDelete(${post.id})">[Delete as Admin]</span>`;
+            const adminDeleteBtn = document.createElement('span');
+            adminDeleteBtn.style.cursor = 'pointer';
+            adminDeleteBtn.style.color = 'red';
+            adminDeleteBtn.textContent = ' [Delete as Admin]';
+            adminDeleteBtn.addEventListener('click', ()=>adminDelete(post.id));
+            menuContainer.appendChild(adminDeleteBtn);
         }
 
-        postDiv.innerHTML = `
-            <div class="post-header" style="position:relative;">
-                <strong>${post.name}</strong>
-                ${menuHTML}
-            </div>
-            <p>${post.message}</p>
-            <small>${post.time}</small>
-            <div class="reactions">
-                <span onclick="react('${post.id}','Motivating 💪')">Motivating 💪</span>
-                <span onclick="react('${post.id}','Inspiring ✨')">Inspiring ✨</span>
-                <span onclick="react('${post.id}','Relatable 💭')">Relatable 💭</span>
-                <span onclick="react('${post.id}','I See You 👀')">I See You 👀</span>
-            </div>
-        `;
+        headerDiv.appendChild(menuContainer);
+
+        // Message and time
+        const messageP = document.createElement('p');
+        messageP.textContent = post.message;
+
+        const timeSmall = document.createElement('small');
+        timeSmall.textContent = post.time;
+
+        // Reactions
+        const reactionsDiv = document.createElement('div');
+        reactionsDiv.className = 'reactions';
+
+        ['Motivating 💪','Inspiring ✨','Relatable 💭','I See You 👀'].forEach(reaction=>{
+            const span = document.createElement('span');
+            span.textContent = reaction;
+            span.addEventListener('click', ()=>react(post.id, reaction));
+            reactionsDiv.appendChild(span);
+        });
+
+        // Append everything
+        postDiv.appendChild(headerDiv);
+        postDiv.appendChild(messageP);
+        postDiv.appendChild(timeSmall);
+        postDiv.appendChild(reactionsDiv);
+
         feed.appendChild(postDiv);
     });
 }
@@ -182,15 +233,16 @@ function react(id, reaction){
     alert(`You reacted: ${reaction}`);
 }
 
-/* Optional: Close menus when clicking outside */
+/* Close menus when clicking outside */
 document.addEventListener('click', function(event){
     posts.forEach(post=>{
         const menu = document.getElementById(`menu-${post.id}`);
-        if(menu && !menu.contains(event.target) && event.target.className !== 'menu'){
+        if(menu && !menu.contains(event.target) && !event.target.classList.contains('menu')){
             menu.style.display = 'none';
         }
     });
 });
+
 </script>
 </body>
 </html>
