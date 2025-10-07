@@ -745,8 +745,8 @@ header p {
   }
 
   .ef {
-    width: 350px;
-    height: auto;
+    width: 250px;
+    height: 500px;
   }
 
   .ef img {
@@ -1339,6 +1339,7 @@ header p {
   align-self: flex-start;
   margin-top: 10px;
 }
+
 
 
 
