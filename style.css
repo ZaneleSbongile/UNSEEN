@@ -746,8 +746,15 @@ header p {
 
   .ef {
     width: 350px;
-    height: 500px;
+    height: auto;
   }
+
+  .ef img {
+    object-fit: contain; /* Shows the full image */
+    height: auto;        /* Maintain correct height */
+    width: 100%;         /* Take full width */
+  }
+
 
   .cause-grid {
     grid-template-columns: 1fr;
@@ -1332,6 +1339,7 @@ header p {
   align-self: flex-start;
   margin-top: 10px;
 }
+
 
 
 
