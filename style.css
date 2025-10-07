@@ -751,7 +751,7 @@ header p {
 
   .ef img {
     object-fit: contain; /* Shows the full image */
-    height: 400px;        /* Maintain correct height */
+    height: 800px;        /* Maintain correct height */
     width: 100%;         /* Take full width */
   }
 
@@ -1339,6 +1339,7 @@ header p {
   align-self: flex-start;
   margin-top: 10px;
 }
+
 
 
 
