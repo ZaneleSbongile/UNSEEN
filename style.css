@@ -1441,4 +1441,34 @@ header p {
         padding: 3px 6px;
     }
 }
+/* Mobile-only button style */
+@media screen and (max-width: 768px) {
+  .btn {
+    display: block; /* full-width buttons for easier tapping */
+    width: 90%;
+    margin: 12px auto;
+    padding: 14px 0;
+    background: linear-gradient(135deg, #6c63ff, #ff6584);
+    color: #fff;
+    font-weight: bold;
+    font-size: 18px;
+    text-align: center;
+    text-decoration: none;
+    border-radius: 12px;
+    transition: transform 0.2s, box-shadow 0.2s, background 0.3s;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+  }
+
+  .btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 12px rgba(0,0,0,0.2);
+    background: linear-gradient(135deg, #ff6584, #6c63ff);
+  }
+
+  .btn:active {
+    transform: translateY(0);
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+  }
+}
+
 
