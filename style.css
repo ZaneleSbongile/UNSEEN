@@ -1448,8 +1448,8 @@ header p {
     width: 90%;
     margin: 12px auto;
     padding: 14px 0;
-    background: linear-gradient(135deg, #6c63ff, #ff6584);
-    color: #fff;
+    background: linear-gradient(135deg, #ff7f50, #fff8e7);
+    color: #333
     font-weight: bold;
     font-size: 18px;
     text-align: center;
@@ -1462,7 +1462,7 @@ header p {
   .btn:hover {
     transform: translateY(-3px);
     box-shadow: 0 8px 12px rgba(0,0,0,0.2);
-    background: linear-gradient(135deg, #ff6584, #6c63ff);
+    background: linear-gradient(135deg, #fff8e7, #ff7f50);
   }
 
   .btn:active {
@@ -1470,5 +1470,6 @@ header p {
     box-shadow: 0 4px 6px rgba(0,0,0,0.1);
   }
 }
+
 
 
