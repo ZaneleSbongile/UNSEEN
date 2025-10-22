@@ -196,121 +196,130 @@ header p {
   font-style: italic;
 }
 
-/* ===========================
-   TUG PAGE - CONTAINER
-   =========================== */
-
-/* Container */
+/* Container styling */
 .container {
-  max-width: 900px;
-  margin: 60px auto;
-  padding: 20px;
+    max-width: 900px;
+    margin: 40px auto;
+    padding: 30px 25px;
+    background: #FFF8F0; /* soft cream */
+    border-radius: 15px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    color: #333;
 }
 
-/* ===========================
-   POST FORM
-   =========================== */
+/* Heading */
+.container h1 {
+    text-align: center;
+    font-size: 2.5rem;
+    color: #FF7F50; /* warm orange */
+    margin-bottom: 20px;
+}
+
+/* Paragraph */
+.container p {
+    font-size: 1.1rem;
+    line-height: 1.8;
+    color: #555;
+    text-align: justify;
+    margin-bottom: 30px;
+}
+
+/* Post form */
 .post-form {
-  background-color: #FFEAC2;
-  padding: 20px;
-  border-radius: 10px;
-  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
-  margin-bottom: 30px;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    margin-bottom: 40px;
 }
 
 .post-form input,
 .post-form textarea {
-  width: 100%;
-  padding: 10px;
-  margin-bottom: 10px;
-  border: 1px solid #FFD580;
-  border-radius: 5px;
-  font-size: 1em;
+    padding: 12px 15px;
+    border: 1px solid #FFB380; /* lighter orange */
+    border-radius: 10px;
+    outline: none;
+    font-size: 1rem;
+    transition: border 0.3s, box-shadow 0.3s;
+}
+
+.post-form input:focus,
+.post-form textarea:focus {
+    border-color: #FF7F50;
+    box-shadow: 0 0 8px rgba(255, 127, 80, 0.3);
 }
 
 .post-form button {
-  background-color: #FFA64D;
-  color: white;
-  padding: 10px 20px;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-  font-weight: bold;
+    padding: 12px;
+    background-color: #FF7F50;
+    color: white;
+    font-weight: bold;
+    font-size: 1rem;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.2s;
 }
 
 .post-form button:hover {
-  background-color: #FF8C1A;
+    background-color: #FF6333;
+    transform: translateY(-2px);
 }
 
-/* ===========================
-   POSTS
-   =========================== */
-.post {
-  background-color: #FFF5E0;
-  padding: 15px;
-  border-radius: 10px;
-  margin-bottom: 20px;
-  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-  position: relative;
+/* Posts feed */
+#postsFeed .post {
+    background: #FFF5EB;
+    border-left: 5px solid #FF7F50;
+    padding: 20px;
+    margin-bottom: 20px;
+    border-radius: 12px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.05);
 }
 
-.post .post-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
+.post-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
 }
 
-.post .menu {
-  cursor: pointer;
-  font-weight: bold;
-}
-
-/* Dropdown menu for post options */
-.post-menu {
-  position: absolute;
-  right: 0;
-  top: 25px;
-  background: #FFD580;
-  border-radius: 5px;
-  box-shadow: 0 2px 5px rgba(0,0,0,0.2);
-  z-index: 10;
-  display: none;
+.post-header strong {
+    color: #FF7F50;
+    font-size: 1.1rem;
 }
 
 .post-menu div {
-  padding: 8px 12px;
-  cursor: pointer;
+    padding: 8px 12px;
+    cursor: pointer;
+    border-bottom: 1px solid #FFE6D1;
+    transition: background 0.2s;
 }
 
 .post-menu div:hover {
-  background-color: #FFC040;
+    background-color: #FFE6D1;
 }
 
-.post:hover .post-menu {
-  display: block;
+.post small {
+    display: block;
+    margin-top: 10px;
+    color: #999;
 }
 
-/* ===========================
-   REACTIONS
-   =========================== */
-.reactions {
-  margin-top: 10px;
-}
-
+/* Reactions */
 .reactions span {
-  cursor: pointer;
-  margin-right: 10px;
-  font-size: 0.9em;
-  padding: 5px 8px;
-  border-radius: 5px;
-  background-color: #FFD580;
-  color: #333;
+    cursor: pointer;
+    padding: 5px 10px;
+    margin-right: 8px;
+    border-radius: 20px;
+    background-color: #FFDAB3;
+    transition: background 0.3s, transform 0.2s;
+    font-size: 0.9rem;
 }
 
 .reactions span:hover {
-  background-color: #FFC040;
+    background-color: #FFB380;
+    transform: translateY(-2px);
 }
-
 /* ===========================
    FLIP CARDS
    =========================== */
@@ -1340,6 +1349,7 @@ header p {
   align-self: flex-start;
   margin-top: 10px;
 }
+
 
 
 
