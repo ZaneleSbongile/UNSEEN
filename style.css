@@ -321,93 +321,7 @@ header p {
     transform: translateY(-2px);
 }
 
-/* Mobile-friendly adjustments */
-@media (max-width: 768px) {
 
-    /* Container padding */
-    .container {
-        margin: 20px 15px;
-        padding: 20px 15px;
-    }
-
-    /* Heading size */
-    .container h1 {
-        font-size: 2rem;
-        text-align: center;
-    }
-
-    /* Paragraph size and spacing */
-    .container p {
-        font-size: 1rem;
-        line-height: 1.6;
-    }
-
-    /* Post form inputs */
-    .post-form input,
-    .post-form textarea {
-        font-size: 0.95rem;
-        padding: 10px 12px;
-    }
-
-    .post-form button {
-        font-size: 0.95rem;
-        padding: 10px;
-    }
-
-    /* Posts feed */
-    #postsFeed .post {
-        padding: 15px;
-    }
-
-    .post-header strong {
-        font-size: 1rem;
-    }
-
-    /* Reactions */
-    .reactions span {
-        font-size: 0.8rem;
-        padding: 4px 8px;
-        margin-bottom: 5px;
-        display: inline-block;
-    }
-}
-
-/* Extra small devices (phones) */
-@media (max-width: 480px) {
-
-    .container {
-        padding: 15px 10px;
-        margin: 15px 10px;
-    }
-
-    .container h1 {
-        font-size: 1.7rem;
-    }
-
-    .container p {
-        font-size: 0.95rem;
-    }
-
-    .post-form input,
-    .post-form textarea {
-        font-size: 0.9rem;
-        padding: 8px 10px;
-    }
-
-    .post-form button {
-        font-size: 0.9rem;
-        padding: 8px;
-    }
-
-    #postsFeed .post {
-        padding: 12px;
-    }
-
-    .reactions span {
-        font-size: 0.75rem;
-        padding: 3px 6px;
-    }
-}
 /* ===========================
    FLIP CARDS
    =========================== */
@@ -1439,5 +1353,92 @@ header p {
 .contact-form .btn {
   align-self: flex-start;
   margin-top: 10px;
+}
+/* Mobile-friendly adjustments */
+@media (max-width: 768px) {
+
+    /* Container padding */
+    .container {
+        margin: 20px 15px;
+        padding: 20px 15px;
+    }
+
+    /* Heading size */
+    .container h1 {
+        font-size: 2rem;
+        text-align: center;
+    }
+
+    /* Paragraph size and spacing */
+    .container p {
+        font-size: 1rem;
+        line-height: 1.6;
+    }
+
+    /* Post form inputs */
+    .post-form input,
+    .post-form textarea {
+        font-size: 0.95rem;
+        padding: 10px 12px;
+    }
+
+    .post-form button {
+        font-size: 0.95rem;
+        padding: 10px;
+    }
+
+    /* Posts feed */
+    #postsFeed .post {
+        padding: 15px;
+    }
+
+    .post-header strong {
+        font-size: 1rem;
+    }
+
+    /* Reactions */
+    .reactions span {
+        font-size: 0.8rem;
+        padding: 4px 8px;
+        margin-bottom: 5px;
+        display: inline-block;
+    }
+}
+
+/* Extra small devices (phones) */
+@media (max-width: 480px) {
+
+    .container {
+        padding: 15px 10px;
+        margin: 15px 10px;
+    }
+
+    .container h1 {
+        font-size: 1.7rem;
+    }
+
+    .container p {
+        font-size: 0.95rem;
+    }
+
+    .post-form input,
+    .post-form textarea {
+        font-size: 0.9rem;
+        padding: 8px 10px;
+    }
+
+    .post-form button {
+        font-size: 0.9rem;
+        padding: 8px;
+    }
+
+    #postsFeed .post {
+        padding: 12px;
+    }
+
+    .reactions span {
+        font-size: 0.75rem;
+        padding: 3px 6px;
+    }
 }
 
