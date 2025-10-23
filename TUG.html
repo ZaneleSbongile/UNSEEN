@@ -54,6 +54,10 @@
 </footer>
 
 <script type="module">
+    // Admin settings
+const ADMIN_EMAIL = "zaneleradebesbongile04@gmail.com";
+const ADMIN_PASSWORD = "admin246";
+let isAdmin = false;
 import { initializeApp } from "https://www.gstatic.com/firebasejs/12.3.0/firebase-app.js";
 import { getDatabase, ref, push, set, onValue, update, remove } from "https://www.gstatic.com/firebasejs/12.3.0/firebase-database.js";
 
@@ -226,6 +230,39 @@ document.addEventListener('click', function(event){
     }
   });
 });
+
+    const ADMIN_PASSWORD = "admin246"; // Your secret password
+let isAdmin = false; // Flag to check admin mode
+
+    if(isAdmin){
+  menuHTML = `... Edit/Delete ...`;
+} else if(post.email === localStorage.getItem('userEmail')){
+  menuHTML = `... Edit/Delete ...`;
+} else {
+  menuHTML = `<span class="menu" onclick="reportPost('${post.id}')">⋮ Report</span>`;
+}
+
+    function adminDelete(id){
+  if(!isAdmin){
+    const pw = prompt("Enter admin password:");
+    if(pw !== ADMIN_PASSWORD){
+      alert("Wrong password.");
+      return;
+    }
+    isAdmin = true;
+    alert("Admin mode enabled!");
+  }
+  // Now you can delete the post
+  remove(ref(database, `posts/${id}`));
+}
+
+    window.reportPost = function(id){
+  const reportRef = push(reportsRef);
+  set(reportRef, { postId: id, time: new Date().toLocaleString() });
+  alert("Post reported. Admin will be notified via email.");
+};
+
+    
 </script>
 
 <!-- Side Menu -->
