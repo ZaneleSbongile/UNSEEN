@@ -1470,6 +1470,48 @@ header p {
     box-shadow: 0 4px 6px rgba(0,0,0,0.1);
   }
 }
+/* Admin Login Form */
+#adminLoginDiv {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  margin: 20px 0;
+}
 
+#adminLoginDiv input[type="password"] {
+  padding: 8px 12px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  font-size: 14px;
+  width: 200px;
+}
 
+#adminLoginDiv button {
+  padding: 8px 16px;
+  background-color: #0077cc; /* nice blue color */
+  color: white;
+  border: none;
+  border-radius: 6px;
+  font-size: 14px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+#adminLoginDiv button:hover {
+  background-color: #005fa3; /* darker blue on hover */
+}
+
+/* Optional: mobile responsiveness */
+@media (max-width: 500px) {
+  #adminLoginDiv {
+    flex-direction: column;
+  }
+  #adminLoginDiv input[type="password"] {
+    width: 100%;
+  }
+  #adminLoginDiv button {
+    width: 100%;
+  }
+}
 
