@@ -7,232 +7,237 @@
 <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <!-- Desktop Navigation -->
-  <div class="navigation">
-    <div class="hamburger" onclick="toggleSideMenu()">☰</div>
-    <a href="index.html"><img src="images/logo.png" alt="Unseen Generation Logo" height="60px" width="50px" loading="lazy"/></a>
-    <nav class="desktop-nav">
-      <div class="dropdown">
-        <a href="#">About</a>
-        <div class="dropdown-content">
-          <a href="main.html">the UNSEEN generation</a>
-          <a href="born.html">How It Was Born</a>
-          <a href="mission.html">Mission</a>
-          <a href="vision.html">Vision</a>
-        </div>
+<!-- Desktop Navigation -->
+<div class="navigation">
+  <div class="hamburger" onclick="toggleSideMenu()">☰</div>
+  <a href="index.html"><img src="images/logo.png" alt="Unseen Generation Logo" height="60px" width="50px" loading="lazy"/></a>
+  <nav class="desktop-nav">
+    <div class="dropdown">
+      <a href="#">About</a>
+      <div class="dropdown-content">
+        <a href="main.html">the UNSEEN generation</a>
+        <a href="born.html">How It Was Born</a>
+        <a href="mission.html">Mission</a>
+        <a href="vision.html">Vision</a>
       </div>
-      <a href="causes.html">Causes</a>
-      <a href="ef.html">Empowerment Fridays</a>
-      <a href="seen&heard.html">Seen & Heard</a>
-      <a href="TUG.html">TUG</a>
-      <a href="gallery.html">Gallery</a>
-      <a href="contact.html">Contact</a>
-    </nav>
-  </div>
-
-  <div class="container">
-    <h1>The Unseen Generation (TUG)</h1>
-    <p>Welcome to The Unseen Generation (TUG) Space...
-    <!-- your intro text here -->
-    </p>
-
-    <!-- Post Form -->
-    <div class="post-form">
-      <input type="text" id="name" placeholder="Your Name">
-      <input type="email" id="email" placeholder="Your Email (preferred)">
-      <textarea id="message" rows="4" placeholder="Write something..."></textarea>
-      <button id="postBtn">Post</button>
     </div>
-
-    <!-- Posts Feed -->
-    <div id="postsFeed"></div>
-  </div>
-
-  <footer id="site-footer">
-    <p>&copy; 2025 The Unseen Generation. All rights reserved.</p>
-  </footer>
-
-  <script type="module">
-    import { initializeApp } from "https://www.gstatic.com/firebasejs/12.3.0/firebase-app.js";
-    import { getDatabase, ref, push, set, onValue, update, remove } from "https://www.gstatic.com/firebasejs/12.3.0/firebase-database.js";
-
-    // Firebase config
-    const firebaseConfig = {
-      apiKey: "AIzaSyD8P_Cpg8oiGKWuefw8MDAGIGxuNwazlIY",
-      authDomain: "theunseengeneration-ef3a7.firebaseapp.com",
-      databaseURL: "https://theunseengeneration-ef3a7-default-rtdb.firebaseio.com",
-      projectId: "theunseengeneration-ef3a7",
-      storageBucket: "theunseengeneration-ef3a7.firebasestorage.app",
-      messagingSenderId: "19836098555",
-      appId: "1:19836098555:web:98632364991cfe7678dd5e"
-    };
-
-    const app = initializeApp(firebaseConfig);
-    const database = getDatabase(app);
-
-    // Admin settings
-    const ADMIN_PASSWORD = "admin246"; // Your secret password
-    const ADMIN_EMAIL = "zaneleradebesbongile04@gmail.com"; // Placeholder for email notifications
-    let isAdmin = false;
-
-    // Firebase references
-    const postsRef = ref(database, 'posts');
-    const reportsRef = ref(database, 'reports');
-
-    // Elements
-    const postBtn = document.getElementById('postBtn');
-    const nameInput = document.getElementById('name');
-    const emailInput = document.getElementById('email');
-    const messageInput = document.getElementById('message');
-    const feed = document.getElementById('postsFeed');
-
-    // Store user email locally
-    emailInput.addEventListener('blur', () => {
-      localStorage.setItem('userEmail', emailInput.value.trim());
-    });
-
-    // Post button
-    postBtn.addEventListener('click', () => {
-      const name = nameInput.value.trim();
-      const email = emailInput.value.trim();
-      const message = messageInput.value.trim();
-
-      if(!name || !email || !message){
-        alert("Please fill in all fields.");
-        return;
-      }
-
-      const newPostRef = push(postsRef);
-      set(newPostRef, {
-        id: newPostRef.key,
-        name,
-        email,
-        message,
-        time: new Date().toLocaleString()
-      });
-
-      nameInput.value = '';
-      emailInput.value = '';
-      messageInput.value = '';
-    });
-
-    // Real-time listener
-    onValue(postsRef, (snapshot) => {
-      const posts = snapshot.val();
-      renderPosts(posts);
-    });
-
-    // Render posts
-    function renderPosts(posts){
-      feed.innerHTML = '';
-      if(!posts) return;
-
-      Object.values(posts).reverse().forEach(post => {
-        const postDiv = document.createElement('div');
-        postDiv.className = 'post';
-        postDiv.dataset.id = post.id;
-
-        let menuHTML = '';
-        if(isAdmin || post.email === localStorage.getItem('userEmail')){
-          menuHTML = `
-            <span class="menu" onclick="togglePostMenu('${post.id}')">⋮</span>
-            <div id="menu-${post.id}" class="post-menu" style="display:none;">
-              <div onclick="editPost('${post.id}')">Edit</div>
-              <div onclick="deletePost('${post.id}')">Delete</div>
-            </div>`;
-        } else {
-          menuHTML = `<span class="menu" onclick="reportPost('${post.id}')">⋮ Report</span>`;
-        }
-
-        postDiv.innerHTML = `
-          <div class="post-header" style="position:relative;">
-            <strong>${post.name}</strong>
-            ${menuHTML}
-          </div>
-          <p>${post.message}</p>
-          <small>${post.time}</small>
-          <div class="reactions">
-            <span onclick="react('${post.id}','Motivating 💪')">Motivating 💪</span>
-            <span onclick="react('${post.id}','Inspiring ✨')">Inspiring ✨</span>
-            <span onclick="react('${post.id}','Relatable 💭')">Relatable 💭</span>
-            <span onclick="react('${post.id}','I See You 👀')">I See You 👀</span>
-          </div>
-        `;
-        feed.appendChild(postDiv);
-      });
-    }
-
-    // Toggle post menu
-    window.togglePostMenu = function(id){
-      const menu = document.getElementById(`menu-${id}`);
-      menu.style.display = menu.style.display === 'block' ? 'none' : 'block';
-    };
-
-    // Edit post
-    window.editPost = function(id){
-      const newMessage = prompt("Edit your post:");
-      if(!newMessage) return;
-      update(ref(database, `posts/${id}`), { message: newMessage });
-    };
-
-    // Delete post
-    window.deletePost = function(id){
-      if(!confirm("Are you sure you want to delete this post?")) return;
-      remove(ref(database, `posts/${id}`));
-    };
-
-    // Report post
-    window.reportPost = function(id){
-      const reportRef = push(reportsRef);
-      set(reportRef, { postId: id, time: new Date().toLocaleString(), adminEmail: ADMIN_EMAIL });
-      alert("Post reported. Admin will be notified via email.");
-      // Note: Sending email requires a Firebase Cloud Function
-    };
-
-    // Admin login to enable full access
-    window.enableAdmin = function(){
-      const pw = prompt("Enter admin password:");
-      if(pw === ADMIN_PASSWORD){
-        isAdmin = true;
-        alert("Admin mode enabled! You can now edit/delete any post.");
-        renderPosts(JSON.parse(JSON.stringify(feed))); // Re-render menu
-      } else {
-        alert("Wrong password.");
-      }
-    };
-
-    // Reactions
-    window.react = function(id, reaction){
-      alert(`You reacted: ${reaction}`);
-    };
-
-    // Close menus when clicking outside
-    document.addEventListener('click', function(event){
-      const postsMenus = document.querySelectorAll('.post-menu');
-      postsMenus.forEach(menu=>{
-        if(!menu.contains(event.target) && !event.target.classList.contains('menu')){
-          menu.style.display = 'none';
-        }
-      });
-    });
-
-    // Side menu toggle
-    function toggleSideMenu() {
-      document.getElementById("sideMenu").classList.toggle("active");
-    }
-
-  </script>
-
-  <!-- Side Menu -->
-  <div class="side-menu" id="sideMenu">
-    <a href="index.html">🏠 Home</a>
-    <a href="about.html">About</a>
     <a href="causes.html">Causes</a>
     <a href="ef.html">Empowerment Fridays</a>
     <a href="seen&heard.html">Seen & Heard</a>
     <a href="TUG.html">TUG</a>
     <a href="gallery.html">Gallery</a>
     <a href="contact.html">Contact</a>
+  </nav>
+</div>
+
+<div class="container">
+  <h1>The Unseen Generation (TUG)</h1>
+  <p>Welcome to The Unseen Generation (TUG) Space...</p>
+
+  <!-- Admin Login -->
+  <div id="adminLoginDiv">
+    <input type="password" id="adminPassword" placeholder="Admin Password">
+    <button id="adminLoginBtn">Enable Admin</button>
   </div>
+
+  <!-- Post Form -->
+  <div class="post-form">
+      <input type="text" id="name" placeholder="Your Name">
+      <input type="email" id="email" placeholder="Your Email (preferred)">
+      <textarea id="message" rows="4" placeholder="Write something..."></textarea>
+      <button id="postBtn">Post</button>
+  </div>
+
+  <!-- Posts Feed -->
+  <div id="postsFeed"></div>
+</div>
+
+<footer id="site-footer">
+<p>&copy; 2025 The Unseen Generation. All rights reserved.</p>
+</footer>
+
+<script type="module">
+import { initializeApp } from "https://www.gstatic.com/firebasejs/12.3.0/firebase-app.js";
+import { getDatabase, ref, push, set, onValue, update, remove } from "https://www.gstatic.com/firebasejs/12.3.0/firebase-database.js";
+
+// Firebase config
+const firebaseConfig = {
+  apiKey: "AIzaSyD8P_Cpg8oiGKWuefw8MDAGIGxuNwazlIY",
+  authDomain: "theunseengeneration-ef3a7.firebaseapp.com",
+  databaseURL: "https://theunseengeneration-ef3a7-default-rtdb.firebaseio.com",
+  projectId: "theunseengeneration-ef3a7",
+  storageBucket: "theunseengeneration-ef3a7.firebasestorage.app",
+  messagingSenderId: "19836098555",
+  appId: "1:19836098555:web:98632364991cfe7678dd5e"
+};
+
+const app = initializeApp(firebaseConfig);
+const database = getDatabase(app);
+
+// Admin
+const ADMIN_PASSWORD = "admin246";
+let isAdmin = false;
+
+// References
+const postsRef = ref(database, 'posts');
+const reportsRef = ref(database, 'reports');
+
+// Elements
+const postBtn = document.getElementById('postBtn');
+const nameInput = document.getElementById('name');
+const emailInput = document.getElementById('email');
+const messageInput = document.getElementById('message');
+const feed = document.getElementById('postsFeed');
+const adminLoginBtn = document.getElementById('adminLoginBtn');
+const adminPasswordInput = document.getElementById('adminPassword');
+
+// Store user email locally
+emailInput.addEventListener('blur', () => {
+  localStorage.setItem('userEmail', emailInput.value.trim());
+});
+
+// Admin login
+adminLoginBtn.addEventListener('click', () => {
+  const pw = adminPasswordInput.value.trim();
+  if(pw === ADMIN_PASSWORD){
+    isAdmin = true;
+    alert("Admin mode enabled!");
+    adminLoginDiv.style.display = "none"; // hide login
+    renderPosts(currentPosts); // refresh posts to show edit/delete
+  } else {
+    alert("Wrong password!");
+  }
+});
+
+// Current posts storage
+let currentPosts = {};
+
+// Post button
+postBtn.addEventListener('click', () => {
+  const name = nameInput.value.trim();
+  const email = emailInput.value.trim();
+  const message = messageInput.value.trim();
+
+  if(!name || !email || !message){
+    alert("Please fill in all fields.");
+    return;
+  }
+
+  const newPostRef = push(postsRef);
+  set(newPostRef, {
+    id: newPostRef.key,
+    name,
+    email,
+    message,
+    time: new Date().toLocaleString()
+  });
+
+  nameInput.value = '';
+  emailInput.value = '';
+  messageInput.value = '';
+});
+
+// Real-time listener
+onValue(postsRef, (snapshot) => {
+  const posts = snapshot.val();
+  currentPosts = posts;
+  renderPosts(posts);
+});
+
+// Render posts
+function renderPosts(posts){
+  feed.innerHTML = '';
+  if(!posts) return;
+
+  Object.values(posts).reverse().forEach(post => {
+    const postDiv = document.createElement('div');
+    postDiv.className = 'post';
+    postDiv.dataset.id = post.id;
+
+    let menuHTML = '';
+    if(isAdmin || post.email === localStorage.getItem('userEmail')){
+      menuHTML = `
+        <span class="menu" onclick="togglePostMenu('${post.id}')">⋮</span>
+        <div id="menu-${post.id}" class="post-menu" style="display:none;">
+          <div onclick="editPost('${post.id}')">Edit</div>
+          <div onclick="deletePost('${post.id}')">Delete</div>
+        </div>`;
+    } else {
+      menuHTML = `<span class="menu" onclick="reportPost('${post.id}')">⋮ Report</span>`;
+    }
+
+    postDiv.innerHTML = `
+      <div class="post-header" style="position:relative;">
+        <strong>${post.name}</strong>
+        ${menuHTML}
+      </div>
+      <p>${post.message}</p>
+      <small>${post.time}</small>
+      <div class="reactions">
+        <span onclick="react('${post.id}','Motivating 💪')">Motivating 💪</span>
+        <span onclick="react('${post.id}','Inspiring ✨')">Inspiring ✨</span>
+        <span onclick="react('${post.id}','Relatable 💭')">Relatable 💭</span>
+        <span onclick="react('${post.id}','I See You 👀')">I See You 👀</span>
+      </div>
+    `;
+    feed.appendChild(postDiv);
+  });
+}
+
+// Toggle post menu
+window.togglePostMenu = function(id){
+  const menu = document.getElementById(`menu-${id}`);
+  menu.style.display = menu.style.display === 'block' ? 'none' : 'block';
+};
+
+// Edit post
+window.editPost = function(id){
+  const newMessage = prompt("Edit your post:");
+  if(!newMessage) return;
+  const postRef = ref(database, `posts/${id}`);
+  update(postRef, { message: newMessage });
+};
+
+// Delete post
+window.deletePost = function(id){
+  if(!confirm("Are you sure you want to delete this post?")) return;
+  const postRef = ref(database, `posts/${id}`);
+  remove(postRef);
+};
+
+// Report post
+window.reportPost = function(id){
+  const reportRef = push(reportsRef);
+  set(reportRef, { postId: id, time: new Date().toLocaleString() });
+  alert("Post reported. Admin will be notified via email.");
+};
+
+// Reactions
+window.react = function(id, reaction){
+  alert(`You reacted: ${reaction}`);
+};
+
+// Close menus when clicking outside
+document.addEventListener('click', function(event){
+  const postsMenus = document.querySelectorAll('.post-menu');
+  postsMenus.forEach(menu=>{
+    if(!menu.contains(event.target) && !event.target.classList.contains('menu')){
+      menu.style.display = 'none';
+    }
+  });
+});
+</script>
+
+<!-- Side Menu -->
+<div class="side-menu" id="sideMenu">
+  <a href="index.html">🏠 Home</a>
+  <a href="about.html">About</a>
+  <a href="causes.html">Causes</a>
+  <a href="ef.html">Empowerment Fridays</a>
+  <a href="seen&heard.html">Seen & Heard</a>
+  <a href="TUG.html">TUG</a>
+  <a href="gallery.html">Gallery</a>
+  <a href="contact.html">Contact</a>
+</div>
 </body>
 </html>
