@@ -229,6 +229,39 @@ document.addEventListener('click', function(event){
     }
   });
 });
+
+  window.reportPost = function(id){
+  const reportRef = push(reportsRef);
+  const reportData = { postId: id, time: new Date().toLocaleString() };
+  
+  // Save report in Firebase
+  set(reportRef, reportData);
+
+  // Send email via Formspree
+  fetch("https://formspree.io/f/mnnoqpyz", {  // <-- replace with your endpoint
+    method: "POST",
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify({
+      _subject: "TUG Post Reported!",
+      postId: id,
+      time: reportData.time
+    })
+  })
+  .then(response => {
+    if(response.ok){
+      alert("Post reported. Admin will be notified via email.");
+    } else {
+      alert("Report saved, but email failed.");
+    }
+  })
+  .catch(error => {
+    console.error("Error sending email:", error);
+    alert("Report saved, but email failed.");
+  });
+};
+
 </script>
   
 <!-- Side Menu -->
