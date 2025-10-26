@@ -1514,4 +1514,20 @@ header p {
     width: 100%;
   }
 }
+/* Fix cover reels on smaller screens */
+@media (max-width: 768px) {
+  .video-card img {
+    width: 100%;
+    height: auto;
+    object-fit: contain;
+  }
 
+  .empowerment-grid {
+    grid-template-columns: 1fr; /* Stack vertically for better mobile layout */
+    gap: 1.5rem;
+  }
+
+  .video-card {
+    text-align: center;
+  }
+}
