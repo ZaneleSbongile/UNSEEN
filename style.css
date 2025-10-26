@@ -1531,3 +1531,10 @@ header p {
     text-align: center;
   }
 }
+@media (max-width: 768px) {
+  .move-down {
+    margin-top: 25px; /* move it down on mobile */
+    /* or, if it’s cropping your face */
+    object-position: center 30%;
+  }
+}
