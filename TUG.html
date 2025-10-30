@@ -1,326 +1,363 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>TUG - The Unseen Generation</title>
-<link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>TUG - The Unseen Generation (Secure Admin)</title>
+  <link rel="stylesheet" href="style.css" />
+  
 </head>
 <body>
-<!-- Desktop Navigation -->
-<div class="navigation">
-  <div class="hamburger" onclick="toggleMenu()">☰</div>
-  <a href="index.html"><img src="images/logo.png" alt="Unseen Generation Logo" height="60px" width="50px" loading="lazy"/></a>
-  <nav class="desktop-nav">
-    <div class="dropdown">
-      <a href="#">About</a>
-      <div class="dropdown-content">
-        <a href="main.html">the UNSEEN generation</a>
-        <a href="born.html">How It Was Born</a>
-        <a href="mission.html">Mission</a>
-        <a href="vision.html">Vision</a>
+  <!-- Desktop Navigation -->
+  <div class="navigation">
+    <div class="hamburger" onclick="toggleMenu()">☰</div>
+    <a href="index.html"><img src="images/logo.png" alt="Unseen Generation Logo" height="60" width="50" loading="lazy"/></a>
+    <nav class="desktop-nav">
+      <div class="dropdown">
+        <a href="#">About</a>
+        <div class="dropdown-content">
+          <a href="main.html">the UNSEEN generation</a>
+          <a href="born.html">How It Was Born</a>
+          <a href="mission.html">Mission</a>
+          <a href="vision.html">Vision</a>
+        </div>
       </div>
+      <a href="causes.html">Causes</a>
+      <a href="ef.html">Empowerment Fridays</a>
+      <a href="seen&heard.html">Seen & Heard</a>
+      <a href="TUG.html">TUG</a>
+      <a href="gallery.html">Gallery</a>
+      <a href="contact.html">Contact</a>
+    </nav>
+  </div>
+
+  <div class="container">
+    <h1>The Unseen Generation (TUG)</h1>
+    <p>
+      Welcome to The Unseen Generation (TUG) Space — a safe corner to share your story.
+      Post freely, read, and connect with a community that understands that even the smallest
+      acknowledgment can make a huge difference.
+    </p>
+
+    <!-- Admin Login (uses Firebase Auth: Email + Password) -->
+    <div id="adminLoginDiv">
+      <input type="email" id="adminEmailInput" placeholder="Admin email" />
+      <input type="password" id="adminPasswordInput" placeholder="Admin password (Firebase)" />
+      <button id="adminLoginBtn">Admin Login</button>
+      <button id="logoutBtn">Logout</button>
+      <span id="adminStatus" style="margin-left:8px;"></span>
     </div>
+
+    <!-- Post Form -->
+    <div class="post-form" style="margin-top:16px;">
+      <input type="text" id="name" placeholder="Your Name" />
+      <input type="email" id="email" placeholder="Your Email (preferred)" />
+      <textarea id="message" rows="4" placeholder="Write something..."></textarea>
+      <button id="postBtn">Post</button>
+    </div>
+
+    <!-- Posts Feed -->
+    <div id="postsFeed" style="margin-top:20px;"></div>
+  </div>
+
+  <footer id="site-footer">
+    <p>&copy; 2025 The Unseen Generation. All rights reserved.</p>
+  </footer>
+
+  <!-- Firebase + App Script -->
+  <script type="module">
+    // ---- Firebase SDKs (v12 modular) ----
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/12.3.0/firebase-app.js";
+    import { getDatabase, ref, push, set, onValue, update, remove } from "https://www.gstatic.com/firebasejs/12.3.0/firebase-database.js";
+    import { getAuth, signInWithEmailAndPassword, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/12.3.0/firebase-auth.js";
+
+    // ---- Your Firebase config (keep this - it's safe to be public) ----
+    const firebaseConfig = {
+      apiKey: "AIzaSyD8P_Cpg8oiGKWuefw8MDAGIGxuNwazlIY",
+      authDomain: "theunseengeneration-ef3a7.firebaseapp.com",
+      databaseURL: "https://theunseengeneration-ef3a7-default-rtdb.firebaseio.com",
+      projectId: "theunseengeneration-ef3a7",
+      storageBucket: "theunseengeneration-ef3a7.firebasestorage.app",
+      messagingSenderId: "19836098555",
+      appId: "1:19836098555:web:98632364991cfe7678dd5e"
+    };
+
+    // Initialize
+    const app = initializeApp(firebaseConfig);
+    const database = getDatabase(app);
+    const auth = getAuth(app);
+
+    // ---- ADMIN: set the exact admin email you created in Firebase Authentication ----
+    const ADMIN_EMAIL = "zaneleradebesbongile04@gmail.com"; // <-- you provided this
+
+    // Refs
+    const postsRef = ref(database, 'posts');
+    const reportsRef = ref(database, 'reports');
+
+    // Elements
+    const postBtn = document.getElementById('postBtn');
+    const nameInput = document.getElementById('name');
+    const emailInput = document.getElementById('email');
+    const messageInput = document.getElementById('message');
+    const feed = document.getElementById('postsFeed');
+    const adminLoginBtn = document.getElementById('adminLoginBtn');
+    const adminEmailInput = document.getElementById('adminEmailInput');
+    const adminPasswordInput = document.getElementById('adminPasswordInput');
+    const logoutBtn = document.getElementById('logoutBtn');
+    const adminStatus = document.getElementById('adminStatus');
+
+    // Save user email locally on blur
+    emailInput.addEventListener('blur', () => {
+      localStorage.setItem('userEmail', emailInput.value.trim());
+    });
+
+    // Current posts storage
+    let currentPosts = {};
+    let isAdmin = false;
+
+    // Post button
+    postBtn.addEventListener('click', () => {
+      const name = nameInput.value.trim();
+      const email = emailInput.value.trim();
+      const message = messageInput.value.trim();
+
+      if(!name || !email || !message){
+        alert("Please fill in all fields.");
+        return;
+      }
+
+      const newPostRef = push(postsRef);
+      set(newPostRef, {
+        id: newPostRef.key,
+        name,
+        email,
+        message,
+        time: new Date().toLocaleString()
+      });
+
+      nameInput.value = '';
+      emailInput.value = '';
+      messageInput.value = '';
+    });
+
+    // Admin login flow: uses Firebase Auth (no password in code)
+    adminLoginBtn.addEventListener('click', () => {
+      const email = adminEmailInput.value.trim();
+      const password = adminPasswordInput.value.trim();
+      if(!email || !password){
+        alert('Please enter admin email and password');
+        return;
+      }
+
+      // sign in
+      signInWithEmailAndPassword(auth, email, password)
+        .then(userCred => {
+          if(userCred.user.email === ADMIN_EMAIL){
+            // successful admin login
+            isAdmin = true;
+            adminStatus.innerHTML = '<span class="admin-badge">Admin</span>';
+            adminLoginDiv.style.display = 'none';
+            logoutBtn.style.display = 'inline-block';
+            renderPosts(currentPosts);
+            alert('Admin logged in ✅');
+          } else {
+            alert('This account is not authorized as admin.');
+            signOut(auth);
+          }
+        })
+        .catch(err => {
+          console.error('Auth error:', err);
+          alert(err.message);
+        });
+    });
+
+    // Logout
+    logoutBtn.addEventListener('click', () => {
+      signOut(auth).then(()=>{
+        isAdmin = false;
+        adminStatus.innerHTML = '';
+        logoutBtn.style.display = 'none';
+        adminLoginDiv.style.display = 'flex';
+        // clear the password field
+        adminPasswordInput.value = '';
+        alert('Logged out');
+        renderPosts(currentPosts);
+      });
+    });
+
+    // Auth state listener - auto-detect admin on refresh
+    onAuthStateChanged(auth, (user) => {
+      if(user && user.email === ADMIN_EMAIL){
+        isAdmin = true;
+        adminStatus.innerHTML = '<span class="admin-badge">Admin</span>';
+        adminLoginDiv.style.display = 'none';
+        logoutBtn.style.display = 'inline-block';
+        renderPosts(currentPosts);
+      } else {
+        isAdmin = false;
+        adminStatus.innerHTML = '';
+        logoutBtn.style.display = 'none';
+        adminLoginDiv.style.display = 'flex';
+        renderPosts(currentPosts);
+      }
+    });
+
+    // Real-time listener for posts
+    onValue(postsRef, (snapshot) => {
+      const posts = snapshot.val();
+      currentPosts = posts || {};
+      renderPosts(currentPosts);
+    });
+
+    // Render posts
+    function renderPosts(posts){
+      feed.innerHTML = '';
+      if(!posts) return;
+
+      Object.values(posts).reverse().forEach(post => {
+        const postDiv = document.createElement('div');
+        postDiv.className = 'post';
+        postDiv.dataset.id = post.id;
+
+        // menu: show edit/delete only if admin OR post owner (email matches locally stored email)
+        const ownerEmail = localStorage.getItem('userEmail');
+        let menuHTML = '';
+        if(isAdmin || post.email === ownerEmail){
+          menuHTML = `
+            <span class="menu" onclick="togglePostMenu('${post.id}')">⋮</span>
+            <div id="menu-${post.id}" class="post-menu" style="display:none;">
+              <div onclick="editPost('${post.id}')">Edit</div>
+              <div onclick="deletePost('${post.id}')">Delete</div>
+            </div>`;
+        } else {
+          menuHTML = `<span class="menu" onclick="reportPost('${post.id}')">⋮ Report</span>`;
+        }
+
+        postDiv.innerHTML = `
+          <div class="post-header" style="position:relative;">
+            <strong>${escapeHtml(post.name)}</strong>
+            ${menuHTML}
+          </div>
+          <p>${escapeHtml(post.message)}</p>
+          <small>${escapeHtml(post.time)}</small>
+          <div class="reactions">
+            <span onclick="react('${post.id}','Motivating 💪')">Motivating 💪</span>
+            <span onclick="react('${post.id}','Inspiring ✨')">Inspiring ✨</span>
+            <span onclick="react('${post.id}','Relatable 💭')">Relatable 💭</span>
+            <span onclick="react('${post.id}','I See You 👀')">I See You 👀</span>
+          </div>
+        `;
+
+        feed.appendChild(postDiv);
+      });
+    }
+
+    // Simple client-side escape to avoid injecting HTML from posts
+    function escapeHtml(unsafe) {
+      if(!unsafe && unsafe !== '') return '';
+      return String(unsafe)
+        .replace(/&/g, '&amp;')
+        .replace(/</g, '&lt;')
+        .replace(/>/g, '&gt;')
+        .replace(/"/g, '&quot;')
+        .replace(/'/g, '&#039;');
+    }
+
+    // Toggle post menu
+    window.togglePostMenu = function(id){
+      const menu = document.getElementById(`menu-${id}`);
+      if(!menu) return;
+      menu.style.display = menu.style.display === 'block' ? 'none' : 'block';
+    };
+
+    // Edit post - only admin or owner allowed (checked server-side if you add security rules)
+    window.editPost = function(id){
+      if(!isAdmin && !isPostOwner(id)){
+        alert('You are not authorized to edit this post');
+        return;
+      }
+      const newMessage = prompt('Edit your post:');
+      if(newMessage === null) return; // canceled
+      const postRef = ref(database, `posts/${id}`);
+      update(postRef, { message: newMessage });
+    };
+
+    // Delete post
+    window.deletePost = function(id){
+      if(!isAdmin && !isPostOwner(id)){
+        alert('You are not authorized to delete this post');
+        return;
+      }
+      if(!confirm('Are you sure you want to delete this post?')) return;
+      const postRef = ref(database, `posts/${id}`);
+      remove(postRef);
+    };
+
+    function isPostOwner(id){
+      const posts = currentPosts || {};
+      const post = posts[id];
+      const ownerEmail = localStorage.getItem('userEmail');
+      return post && ownerEmail && post.email === ownerEmail;
+    }
+
+    // Report post - saves in Firebase and tries to notify via Formspree (keeps same behavior)
+    window.reportPost = function(id){
+      const reportRef = push(reportsRef);
+      const reportData = { postId: id, time: new Date().toLocaleString() };
+      set(reportRef, reportData);
+
+      // Send email via Formspree — replace endpoint if you have a custom one
+      fetch("https://formspree.io/f/mnnoqpyz", {
+        method: "POST",
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ _subject: "TUG Post Reported!", postId: id, time: reportData.time })
+      })
+      .then(response => {
+        if(response.ok){
+          alert('Post reported. Admin will be notified via email.');
+        } else {
+          alert('Report saved, but email failed.');
+        }
+      })
+      .catch(error => {
+        console.error('Error sending email:', error);
+        alert('Report saved, but email failed.');
+      });
+    };
+
+    // Reactions (client-side example)
+    window.react = function(id, reaction){
+      alert(`You reacted: ${reaction}`);
+    };
+
+    // Close menus when clicking outside
+    document.addEventListener('click', function(event){
+      const postsMenus = document.querySelectorAll('.post-menu');
+      postsMenus.forEach(menu=>{
+        if(!menu.contains(event.target) && !event.target.classList.contains('menu')){
+          menu.style.display = 'none';
+        }
+      });
+    });
+
+    // small helper: toggle side menu (keeps your previous behaviour)
+    window.toggleMenu = function(){
+      const menu = document.getElementById("sideMenu");
+      if(menu) menu.classList.toggle('active');
+    }
+
+  </script>
+
+  <!-- Side Menu -->
+  <div class="side-menu" id="sideMenu">
+    <a href="index.html">🏠 Home</a>
+    <a href="about.html">About</a>
     <a href="causes.html">Causes</a>
     <a href="ef.html">Empowerment Fridays</a>
     <a href="seen&heard.html">Seen & Heard</a>
     <a href="TUG.html">TUG</a>
     <a href="gallery.html">Gallery</a>
     <a href="contact.html">Contact</a>
-  </nav>
-</div>
-
-<div class="container">
-  <h1>The Unseen Generation (TUG)</h1>
-  <p>Welcome to The Unseen Generation (TUG) Space
-This is your safe corner to share your story—moments when you felt seen, heard, loved, or supported. Here, your voice matters, your experiences are valued, and your story can inspire others. Post freely, read, and connect with a community that understands that even the smallest acknowledgment can make a huge difference.
-
-TUG is more than a page—it’s a movement. Your story counts. Your voice matters.</p>
-
-  <!-- Admin Login -->
-  <div id="adminLoginDiv">
-    <input type="password" id="adminPassword" placeholder="Admin Password">
-    <button id="adminLoginBtn">Enable Admin</button>
   </div>
-
-  <!-- Post Form -->
-  <div class="post-form">
-      <input type="text" id="name" placeholder="Your Name">
-      <input type="email" id="email" placeholder="Your Email (preferred)">
-      <textarea id="message" rows="4" placeholder="Write something..."></textarea>
-      <button id="postBtn">Post</button>
-  </div>
-
-  <!-- Posts Feed -->
-  <div id="postsFeed"></div>
-</div>
-
-<footer id="site-footer">
-<p>&copy; 2025 The Unseen Generation. All rights reserved.</p>
-</footer>
-
-<script type="module">
-import { initializeApp } from "https://www.gstatic.com/firebasejs/12.3.0/firebase-app.js";
-import { getDatabase, ref, push, set, onValue, update, remove } from "https://www.gstatic.com/firebasejs/12.3.0/firebase-database.js";
-
-// Firebase config
-const firebaseConfig = {
-  apiKey: "AIzaSyD8P_Cpg8oiGKWuefw8MDAGIGxuNwazlIY",
-  authDomain: "theunseengeneration-ef3a7.firebaseapp.com",
-  databaseURL: "https://theunseengeneration-ef3a7-default-rtdb.firebaseio.com",
-  projectId: "theunseengeneration-ef3a7",
-  storageBucket: "theunseengeneration-ef3a7.firebasestorage.app",
-  messagingSenderId: "19836098555",
-  appId: "1:19836098555:web:98632364991cfe7678dd5e"
-};
-
-const app = initializeApp(firebaseConfig);
-const database = getDatabase(app);
-
-// Admin
-const ADMIN_PASSWORD = "admin246";
-let isAdmin = false;
-
-// References
-const postsRef = ref(database, 'posts');
-const reportsRef = ref(database, 'reports');
-
-// Elements
-const postBtn = document.getElementById('postBtn');
-const nameInput = document.getElementById('name');
-const emailInput = document.getElementById('email');
-const messageInput = document.getElementById('message');
-const feed = document.getElementById('postsFeed');
-const adminLoginBtn = document.getElementById('adminLoginBtn');
-const adminPasswordInput = document.getElementById('adminPassword');
-
-// Store user email locally
-emailInput.addEventListener('blur', () => {
-  localStorage.setItem('userEmail', emailInput.value.trim());
-});
-
-// Admin login
-import { initializeApp } from "https://www.gstatic.com/firebasejs/12.3.0/firebase-app.js";
-import { 
-  getDatabase, ref, push, set, onValue, update, remove 
-} from "https://www.gstatic.com/firebasejs/12.3.0/firebase-database.js";
-import {
-  getAuth, signInWithEmailAndPassword, onAuthStateChanged, signOut
-} from "https://www.gstatic.com/firebasejs/12.3.0/firebase-auth.js";
-
-// Firebase Config (same as before)
-const app = initializeApp(firebaseConfig);
-const database = getDatabase(app);
-const auth = getAuth(app);
-
-// Set your admin email here
-const ADMIN_EMAIL = "your-admin-email@example.com";
-
-let isAdmin = false;
-
-// Admin Login button
-adminLoginBtn.addEventListener('click', () => {
-  const email = prompt("Enter Admin Email:");
-  const password = adminPasswordInput.value.trim();
-
-  signInWithEmailAndPassword(auth, email, password)
-    .then(userCred => {
-      if (userCred.user.email === ADMIN_EMAIL) {
-        isAdmin = true;
-        alert("Admin logged in ✅");
-        adminLoginDiv.style.display = "none";
-        renderPosts(currentPosts);
-      } else {
-        alert("Not authorized as admin ❌");
-        signOut(auth);
-      }
-    })
-    .catch(error => {
-      alert(error.message);
-    });
-});
-
-// Auth listener
-onAuthStateChanged(auth, (user) => {
-  if (user && user.email === ADMIN_EMAIL) {
-    isAdmin = true;
-    adminLoginDiv.style.display = "none";
-    renderPosts(currentPosts);
-  } else {
-    isAdmin = false;
-  }
-});
-
-
-// Current posts storage
-let currentPosts = {};
-
-// Post button
-postBtn.addEventListener('click', () => {
-  const name = nameInput.value.trim();
-  const email = emailInput.value.trim();
-  const message = messageInput.value.trim();
-
-  if(!name || !email || !message){
-    alert("Please fill in all fields.");
-    return;
-  }
-
-  const newPostRef = push(postsRef);
-  set(newPostRef, {
-    id: newPostRef.key,
-    name,
-    email,
-    message,
-    time: new Date().toLocaleString()
-  });
-
-  nameInput.value = '';
-  emailInput.value = '';
-  messageInput.value = '';
-});
-
-// Real-time listener
-onValue(postsRef, (snapshot) => {
-  const posts = snapshot.val();
-  currentPosts = posts;
-  renderPosts(posts);
-});
-
-// Render posts
-function renderPosts(posts){
-  feed.innerHTML = '';
-  if(!posts) return;
-
-  Object.values(posts).reverse().forEach(post => {
-    const postDiv = document.createElement('div');
-    postDiv.className = 'post';
-    postDiv.dataset.id = post.id;
-
-    let menuHTML = '';
-    if(isAdmin || post.email === localStorage.getItem('userEmail')){
-      menuHTML = `
-        <span class="menu" onclick="togglePostMenu('${post.id}')">⋮</span>
-        <div id="menu-${post.id}" class="post-menu" style="display:none;">
-          <div onclick="editPost('${post.id}')">Edit</div>
-          <div onclick="deletePost('${post.id}')">Delete</div>
-        </div>`;
-    } else {
-      menuHTML = `<span class="menu" onclick="reportPost('${post.id}')">⋮ Report</span>`;
-    }
-
-    postDiv.innerHTML = `
-      <div class="post-header" style="position:relative;">
-        <strong>${post.name}</strong>
-        ${menuHTML}
-      </div>
-      <p>${post.message}</p>
-      <small>${post.time}</small>
-      <div class="reactions">
-        <span onclick="react('${post.id}','Motivating 💪')">Motivating 💪</span>
-        <span onclick="react('${post.id}','Inspiring ✨')">Inspiring ✨</span>
-        <span onclick="react('${post.id}','Relatable 💭')">Relatable 💭</span>
-        <span onclick="react('${post.id}','I See You 👀')">I See You 👀</span>
-      </div>
-    `;
-    feed.appendChild(postDiv);
-  });
-}
-
-// Toggle post menu
-window.togglePostMenu = function(id){
-  const menu = document.getElementById(`menu-${id}`);
-  menu.style.display = menu.style.display === 'block' ? 'none' : 'block';
-};
-
-// Edit post
-window.editPost = function(id){
-  const newMessage = prompt("Edit your post:");
-  if(!newMessage) return;
-  const postRef = ref(database, `posts/${id}`);
-  update(postRef, { message: newMessage });
-};
-
-// Delete post
-window.deletePost = function(id){
-  if(!confirm("Are you sure you want to delete this post?")) return;
-  const postRef = ref(database, `posts/${id}`);
-  remove(postRef);
-};
-
-// Report post
-window.reportPost = function(id){
-  const reportRef = push(reportsRef);
-  set(reportRef, { postId: id, time: new Date().toLocaleString() });
-  alert("Post reported. Admin will be notified via email.");
-};
-
-// Reactions
-window.react = function(id, reaction){
-  alert(`You reacted: ${reaction}`);
-};
-
-// Close menus when clicking outside
-document.addEventListener('click', function(event){
-  const postsMenus = document.querySelectorAll('.post-menu');
-  postsMenus.forEach(menu=>{
-    if(!menu.contains(event.target) && !event.target.classList.contains('menu')){
-      menu.style.display = 'none';
-    }
-  });
-});
-
-  window.reportPost = function(id){
-  const reportRef = push(reportsRef);
-  const reportData = { postId: id, time: new Date().toLocaleString() };
-  
-  // Save report in Firebase
-  set(reportRef, reportData);
-
-  // Send email via Formspree
-  fetch("https://formspree.io/f/mnnoqpyz", {  // <-- replace with your endpoint
-    method: "POST",
-    headers: {
-      'Content-Type': 'application/json'
-    },
-    body: JSON.stringify({
-      _subject: "TUG Post Reported!",
-      postId: id,
-      time: reportData.time
-    })
-  })
-  .then(response => {
-    if(response.ok){
-      alert("Post reported. Admin will be notified via email.");
-    } else {
-      alert("Report saved, but email failed.");
-    }
-  })
-  .catch(error => {
-    console.error("Error sending email:", error);
-    alert("Report saved, but email failed.");
-  });
-};
-
-</script>
-  
-<!-- Side Menu -->
-<div class="side-menu" id="sideMenu">
-  <a href="index.html">🏠 Home</a>
-  <a href="about.html">About</a>
-  <a href="causes.html">Causes</a>
-  <a href="ef.html">Empowerment Fridays</a>
-  <a href="seen&heard.html">Seen & Heard</a>
-  <a href="TUG.html">TUG</a>
-  <a href="gallery.html">Gallery</a>
-  <a href="contact.html">Contact</a>
-</div>
-  
-<script>
-  function toggleMenu() {
-    const menu = document.getElementById("sideMenu");
-    menu.classList.toggle("active");
-  }
-</script>
 </body>
 </html>
