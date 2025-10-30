@@ -100,17 +100,57 @@ emailInput.addEventListener('blur', () => {
 });
 
 // Admin login
+import { initializeApp } from "https://www.gstatic.com/firebasejs/12.3.0/firebase-app.js";
+import { 
+  getDatabase, ref, push, set, onValue, update, remove 
+} from "https://www.gstatic.com/firebasejs/12.3.0/firebase-database.js";
+import {
+  getAuth, signInWithEmailAndPassword, onAuthStateChanged, signOut
+} from "https://www.gstatic.com/firebasejs/12.3.0/firebase-auth.js";
+
+// Firebase Config (same as before)
+const app = initializeApp(firebaseConfig);
+const database = getDatabase(app);
+const auth = getAuth(app);
+
+// Set your admin email here
+const ADMIN_EMAIL = "your-admin-email@example.com";
+
+let isAdmin = false;
+
+// Admin Login button
 adminLoginBtn.addEventListener('click', () => {
-  const pw = adminPasswordInput.value.trim();
-  if(pw === ADMIN_PASSWORD){
+  const email = prompt("Enter Admin Email:");
+  const password = adminPasswordInput.value.trim();
+
+  signInWithEmailAndPassword(auth, email, password)
+    .then(userCred => {
+      if (userCred.user.email === ADMIN_EMAIL) {
+        isAdmin = true;
+        alert("Admin logged in ✅");
+        adminLoginDiv.style.display = "none";
+        renderPosts(currentPosts);
+      } else {
+        alert("Not authorized as admin ❌");
+        signOut(auth);
+      }
+    })
+    .catch(error => {
+      alert(error.message);
+    });
+});
+
+// Auth listener
+onAuthStateChanged(auth, (user) => {
+  if (user && user.email === ADMIN_EMAIL) {
     isAdmin = true;
-    alert("Admin mode enabled!");
-    adminLoginDiv.style.display = "none"; // hide login
-    renderPosts(currentPosts); // refresh posts to show edit/delete
+    adminLoginDiv.style.display = "none";
+    renderPosts(currentPosts);
   } else {
-    alert("Wrong password!");
+    isAdmin = false;
   }
 });
+
 
 // Current posts storage
 let currentPosts = {};
