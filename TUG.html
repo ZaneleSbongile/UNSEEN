@@ -5,7 +5,17 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>TUG - The Unseen Generation (Secure Admin)</title>
   <link rel="stylesheet" href="style.css" />
-  
+  <style>
+    /* Minimal inline styles for admin controls (you can move to style.css) */
+    .navigation { display:flex; align-items:center; gap:12px; padding:12px; }
+    .container { max-width:900px; margin:20px auto; padding:12px; }
+    .post { border:1px solid #ddd; padding:10px; margin-bottom:10px; border-radius:8px; background:#fff; }
+    .post-header { display:flex; justify-content:space-between; align-items:center; }
+    .post-menu { position:absolute; right:10px; top:30px; background:white; border:1px solid #ccc; border-radius:6px; padding:6px; z-index:50; }
+    .admin-badge { background:#2b6cb0; color:white; padding:4px 8px; border-radius:12px; font-size:12px; }
+    #adminLoginDiv { display:flex; gap:8px; align-items:center; }
+    #logoutBtn { display:none; }
+  </style>
 </head>
 <body>
   <!-- Desktop Navigation -->
