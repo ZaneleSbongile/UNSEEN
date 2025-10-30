@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Admin Login - TUG</title>
+  <link rel="stylesheet" href="style.css" />
+  <style>
+    body {
+      background: #fdf8f2;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      margin: 0;
+      font-family: 'Segoe UI', sans-serif;
+    }
+    .admin-container {
+      background: #fff;
+      padding: 24px;
+      border-radius: 12px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+      text-align: center;
+      width: 90%;
+      max-width: 380px;
+    }
+    .admin-container img {
+      width: 70px;
+      height: 70px;
+      margin-bottom: 10px;
+    }
+    .admin-container h2 {
+      margin: 10px 0 20px;
+    }
+    input {
+      width: 100%;
+      padding: 12px;
+      margin: 6px 0;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+      font-size: 14px;
+    }
+    button {
+      background: #000;
+      color: #fff;
+      border: none;
+      padding: 12px;
+      width: 100%;
+      margin-top: 10px;
+      cursor: pointer;
+      border-radius: 6px;
+      font-size: 15px;
+    }
+    button:hover {
+      opacity: 0.9;
+    }
+    .back-link {
+      display: block;
+      margin-top: 12px;
+      text-decoration: none;
+      font-size: 14px;
+      color: #333;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="admin-container">
+    <img src="images/logo.png" alt="TUG Logo" />
+    <h2>Admin Login</h2>
+    <input type="email" id="email" placeholder="Admin Email" required />
+    <input type="password" id="password" placeholder="Password" required />
+    <button id="loginBtn">Login</button>
+    <a class="back-link" href="TUG.html">⬅ Back to TUG</a>
+  </div>
+
+  <script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/12.3.0/firebase-app.js";
+    import { getAuth, signInWithEmailAndPassword, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/12.3.0/firebase-auth.js";
+
+    const firebaseConfig = {
+      apiKey: "AIzaSyD8P_Cpg8oiGKWuefw8MDAGIGxuNwazlIY",
+      authDomain: "theunseengeneration-ef3a7.firebaseapp.com",
+      databaseURL: "https://theunseengeneration-ef3a7-default-rtdb.firebaseio.com",
+      projectId: "theunseengeneration-ef3a7",
+      storageBucket: "theunseengeneration-ef3a7.firebasestorage.app",
+      messagingSenderId: "19836098555",
+      appId: "1:19836098555:web:98632364991cfe7678dd5e"
+    };
+
+    const app = initializeApp(firebaseConfig);
+    const auth = getAuth(app);
+
+    const ADMIN_EMAIL = "zaneleradebesbongile04@gmail.com"; // your admin
+
+    const loginBtn = document.getElementById('loginBtn');
+
+    // Redirect if already logged in
+    onAuthStateChanged(auth, (user) => {
+      if(user && user.email === ADMIN_EMAIL) {
+        window.location.href = "TUG.html";
+      }
+    });
+
+    loginBtn.addEventListener('click', () => {
+      const email = document.getElementById('email').value.trim();
+      const password = document.getElementById('password').value.trim();
+
+      if(!email || !password){
+        alert("Enter email & password");
+        return;
+      }
+
+      signInWithEmailAndPassword(auth, email, password)
+        .then(userCred => {
+          if(userCred.user.email === ADMIN_EMAIL){
+            window.location.href = "TUG.html";
+          } else {
+            alert("Not an admin user ❌");
+          }
+        })
+        .catch(err => alert(err.message));
+    });
+  </script>
+</body>
+</html>
