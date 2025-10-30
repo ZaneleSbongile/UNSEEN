@@ -43,8 +43,8 @@
       <input type="text" id="name" placeholder="Your Name" />
       <input type="email" id="email" placeholder="Your Email (preferred)" />
       <textarea id="message" rows="4" placeholder="Write something..."></textarea>
-      <button id="postBtn">Post</button>
-      <button id="adminBtn" style="margin-top:8px; background:#000; color:#fff;">Admin</button>
+      <button id="postBtn" type="button">Post</button>
+      <button id="adminBtn" type="button" style="margin-top:8px; background:#000; color:#fff;">Admin</button>
     </div>
 
     <!-- Posts Feed -->
@@ -116,7 +116,7 @@
       messageInput.value = '';
     });
 
-    // Admin button redirect
+    // Admin button redirect to admin.html
     adminBtn.addEventListener('click', () => {
       window.location.href = 'admin.html';
     });
@@ -184,32 +184,4 @@
     };
 
     window.deletePost = function(id){
-      if(!isAdmin && !isPostOwner(id)){ alert('Not authorized'); return; }
-      if(!confirm('Delete this post?')) return;
-      remove(ref(database, `posts/${id}`));
-    };
-
-    function isPostOwner(id){
-      const post = currentPosts[id];
-      const ownerEmail = localStorage.getItem('userEmail');
-      return post && ownerEmail && post.email === ownerEmail;
-    }
-
-    window.reportPost = function(id){
-      const reportRef = push(reportsRef);
-      const reportData = { postId:id, time:new Date().toLocaleString() };
-      set(reportRef, reportData);
-      alert('Post reported. Admin will be notified.');
-    };
-
-    window.react = function(id,reaction){
-      alert(`You reacted: ${reaction}`);
-    };
-
-    document.addEventListener('click', function(event){
-      document.querySelectorAll('.post-menu').forEach(menu=>{
-        if(!menu.contains(event.target) && !event.target.classList.contains('menu')){
-          menu.style.display='none';
-        }
-      });
-    });
+      if(!isAdmin &&
