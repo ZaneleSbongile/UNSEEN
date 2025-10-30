@@ -58,7 +58,6 @@
   <script type="module">
     import { initializeApp } from "https://www.gstatic.com/firebasejs/12.3.0/firebase-app.js";
     import { getDatabase, ref, push, set, onValue, update, remove } from "https://www.gstatic.com/firebasejs/12.3.0/firebase-database.js";
-    import { getAuth, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/12.3.0/firebase-auth.js";
 
     const firebaseConfig = {
       apiKey: "AIzaSyD8P_Cpg8oiGKWuefw8MDAGIGxuNwazlIY",
@@ -72,10 +71,8 @@
 
     const app = initializeApp(firebaseConfig);
     const database = getDatabase(app);
-    const auth = getAuth(app);
 
     const postsRef = ref(database, 'posts');
-    const reportsRef = ref(database, 'reports');
 
     const postBtn = document.getElementById('postBtn');
     const nameInput = document.getElementById('name');
@@ -89,9 +86,7 @@
     });
 
     let currentPosts = {};
-    let isAdmin = false;
 
-    // Post button
     postBtn.addEventListener('click', () => {
       const name = nameInput.value.trim();
       const email = emailInput.value.trim();
@@ -116,12 +111,11 @@
       messageInput.value = '';
     });
 
-    // Admin button redirect to admin.html
+    // Redirect to admin.html
     adminBtn.addEventListener('click', () => {
       window.location.href = 'admin.html';
     });
 
-    // Real-time posts listener
     onValue(postsRef, snapshot => {
       currentPosts = snapshot.val() || {};
       renderPosts(currentPosts);
@@ -133,20 +127,8 @@
         const postDiv = document.createElement('div');
         postDiv.className = 'post';
         postDiv.dataset.id = post.id;
-
         const ownerEmail = localStorage.getItem('userEmail');
-        let menuHTML = '';
-        if(isAdmin || post.email === ownerEmail){
-          menuHTML = `
-            <span class="menu" onclick="togglePostMenu('${post.id}')">⋮</span>
-            <div id="menu-${post.id}" class="post-menu" style="display:none;">
-              <div onclick="editPost('${post.id}')">Edit</div>
-              <div onclick="deletePost('${post.id}')">Delete</div>
-            </div>`;
-        } else {
-          menuHTML = `<span class="menu" onclick="reportPost('${post.id}')">⋮ Report</span>`;
-        }
-
+        let menuHTML = `<span class="menu" onclick="reportPost('${post.id}')">⋮ Report</span>`;
         postDiv.innerHTML = `
           <div class="post-header" style="position:relative;">
             <strong>${escapeHtml(post.name)}</strong>
@@ -154,34 +136,38 @@
           </div>
           <p>${escapeHtml(post.message)}</p>
           <small>${escapeHtml(post.time)}</small>
-          <div class="reactions">
-            <span onclick="react('${post.id}','Motivating 💪')">Motivating 💪</span>
-            <span onclick="react('${post.id}','Inspiring ✨')">Inspiring ✨</span>
-            <span onclick="react('${post.id}','Relatable 💭')">Relatable 💭</span>
-            <span onclick="react('${post.id}','I See You 👀')">I See You 👀</span>
-          </div>
         `;
-
         feed.appendChild(postDiv);
       });
     }
 
     function escapeHtml(unsafe) {
       if(!unsafe && unsafe !== '') return '';
-      return String(unsafe).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;').replace(/'/g,'&#039;');
+      return String(unsafe)
+        .replace(/&/g,'&amp;')
+        .replace(/</g,'&lt;')
+        .replace(/>/g,'&gt;')
+        .replace(/"/g,'&quot;')
+        .replace(/'/g,'&#039;');
     }
 
-    window.togglePostMenu = function(id){
-      const menu = document.getElementById(`menu-${id}`);
-      if(menu) menu.style.display = menu.style.display === 'block' ? 'none' : 'block';
+    // Toggle side menu
+    window.toggleMenu = function(){
+      const menu = document.getElementById("sideMenu");
+      if(menu) menu.classList.toggle('active');
     };
 
-    window.editPost = function(id){
-      if(!isAdmin && !isPostOwner(id)){ alert('Not authorized'); return; }
-      const newMessage = prompt('Edit your post:');
-      if(newMessage===null) return;
-      update(ref(database, `posts/${id}`), { message: newMessage });
-    };
+  </script>
 
-    window.deletePost = function(id){
-      if(!isAdmin &&
+  <div class="side-menu" id="sideMenu">
+    <a href="index.html">🏠 Home</a>
+    <a href="about.html">About</a>
+    <a href="causes.html">Causes</a>
+    <a href="ef.html">Empowerment Fridays</a>
+    <a href="seen&heard.html">Seen & Heard</a>
+    <a href="TUG.html">TUG</a>
+    <a href="gallery.html">Gallery</a>
+    <a href="contact.html">Contact</a>
+  </div>
+</body>
+</html>
