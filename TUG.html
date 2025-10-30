@@ -7,167 +7,230 @@
 <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <!-- Desktop Navigation -->
-  <div class="navigation">
-    <div class="hamburger" onclick="toggleMenu()">☰</div>
-    <a href="index.html"><img src="images/logo.png" alt="Unseen Generation Logo" height="60" width="50" loading="lazy"/></a>
-    <nav class="desktop-nav">
-      <div class="dropdown">
-        <a href="#">About</a>
-        <div class="dropdown-content">
-          <a href="main.html">the UNSEEN generation</a>
-          <a href="born.html">How It Was Born</a>
-          <a href="mission.html">Mission</a>
-          <a href="vision.html">Vision</a>
-        </div>
+<!-- Desktop Navigation -->
+<div class="navigation">
+  <div class="hamburger" onclick="toggleMenu()">☰</div>
+  <a href="index.html"><img src="images/logo.png" alt="Unseen Generation Logo" height="60" width="50" loading="lazy"/></a>
+  <nav class="desktop-nav">
+    <div class="dropdown">
+      <a href="#">About</a>
+      <div class="dropdown-content">
+        <a href="main.html">the UNSEEN generation</a>
+        <a href="born.html">How It Was Born</a>
+        <a href="mission.html">Mission</a>
+        <a href="vision.html">Vision</a>
       </div>
-      <a href="causes.html">Causes</a>
-      <a href="ef.html">Empowerment Fridays</a>
-      <a href="seen&heard.html">Seen & Heard</a>
-      <a href="TUG.html">TUG</a>
-      <a href="gallery.html">Gallery</a>
-      <a href="contact.html">Contact</a>
-    </nav>
-  </div>
-
-  <div class="container">
-    <h1>The Unseen Generation (TUG)</h1>
-    <p>
-      Welcome to The Unseen Generation (TUG) Space — a safe corner to share your story.
-      Post freely, read, and connect with a community that understands that even the smallest
-      acknowledgment can make a huge difference.
-    </p>
-
-    <!-- Post Form -->
-    <div class="post-form" style="margin-top:16px;">
-      <input type="text" id="name" placeholder="Your Name" />
-      <input type="email" id="email" placeholder="Your Email (preferred)" />
-      <textarea id="message" rows="4" placeholder="Write something..."></textarea>
-      <button id="postBtn" type="button">Post</button>
-      <button id="adminBtn" type="button" style="margin-top:8px; background:#000; color:#fff;">Admin</button>
     </div>
-
-    <!-- Posts Feed -->
-    <div id="postsFeed" style="margin-top:20px;"></div>
-  </div>
-
-  <footer id="site-footer">
-    <p>&copy; 2025 The Unseen Generation. All rights reserved.</p>
-  </footer>
-
-  <script type="module">
-    import { initializeApp } from "https://www.gstatic.com/firebasejs/12.3.0/firebase-app.js";
-    import { getDatabase, ref, push, set, onValue, update, remove } from "https://www.gstatic.com/firebasejs/12.3.0/firebase-database.js";
-
-    const firebaseConfig = {
-      apiKey: "AIzaSyD8P_Cpg8oiGKWuefw8MDAGIGxuNwazlIY",
-      authDomain: "theunseengeneration-ef3a7.firebaseapp.com",
-      databaseURL: "https://theunseengeneration-ef3a7-default-rtdb.firebaseio.com",
-      projectId: "theunseengeneration-ef3a7",
-      storageBucket: "theunseengeneration-ef3a7.firebasestorage.app",
-      messagingSenderId: "19836098555",
-      appId: "1:19836098555:web:98632364991cfe7678dd5e"
-    };
-
-    const app = initializeApp(firebaseConfig);
-    const database = getDatabase(app);
-
-    const postsRef = ref(database, 'posts');
-
-    const postBtn = document.getElementById('postBtn');
-    const nameInput = document.getElementById('name');
-    const emailInput = document.getElementById('email');
-    const messageInput = document.getElementById('message');
-    const feed = document.getElementById('postsFeed');
-    const adminBtn = document.getElementById('adminBtn');
-
-    emailInput.addEventListener('blur', () => {
-      localStorage.setItem('userEmail', emailInput.value.trim());
-    });
-
-    let currentPosts = {};
-
-    postBtn.addEventListener('click', () => {
-      const name = nameInput.value.trim();
-      const email = emailInput.value.trim();
-      const message = messageInput.value.trim();
-
-      if(!name || !email || !message){
-        alert("Please fill in all fields.");
-        return;
-      }
-
-      const newPostRef = push(postsRef);
-      set(newPostRef, {
-        id: newPostRef.key,
-        name,
-        email,
-        message,
-        time: new Date().toLocaleString()
-      });
-
-      nameInput.value = '';
-      emailInput.value = '';
-      messageInput.value = '';
-    });
-
-    // Redirect to admin.html
-    adminBtn.addEventListener('click', () => {
-      window.location.href = 'admin.html';
-    });
-
-    onValue(postsRef, snapshot => {
-      currentPosts = snapshot.val() || {};
-      renderPosts(currentPosts);
-    });
-
-    function renderPosts(posts){
-      feed.innerHTML = '';
-      Object.values(posts).reverse().forEach(post => {
-        const postDiv = document.createElement('div');
-        postDiv.className = 'post';
-        postDiv.dataset.id = post.id;
-        const ownerEmail = localStorage.getItem('userEmail');
-        let menuHTML = `<span class="menu" onclick="reportPost('${post.id}')">⋮ Report</span>`;
-        postDiv.innerHTML = `
-          <div class="post-header" style="position:relative;">
-            <strong>${escapeHtml(post.name)}</strong>
-            ${menuHTML}
-          </div>
-          <p>${escapeHtml(post.message)}</p>
-          <small>${escapeHtml(post.time)}</small>
-        `;
-        feed.appendChild(postDiv);
-      });
-    }
-
-    function escapeHtml(unsafe) {
-      if(!unsafe && unsafe !== '') return '';
-      return String(unsafe)
-        .replace(/&/g,'&amp;')
-        .replace(/</g,'&lt;')
-        .replace(/>/g,'&gt;')
-        .replace(/"/g,'&quot;')
-        .replace(/'/g,'&#039;');
-    }
-
-    // Toggle side menu
-    window.toggleMenu = function(){
-      const menu = document.getElementById("sideMenu");
-      if(menu) menu.classList.toggle('active');
-    };
-
-  </script>
-
-  <div class="side-menu" id="sideMenu">
-    <a href="index.html">🏠 Home</a>
-    <a href="about.html">About</a>
     <a href="causes.html">Causes</a>
     <a href="ef.html">Empowerment Fridays</a>
     <a href="seen&heard.html">Seen & Heard</a>
     <a href="TUG.html">TUG</a>
     <a href="gallery.html">Gallery</a>
     <a href="contact.html">Contact</a>
+  </nav>
+</div>
+
+<div class="container">
+  <h1>The Unseen Generation (TUG)</h1>
+  <p>
+    Welcome to The Unseen Generation (TUG) Space — a safe corner to share your story.
+    Post freely, read, and connect with a community that understands that even the smallest
+    acknowledgment can make a huge difference.
+  </p>
+
+  <!-- Post Form -->
+  <div class="post-form" style="margin-top:16px;">
+    <input type="text" id="name" placeholder="Your Name" />
+    <input type="email" id="email" placeholder="Your Email (preferred)" />
+    <textarea id="message" rows="4" placeholder="Write something..."></textarea>
+    <button id="postBtn" type="button">Post</button>
+    <button id="adminBtn" type="button" style="margin-top:8px; background:#000; color:#fff;">Admin</button>
   </div>
+
+  <!-- Posts Feed -->
+  <div id="postsFeed" style="margin-top:20px;"></div>
+</div>
+
+<footer id="site-footer">
+  <p>&copy; 2025 The Unseen Generation. All rights reserved.</p>
+</footer>
+
+<script type="module">
+import { initializeApp } from "https://www.gstatic.com/firebasejs/12.3.0/firebase-app.js";
+import { getDatabase, ref, push, set, onValue, update, remove } from "https://www.gstatic.com/firebasejs/12.3.0/firebase-database.js";
+import { getAuth } from "https://www.gstatic.com/firebasejs/12.3.0/firebase-auth.js";
+
+const firebaseConfig = {
+  apiKey: "AIzaSyD8P_Cpg8oiGKWuefw8MDAGIGxuNwazlIY",
+  authDomain: "theunseengeneration-ef3a7.firebaseapp.com",
+  databaseURL: "https://theunseengeneration-ef3a7-default-rtdb.firebaseio.com",
+  projectId: "theunseengeneration-ef3a7",
+  storageBucket: "theunseengeneration-ef3a7.firebasestorage.app",
+  messagingSenderId: "19836098555",
+  appId: "1:19836098555:web:98632364991cfe7678dd5e"
+};
+
+const app = initializeApp(firebaseConfig);
+const database = getDatabase(app);
+const auth = getAuth(app);
+
+const postsRef = ref(database, 'posts');
+const reportsRef = ref(database, 'reports');
+
+const postBtn = document.getElementById('postBtn');
+const nameInput = document.getElementById('name');
+const emailInput = document.getElementById('email');
+const messageInput = document.getElementById('message');
+const feed = document.getElementById('postsFeed');
+const adminBtn = document.getElementById('adminBtn');
+
+emailInput.addEventListener('blur', () => {
+  localStorage.setItem('userEmail', emailInput.value.trim());
+});
+
+let currentPosts = {};
+let isAdmin = false;
+
+// Post button
+postBtn.addEventListener('click', () => {
+  const name = nameInput.value.trim();
+  const email = emailInput.value.trim();
+  const message = messageInput.value.trim();
+  if(!name || !email || !message){
+    alert("Please fill in all fields.");
+    return;
+  }
+  const newPostRef = push(postsRef);
+  set(newPostRef, {
+    id: newPostRef.key,
+    name,
+    email,
+    message,
+    time: new Date().toLocaleString()
+  });
+  nameInput.value = '';
+  emailInput.value = '';
+  messageInput.value = '';
+});
+
+// Admin button redirect
+adminBtn.addEventListener('click', () => {
+  window.location.href = 'admin.html';
+});
+
+// Real-time posts listener
+onValue(postsRef, snapshot => {
+  currentPosts = snapshot.val() || {};
+  renderPosts(currentPosts);
+});
+
+function renderPosts(posts){
+  feed.innerHTML = '';
+  Object.values(posts).reverse().forEach(post => {
+    const postDiv = document.createElement('div');
+    postDiv.className = 'post';
+    postDiv.dataset.id = post.id;
+
+    const ownerEmail = localStorage.getItem('userEmail');
+    let menuHTML = '';
+    if(isAdmin || post.email === ownerEmail){
+      menuHTML = `
+        <span class="menu" onclick="togglePostMenu('${post.id}')">⋮</span>
+        <div id="menu-${post.id}" class="post-menu" style="display:none;">
+          <div onclick="editPost('${post.id}')">Edit</div>
+          <div onclick="deletePost('${post.id}')">Delete</div>
+        </div>`;
+    } else {
+      menuHTML = `<span class="menu" onclick="reportPost('${post.id}')">⋮ Report</span>`;
+    }
+
+    postDiv.innerHTML = `
+      <div class="post-header" style="position:relative;">
+        <strong>${escapeHtml(post.name)}</strong>
+        ${menuHTML}
+      </div>
+      <p>${escapeHtml(post.message)}</p>
+      <small>${escapeHtml(post.time)}</small>
+      <div class="reactions">
+        <span onclick="react('${post.id}','Motivating 💪')">Motivating 💪</span>
+        <span onclick="react('${post.id}','Inspiring ✨')">Inspiring ✨</span>
+        <span onclick="react('${post.id}','Relatable 💭')">Relatable 💭</span>
+        <span onclick="react('${post.id}','I See You 👀')">I See You 👀</span>
+      </div>
+    `;
+    feed.appendChild(postDiv);
+  });
+}
+
+function escapeHtml(unsafe) {
+  if(!unsafe && unsafe !== '') return '';
+  return String(unsafe)
+    .replace(/&/g,'&amp;')
+    .replace(/</g,'&lt;')
+    .replace(/>/g,'&gt;')
+    .replace(/"/g,'&quot;')
+    .replace(/'/g,'&#039;');
+}
+
+window.togglePostMenu = function(id){
+  const menu = document.getElementById(`menu-${id}`);
+  if(menu) menu.style.display = menu.style.display === 'block' ? 'none' : 'block';
+};
+
+window.editPost = function(id){
+  if(!isAdmin && !isPostOwner(id)){
+    alert('Not authorized');
+    return;
+  }
+  const newMessage = prompt('Edit your post:');
+  if(newMessage === null) return;
+  update(ref(database, `posts/${id}`), { message: newMessage });
+};
+
+window.deletePost = function(id){
+  if(!isAdmin && !isPostOwner(id)){
+    alert('Not authorized');
+    return;
+  }
+  if(!confirm('Are you sure you want to delete this post?')) return;
+  remove(ref(database, `posts/${id}`));
+};
+
+function isPostOwner(id){
+  const posts = currentPosts || {};
+  const post = posts[id];
+  const ownerEmail = localStorage.getItem('userEmail');
+  return post && ownerEmail && post.email === ownerEmail;
+}
+
+// Report post
+window.reportPost = function(id){
+  const reportRef = push(reportsRef);
+  set(reportRef, { postId: id, time: new Date().toLocaleString() });
+  alert('Post reported. Admin will be notified.');
+};
+
+// Simple reaction example
+window.react = function(id, reaction){
+  alert(`You reacted: ${reaction}`);
+};
+
+// Side menu toggle
+window.toggleMenu = function(){
+  const menu = document.getElementById("sideMenu");
+  if(menu) menu.classList.toggle('active');
+};
+</script>
+
+<div class="side-menu" id="sideMenu">
+  <a href="index.html">🏠 Home</a>
+  <a href="about.html">About</a>
+  <a href="causes.html">Causes</a>
+  <a href="ef.html">Empowerment Fridays</a>
+  <a href="seen&heard.html">Seen & Heard</a>
+  <a href="TUG.html">TUG</a>
+  <a href="gallery.html">Gallery</a>
+  <a href="contact.html">Contact</a>
+</div>
 </body>
 </html>
