@@ -87,22 +87,28 @@ const messageInput = document.getElementById('message');
 const feed = document.getElementById('postsFeed');
 const adminBtn = document.getElementById('adminBtn');
 
+let currentPosts = {};
+let isAdmin = false;
+
+// Save email when typing so menu works
 emailInput.addEventListener('blur', () => {
   localStorage.setItem('userEmail', emailInput.value.trim());
 });
-
-let currentPosts = {};
-let isAdmin = false;
 
 // Post button
 postBtn.addEventListener('click', () => {
   const name = nameInput.value.trim();
   const email = emailInput.value.trim();
   const message = messageInput.value.trim();
-  if(!name || !email || !message){
+
+  if (!name || !email || !message) {
     alert("Please fill in all fields.");
     return;
   }
+
+  // Save email to localStorage before posting
+  localStorage.setItem('userEmail', email);
+
   const newPostRef = push(postsRef);
   set(newPostRef, {
     id: newPostRef.key,
@@ -111,35 +117,38 @@ postBtn.addEventListener('click', () => {
     message,
     time: new Date().toLocaleString()
   });
+
   nameInput.value = '';
   emailInput.value = '';
   messageInput.value = '';
 });
 
-// Admin button redirect
+// Admin redirect
 adminBtn.addEventListener('click', () => {
   window.location.href = 'admin.html';
 });
 
-// Real-time posts listener
+// Listen for posts
 onValue(postsRef, snapshot => {
   currentPosts = snapshot.val() || {};
   renderPosts(currentPosts);
 });
 
-function renderPosts(posts){
+// Render posts
+function renderPosts(posts) {
   feed.innerHTML = '';
+  const ownerEmail = localStorage.getItem('userEmail');
+
   Object.values(posts).reverse().forEach(post => {
     const postDiv = document.createElement('div');
     postDiv.className = 'post';
     postDiv.dataset.id = post.id;
 
-    const ownerEmail = localStorage.getItem('userEmail');
     let menuHTML = '';
-    if(isAdmin || post.email === ownerEmail){
+    if (isAdmin || post.email === ownerEmail) {
       menuHTML = `
         <span class="menu" onclick="togglePostMenu('${post.id}')">⋮</span>
-        <div id="menu-${post.id}" class="post-menu" style="display:none;">
+        <div id="menu-${post.id}" class="post-menu">
           <div onclick="editPost('${post.id}')">Edit</div>
           <div onclick="deletePost('${post.id}')">Delete</div>
         </div>`;
@@ -161,10 +170,12 @@ function renderPosts(posts){
         <span onclick="react('${post.id}','I See You 👀')">I See You 👀</span>
       </div>
     `;
+
     feed.appendChild(postDiv);
   });
 }
 
+// Escape HTML
 function escapeHtml(unsafe) {
   if(!unsafe && unsafe !== '') return '';
   return String(unsafe)
@@ -175,11 +186,13 @@ function escapeHtml(unsafe) {
     .replace(/'/g,'&#039;');
 }
 
+// Toggle post menu
 window.togglePostMenu = function(id){
   const menu = document.getElementById(`menu-${id}`);
-  if(menu) menu.style.display = menu.style.display === 'block' ? 'none' : 'block';
+  if(menu) menu.classList.toggle('show');
 };
 
+// Edit post
 window.editPost = function(id){
   if(!isAdmin && !isPostOwner(id)){
     alert('Not authorized');
@@ -190,6 +203,7 @@ window.editPost = function(id){
   update(ref(database, `posts/${id}`), { message: newMessage });
 };
 
+// Delete post
 window.deletePost = function(id){
   if(!isAdmin && !isPostOwner(id)){
     alert('Not authorized');
@@ -199,6 +213,7 @@ window.deletePost = function(id){
   remove(ref(database, `posts/${id}`));
 };
 
+// Check post owner
 function isPostOwner(id){
   const posts = currentPosts || {};
   const post = posts[id];
@@ -213,7 +228,7 @@ window.reportPost = function(id){
   alert('Post reported. Admin will be notified.');
 };
 
-// Simple reaction example
+// Reactions
 window.react = function(id, reaction){
   alert(`You reacted: ${reaction}`);
 };
@@ -224,6 +239,7 @@ window.toggleMenu = function(){
   if(menu) menu.classList.toggle('active');
 };
 </script>
+
 
 <div class="side-menu" id="sideMenu">
   <a href="index.html">🏠 Home</a>
