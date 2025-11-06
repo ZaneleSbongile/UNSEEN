@@ -223,68 +223,6 @@ window.toggleMenu = function(){
   const menu = document.getElementById("sideMenu");
   if(menu) menu.classList.toggle('active');
 };
-
-  function renderPosts(posts){
-  feed.innerHTML = '';
-  Object.values(posts).reverse().forEach(post => {
-    const postDiv = document.createElement('div');
-    postDiv.className = 'post';
-    postDiv.dataset.id = post.id;
-
-    const ownerEmail = localStorage.getItem('userEmail');
-    let menuDiv = document.createElement('div');
-
-    if(isAdmin || post.email === ownerEmail){
-      const menuBtn = document.createElement('span');
-      menuBtn.className = 'menu';
-      menuBtn.textContent = '⋮';
-      const dropdown = document.createElement('div');
-      dropdown.id = `menu-${post.id}`;
-      dropdown.className = 'post-menu';
-      dropdown.style.display = 'none';
-      const edit = document.createElement('div');
-      edit.textContent = 'Edit';
-      edit.addEventListener('click', () => editPost(post.id));
-      const del = document.createElement('div');
-      del.textContent = 'Delete';
-      del.addEventListener('click', () => deletePost(post.id));
-      dropdown.appendChild(edit);
-      dropdown.appendChild(del);
-
-      menuBtn.addEventListener('click', () => {
-        dropdown.style.display = dropdown.style.display === 'block' ? 'none' : 'block';
-      });
-
-      postDiv.appendChild(menuBtn);
-      postDiv.appendChild(dropdown);
-    } else {
-      const reportBtn = document.createElement('span');
-      reportBtn.className = 'menu';
-      reportBtn.textContent = '⋮ Report';
-      reportBtn.addEventListener('click', () => reportPost(post.id));
-      postDiv.appendChild(reportBtn);
-    }
-
-    const header = document.createElement('div');
-    header.className = 'post-header';
-    header.style.position = 'relative';
-    const strongName = document.createElement('strong');
-    strongName.textContent = post.name;
-    header.appendChild(strongName);
-    postDiv.insertBefore(header, postDiv.firstChild);
-
-    const messageP = document.createElement('p');
-    messageP.textContent = post.message;
-    postDiv.appendChild(messageP);
-
-    const timeSmall = document.createElement('small');
-    timeSmall.textContent = post.time;
-    postDiv.appendChild(timeSmall);
-
-    feed.appendChild(postDiv);
-  });
-}
-
 </script>
 
 <div class="side-menu" id="sideMenu">
