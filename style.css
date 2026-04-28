@@ -102,7 +102,7 @@ nav.desktop-nav .dropdown > a:hover {
 
 .dropdown-content a.active {
   background-color: white;
-  color: #9966CB;
+  color: white;
   font-weight: bold;
 }
 
