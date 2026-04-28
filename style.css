@@ -63,11 +63,11 @@ nav.desktop-nav a:hover {
 nav.desktop-nav .dropdown > a {
   cursor: default;
   pointer-events: none;
-  color: #222;
+  color: #9966CB;
 }
 
 nav.desktop-nav .dropdown > a:hover {
-  color: #fff;
+  color: #9966CB;
 }
 
 .dropdown {
