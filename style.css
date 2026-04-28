@@ -36,7 +36,7 @@ html, body {
 
 nav.desktop-nav {
   flex: 1;
-  color: #FAB972;
+  color: #9966CB;
   display: flex;
   flex-wrap: wrap;
   justify-content: flex-start;
@@ -54,7 +54,7 @@ nav.desktop-nav a {
 
 nav.desktop-nav a:hover {
   color: white;
-  background-color: #FAB972;
+  background-color: #9966CB;
   padding: 8px 12px;
   border-radius: 5px;
   transition: all 0.3s ease;
