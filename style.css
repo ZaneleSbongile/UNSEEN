@@ -93,7 +93,7 @@ nav.desktop-nav .dropdown > a:hover {
 }
 
 .dropdown-content a:hover {
-  background-color: #9966CB;
+  background-color: white;
 }
 
 .dropdown:hover .dropdown-content {
