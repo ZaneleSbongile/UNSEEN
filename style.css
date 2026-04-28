@@ -53,7 +53,7 @@ nav.desktop-nav a {
 }
 
 nav.desktop-nav a:hover {
-  color: #fff;
+  color: white;
   background-color: #FAB972;
   padding: 8px 12px;
   border-radius: 5px;
