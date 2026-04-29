@@ -418,7 +418,10 @@ header p {
 .slideshow-container {
   position: relative;
   height: 76vh;
+   margin: 20px;
+   border-radius: 25px;
   overflow: hidden;
+   
 }
 
 .slide {
@@ -433,6 +436,7 @@ header p {
   height: 100%;
   object-fit: cover;
   object-position: center top;
+   border-radius: 25px;
 }
 
 .fade {
