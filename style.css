@@ -483,7 +483,7 @@ header p {
    =========================== */
 .branding {
   height: 50vh;
-  background-color: #fdf8f2;
+  background-color: white;
   text-align: center;
   display: flex;
   flex-direction: column;
@@ -492,11 +492,13 @@ header p {
 
 .branding h1 {
   font-size: 3em;
+  color: purple;
   margin-bottom: 10px;
 }
 
 .branding p {
   font-size: 1.2em;
+  color: purple;
   font-style: italic;
 }
 
