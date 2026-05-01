@@ -1014,7 +1014,7 @@ header p {
 }
 /* ======= Hero Banner ======= */
 .hero-banner {
-  background: linear-gradient(rgba(253, 174, 68, 0.85), rgba(253, 174, 68, 0.85)),
+  background: linear-gradient(rgba(153, 102, 203, 0.85), rgba(153, 102, 203, 0.85)),
               url('images/hero-bg.jpg') center center/cover no-repeat;
   color: #fff;
   padding: 100px 20px 80px;
