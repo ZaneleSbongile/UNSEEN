@@ -174,22 +174,34 @@ nav.desktop-nav .dropdown > a:hover {
   box-shadow: 0 5px 10px rgba(0,0,0,0.3);
 }
 
+/* Container to center the buttons */
 .home-actions {
-   background-color: #9966CB;
-  text-align: center;
-  padding: 20px;
   display: flex;
-  flex-wrap: wrap; /* This lets them stack on phones */
+  flex-wrap: wrap;
   justify-content: center;
-  gap: 15px; /* Space between buttons */
-  margin-bottom: 50px;
+  gap: 20px;
+  padding: 40px 20px;
 }
 
-/* Optional: Make them slightly more unique than the standard buttons */
-.home-actions .btn {
-  min-width: 200px;
-  text-transform: uppercase;
-  letter-spacing: 1px;
+/* The New Purple Button Style */
+.btn-purple {
+  background-color: #9966CB !important; /* Your purple */
+  color: white !important;              /* White text */
+  border: 2px solid #9966CB;           /* Purple border */
+  padding: 12px 25px;
+  border-radius: 8px;
+  text-decoration: none;
+  font-weight: bold;
+  transition: all 0.3s ease;           /* Makes the color flip smooth */
+  display: inline-block;
+}
+
+/* The Hover Effect (Reversing the colors) */
+.btn-purple:hover {
+  background-color: white !important;   /* Becomes white */
+  color: #9966CB !important;            /* Text becomes purple */
+  border: 2px solid #9966CB;           /* Keep the border so it's visible */
+  box-shadow: 0 4px 15px rgba(153, 102, 203, 0.3); /* Optional: soft purple glow */
 }
 
 /* ===========================
