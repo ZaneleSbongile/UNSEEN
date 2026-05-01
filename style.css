@@ -1066,9 +1066,9 @@ header p {
 }
 
 .cause-card {
-  background: #fff;
+  background: white;
   border-radius: 15px;
-  box-shadow: 0 12px 20px rgba(253, 174, 68, 0.3);
+  box-shadow: 0 12px 20px rgba(0, 0, 0, 0.1);
   padding: 20px;
   transition: transform 0.3s ease, box-shadow 0.3s ease;
   display: flex;
@@ -1079,7 +1079,7 @@ header p {
 
 .cause-card:hover {
   transform: translateY(-8px);
-  box-shadow: 0 20px 30px rgba(253, 174, 68, 0.6);
+  box-shadow: 0 20px 30px rgba(0, 0, 0, 0.15);
 }
 
 .cause-card img {
