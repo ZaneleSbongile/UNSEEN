@@ -175,6 +175,7 @@ nav.desktop-nav .dropdown > a:hover {
 }
 
 .home-actions {
+   background-color: #9966CB;
   text-align: center;
   padding: 20px;
   display: flex;
