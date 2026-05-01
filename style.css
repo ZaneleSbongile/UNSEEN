@@ -424,6 +424,20 @@ header p {
    
 }
 
+/* This targets phones and small tablets */
+@media (max-width: 768px) {
+  .slideshow-container {
+    height: 400px;        /* Reduces the height so it fits better on a phone screen */
+    margin: 15px 10px;    /* Smaller gaps on the sides to save space */
+    border-radius: 20px;  /* Slightly smaller curves to match the smaller screen */
+  }
+
+  .slide img {
+    /* Ensure the head is still the priority on mobile */
+    object-position: center 10%; 
+  }
+}
+
 .slide {
   display: none;
   height: 100%;
