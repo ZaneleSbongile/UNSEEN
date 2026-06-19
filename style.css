@@ -75,6 +75,8 @@ nav.desktop-nav .dropdown > a:hover {
   display: flex;
   align-items: center;
   position: relative;
+   height: 100%;
+   margin: 0 15px;
 }
 
 /* The About link acts normally */
@@ -82,7 +84,7 @@ nav.desktop-nav .dropdown > a:hover {
   text-decoration: none;
   color: #9966CB;
   font-weight: bold;
-  padding: 8px 5px;
+  padding: 0;
 }
 
 /* Wrapper for button and dropdown */
@@ -90,6 +92,7 @@ nav.desktop-nav .dropdown > a:hover {
   position: relative;
   display: flex;
   align-items: center;
+   height: 100%
 }
 
 /* The arrow button */
@@ -98,7 +101,8 @@ nav.desktop-nav .dropdown > a:hover {
   border: none;
   color: #9966CB;
   cursor: pointer;
-  padding: 5px;
+  padding: 0 0 0 5px;
+   font-size: 14px;
 }
 
 /* Dropdown Content - Hidden by default */
