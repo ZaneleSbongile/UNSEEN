@@ -23,10 +23,10 @@
       <div class="dropdown">
         <a href="about.html">About</a>
        
-
-          <button class="dropdown-btn" onclick="toggleAboutMenu()">
-        ▼
-    </button>
+<button class="dropdown-btn" onclick="toggleAboutMenu(event)">
+  ▼
+</button>
+        
         <div class="dropdown-content" id="aboutDropdown">
           <a href="main.html">The UNSEEN generation</a>
           <a href="born.html">How It Was Born</a>
@@ -91,9 +91,10 @@
 
   <!-- Scripts -->
   <script>
-    function toggleAboutMenu() {
-    const menu = document.getElementById("aboutDropdown");
-    menu.classList.toggle("show");
+   function toggleAboutMenu(event) {
+  event.stopPropagation();
+  const menu = document.getElementById("aboutDropdown");
+  menu.classList.toggle("show");
 }
     
     function toggleMenu() {
