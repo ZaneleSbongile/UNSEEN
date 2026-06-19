@@ -130,15 +130,7 @@ nav.desktop-nav .dropdown > a:hover {
   background-color: #9966CB;
   color: white;
 }
-
-.dropdown-content {
-  display: none;
-  position: absolute;
-  background-color: white;
-  min-width: 280px;
-  box-shadow: 0px 8px 16px rgba(0,0,0,0.2);
-  z-index: 999;
-   
+  
 }.dropdown-content a {
   color: #9966CB;
   padding: 10px 16px;
