@@ -70,13 +70,65 @@ nav.desktop-nav .dropdown > a:hover {
   color: #9966CB;
 }
 
-.dropdown {
-   padding-bottom: 10px;
+/* Container for the whole About section */
+.about-container {
+  display: flex;
+  align-items: center;
+  position: relative;
+}
+
+/* The About link acts normally */
+.about-link {
+  text-decoration: none;
+  color: #9966CB;
+  font-weight: bold;
+  padding: 8px 5px;
+}
+
+/* Wrapper for button and dropdown */
+.dropdown-wrapper {
   position: relative;
   display: flex;
   align-items: center;
-  gap: 5px;
-  padding-bottom: 10px;
+}
+
+/* The arrow button */
+.dropdown-btn {
+  background: none;
+  border: none;
+  color: #9966CB;
+  cursor: pointer;
+  padding: 5px;
+}
+
+/* Dropdown Content - Hidden by default */
+.dropdown-content {
+  display: none;
+  position: absolute;
+  top: 100%; /* Sits right below the arrow button */
+  left: 0;
+  background-color: white;
+  min-width: 200px;
+  box-shadow: 0px 8px 16px rgba(0,0,0,0.2);
+  z-index: 999;
+}
+
+/* IMPORTANT: Only show when hovering over the wrapper */
+.dropdown-wrapper:hover .dropdown-content {
+  display: block;
+}
+
+/* Style the links */
+.dropdown-content a {
+  color: #9966CB;
+  padding: 10px 16px;
+  text-decoration: none;
+  display: block;
+}
+
+.dropdown-content a:hover {
+  background-color: #9966CB;
+  color: white;
 }
 
 .dropdown-content {
@@ -93,42 +145,10 @@ nav.desktop-nav .dropdown > a:hover {
   text-decoration: none;
   display: block;
 }
-/*
-.dropdown-content a {
-  color: white;
-  padding: 10px 16px;
-  text-decoration: none;
-  display: block;
-  transition: background-color 0.3s ease;
-}*/
 
 .dropdown-content a:hover {
   background-color: #9966CB;
   color: white;
-}
-/*
-.dropdown-content a:hover {
-  background-color: white;
-}
-
-dropdown:hover .dropdown-content {
-  display: block;
-}*/
-.dropdown-btn {
-  background: none;
-  border: none;
-  color: #9966CB;
-  font-weight: bold;
-  font-size: 14px;
-  cursor: pointer;
-  padding: 8px 5px;
-  transition: all 0.3s ease;
-}
-
-.dropdown-btn:hover {
-  color: white;
-  background-color: #9966CB;
-  border-radius: 5px;
 }
 
 .dropdown-content a.active {
@@ -146,9 +166,6 @@ dropdown:hover .dropdown-content {
   z-index: 999;
 }
 
-.dropdown-content.show {
-  display: block;
-}
 /* ===========================
    HAMBURGER MENU (Mobile)
    =========================== */
