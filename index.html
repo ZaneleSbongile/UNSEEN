@@ -23,10 +23,10 @@
         <a href="about.html">About</a> <!-- Non-clickable -->
        
 
-          <button class="dropdown-">
+          <button class="dropdown-btn" onclick="toggleAboutMenu()">
         ▼
     </button>
-        <div class="dropdown-content">
+        <div class="dropdown-content" id="aboutDropdown">
           <a href="main.html">The UNSEEN generation</a>
           <a href="born.html">How It Was Born</a>
           <a href="mission.html">Mission</a>
@@ -90,6 +90,11 @@
 
   <!-- Scripts -->
   <script>
+    function toggleAboutMenu() {
+    const menu = document.getElementById("aboutDropdown");
+    menu.classList.toggle("show");
+}
+    
     function toggleMenu() {
       const menu = document.getElementById("sideMenu");
       menu.classList.toggle("active");
