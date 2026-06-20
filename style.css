@@ -163,6 +163,30 @@ nav.desktop-nav .dropdown > a:hover {
 }
 
 /* ===========================
+   BRANDING
+   =========================== */
+.branding {
+  height: 50vh;
+  background-color: white;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.branding h1 {
+  font-size: 3em;
+  color: Black;
+  margin-bottom: 10px;
+}
+
+.branding p {
+  font-size: 1.2em;
+  color: Black;
+  font-style: italic;
+}
+
+/* ===========================
    HAMBURGER MENU (Mobile)
    =========================== */
 .hamburger {
@@ -578,29 +602,7 @@ header p {
   to { opacity: 1; }
 }
 
-/* ===========================
-   BRANDING
-   =========================== */
-.branding {
-  height: 50vh;
-  background-color: white;
-  text-align: center;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-}
 
-.branding h1 {
-  font-size: 3em;
-  color: Black;
-  margin-bottom: 10px;
-}
-
-.branding p {
-  font-size: 1.2em;
-  color: #9966CB;
-  font-style: italic;
-}
 
 /* ===========================
    IMAGE GRID
