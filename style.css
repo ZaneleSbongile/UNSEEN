@@ -920,7 +920,7 @@ header p {
 
 .involved h2 {
   font-size: 3rem;
-  color: #FDAE44;
+  color: #9966CB;
   margin-bottom: 25px;
   text-transform: uppercase;
   letter-spacing: 2.4px;
@@ -1037,12 +1037,12 @@ header p {
 .video-card p {
   margin: 0 10px;
   font-size: 1rem;
-  color: #444;
+  color: #9966CB;
   line-height: 1.4;
 }
 
 .video-card p b {
-  color: #FDAE44;
+  color: #9966CB;
   font-size: 1.2rem;
   letter-spacing: 1.2px;
   text-transform: uppercase;
