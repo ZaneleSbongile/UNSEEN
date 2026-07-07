@@ -1207,7 +1207,7 @@ header p {
   margin: 0 auto 40px;
   padding-left: 20px;
   font-size: 1.1rem;
-  color: #9966CB;
+  color: Black;
   line-height: 1.6;
 }
 
@@ -1216,14 +1216,14 @@ header p {
 }
 
 .contact a {
-  color: #FDAE44;
+  color: #9966CB;
   font-weight: 700;
   text-decoration: none;
   transition: color 0.3s ease;
 }
 
 .contact a:hover {
-  color: #9966CB;
+  color: Black;
   text-decoration: underline;
 }
 
@@ -1289,7 +1289,7 @@ header p {
 
 #gallery h2 {
   font-size: 3rem;
-  color: #FDAE44;
+  color: #9966CB;
   margin-bottom: 30px;
   text-transform: uppercase;
   letter-spacing: 2px;
