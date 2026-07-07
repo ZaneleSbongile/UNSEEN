@@ -1177,7 +1177,7 @@ header p {
 
 .contact h2 {
   font-size: 3rem;
-  color: #FDAE44;
+  color: #9966CB;
   text-align: center;
   margin-bottom: 20px;
   text-transform: uppercase;
@@ -1194,7 +1194,7 @@ header p {
 }
 
 .contact h3, .contact h4 {
-  color: #FDAE44;
+  color: #9966CB;
   font-weight: 700;
   margin-bottom: 15px;
   font-size: 1.8rem;
@@ -1207,7 +1207,7 @@ header p {
   margin: 0 auto 40px;
   padding-left: 20px;
   font-size: 1.1rem;
-  color: #555;
+  color: #9966CB;
   line-height: 1.6;
 }
 
@@ -1223,7 +1223,7 @@ header p {
 }
 
 .contact a:hover {
-  color: #222;
+  color: #9966CB;
   text-decoration: underline;
 }
 
