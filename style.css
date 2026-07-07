@@ -1037,12 +1037,12 @@ header p {
 .video-card p {
   margin: 0 10px;
   font-size: 1rem;
-  color: #9966CB;
+  color: Black;
   line-height: 1.4;
 }
 
 .video-card p b {
-  color: #9966CB;
+  color: Black;
   font-size: 1.2rem;
   letter-spacing: 1.2px;
   text-transform: uppercase;
