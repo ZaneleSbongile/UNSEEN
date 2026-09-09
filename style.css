@@ -500,25 +500,55 @@ header p {
    MOBILE RESPONSIVENESS
    =========================== */
 @media (max-width: 768px) {
-  .flip-card { width: 100%; height: 350px; }
-  .flip-card-back { font-size: 1rem; padding: 15px; }
+  .flip-card { 
+     width: 100%; 
+     height: 350px; 
+  }
+  .flip-card-back { 
+     font-size: 1rem; 
+     padding: 15px; 
+  }
 
-  .post-form input, .post-form textarea { font-size: 0.95rem; }
-  .post-form button { padding: 8px 15px; font-size: 0.95rem; }
+  .post-form input, .post-form textarea { 
+     font-size: 0.95rem; 
+  }
+  .post-form button { 
+     padding: 8px 15px; 
+     font-size: 0.95rem; 
+  }
 
-  .post { padding: 12px; }
-  .reactions span { font-size: 0.8rem; padding: 4px 6px; }
+  .post { 
+     padding: 12px; 
+  }
+  .reactions span { 
+     font-size: 0.8rem; padding: 4px 6px; 
+  }
 }
 
 @media (max-width: 400px) {
-  .flip-card { height: 300px; }
-  .flip-card-back { font-size: 0.95rem; padding: 10px; }
+  .flip-card { 
+     height: 300px; 
+  }
+  .flip-card-back { 
+     font-size: 0.95rem; 
+     padding: 10px; 
+  }
 
-  .post-form input, .post-form textarea { font-size: 0.9rem; }
-  .post-form button { padding: 6px 12px; font-size: 0.9rem; }
+  .post-form input, .post-form textarea { 
+     font-size: 0.9rem; 
+  }
+  .post-form button { 
+     padding: 6px 12px; 
+     font-size: 0.9rem; 
+  }
 
-  .post { padding: 10px; }
-  .reactions span { font-size: 0.75rem; padding: 3px 5px; }
+  .post { 
+     padding: 10px; 
+  }
+  .reactions span { 
+     font-size: 0.75rem; 
+     padding: 3px 5px; 
+  }
 }
 
 
@@ -534,7 +564,7 @@ header p {
    
 }
 
-/* This targets phones and small tablets */
+
 @media (max-width: 768px) {
   .slideshow-container {
     height: 400px;        /* Reduces the height so it fits better on a phone screen */
@@ -1665,7 +1695,7 @@ header p {
     width: 90%;
     margin: 12px auto;
     padding: 14px 0;
-    background: linear-gradient(135deg, #ff7f50, #fff8e7);
+    background: purple;
     color: #333;
     font-weight: bold;
     font-size: 18px;
@@ -1679,7 +1709,7 @@ header p {
   .btn:hover {
     transform: translateY(-3px);
     box-shadow: 0 8px 12px rgba(0,0,0,0.2);
-    background: linear-gradient(135deg, #fff8e7, #ff7f50);
+    background: purple;
   }
 
   .btn:active {
