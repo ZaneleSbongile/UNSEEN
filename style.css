@@ -1695,7 +1695,7 @@ header p {
     width: 90%;
     margin: 12px auto;
     padding: 14px 0;
-    background: purple;
+    background: #9966CB;
     color: #333;
     font-weight: bold;
     font-size: 18px;
@@ -1709,7 +1709,7 @@ header p {
   .btn:hover {
     transform: translateY(-3px);
     box-shadow: 0 8px 12px rgba(0,0,0,0.2);
-    background: purple;
+    background: #9966CB;
   }
 
   .btn:active {
