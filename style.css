@@ -135,7 +135,7 @@ nav.desktop-nav .dropdown > a:hover {
   color: white;
 }
   
-}.dropdown-content a {
+.dropdown-content a {
   color: #9966CB;
   padding: 10px 16px;
   text-decoration: none;
@@ -265,7 +265,7 @@ nav.desktop-nav .dropdown > a:hover {
 
 /* The New Purple Button Style */
 .btn-purple {
-  background-color: #9966CB !important; /* Your purple */
+  background-color: #9966CB !important; 
   color: white !important;              /* White text */
   border: 2px solid #9966CB;           /* Purple border */
   padding: 12px 25px;
@@ -565,6 +565,98 @@ header p {
 
 .fade {
   animation: fadeEffect 1s ease-in-out;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+.content {
+  align-items: center;
+    display: flex;
+    flex-direction: column; /* Stack each person's card vertically on their own row */
+    gap: 30px; /* Space between each row */
+}
+
+.row {
+    display: flex; 
+    align-items: center;
+    gap: 20px;
+    height: 600px;
+    width: 70%;
+    border: 2px solid black;
+    border-radius: 20px;
+    overflow: hidden;
+    padding: 20px;
+    box-sizing: border-box;
+}
+
+.body { 
+    height: 100%;
+}
+
+.desc {
+    height: 100%;
+    overflow-y: auto; 
+}
+
+.desc p {
+    color: black;
+}
+
+.desc h1 {
+    text-align: center;
+    color: #9966CB;
+}
+
+.video {
+    width: 300;
+    height: 100%;
+    object-fit: cover; 
+    border-radius: 10px;
+}
+
+@media (max-width: 768px) {
+    .content {
+        flex-direction: column;
+        gap: 20px;
+    }
+
+    .body {
+        width: 100%;
+        height: 220px;
+    }
+
+    .desc {
+        width: 100%;
+    }
+
+    .desc h1 {
+        text-align: center;
+    }
 }
 
 /* ===========================
@@ -1562,7 +1654,7 @@ header p {
     margin: 12px auto;
     padding: 14px 0;
     background: linear-gradient(135deg, #ff7f50, #fff8e7);
-    color: #333
+    color: #333;
     font-weight: bold;
     font-size: 18px;
     text-align: center;
