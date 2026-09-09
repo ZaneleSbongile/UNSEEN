@@ -638,7 +638,7 @@ header p {
 }
 
 @media (max-width: 768px) {
-    .content {
+    .contents {
         flex-direction: column;
         gap: 20px;
     }
