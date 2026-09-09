@@ -642,6 +642,9 @@ header p {
         flex-direction: column;
         gap: 20px;
     }
+   .row {
+        flex-direction: column; /* Stacks video and description vertically */
+    }
 
     .body {
         width: 100%;
