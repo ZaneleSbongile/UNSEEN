@@ -235,7 +235,7 @@ nav.desktop-nav .dropdown > a:hover {
    =========================== */
 .btn {
   display: inline-block;
-  background-color: #FDAE44;
+  background-color: #9966CB;
   color: #222;
   padding: 12px 28px;
   margin: 15px 10px;
@@ -249,7 +249,7 @@ nav.desktop-nav .dropdown > a:hover {
 }
 
 .btn:hover {
-  background-color: #FAB972;
+  background-color: purple;
   color: #fff;
   box-shadow: 0 5px 10px rgba(0,0,0,0.3);
 }
