@@ -642,13 +642,21 @@ header p {
         flex-direction: column;
         gap: 20px;
     }
-   .row {
-        flex-direction: column; /* Stacks video and description vertically */
+    .row {
+        flex-direction: column; 
     }
 
     .body {
         width: 100%;
         height: 220px;
+    }
+
+    /* Ensure the video scales properly within the fixed height container */
+    .body video, .video {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        border-radius: 8px; /* Optional: adds a nice touch if you want rounded corners */
     }
 
     .desc {
